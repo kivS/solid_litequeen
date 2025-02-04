@@ -1,3 +1,16 @@
 <div>
+    
+    <%= console %>
     <h1>Solid Lite Queen</h1>
+
+
+    <ul>
+        <% @databases.each do |db| %>
+         <li>
+            <p><%= db.env_name %> - <%= db.name %></p>
+            <p><%= db.database %></p>
+         </li>
+        <% end %>
+    </ul>
+
 </div>
