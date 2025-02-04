@@ -4,6 +4,10 @@
     <h1>Solid Lite Queen</h1>
 
 
+    <div>
+        <p>Found <%= pluralize(@databases.count, "Sqlite database") %></p>
+    </div>
+
     <ul>
         <% @databases.each do |db| %>
          <li>
