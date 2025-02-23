@@ -5,7 +5,7 @@
 
     <p>Tables</p>
     <ul>
-        <% @table_info.each do |table| %>
+        <% @tables.each do |table| %>
             <li><%= table.dig(:name) %> - <%= pluralize(table.dig(:row_count), "Row") %></li>
         <% end %>
     </ul>

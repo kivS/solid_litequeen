@@ -22,7 +22,7 @@ module SolidLitequeen
       tables = DynamicDatabase.connection.tables
 
 
-      @table_info = tables.map do |table|
+      @tables = tables.map do |table|
         row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{table}").to_i
         { name: table, row_count: row_count }
       end
