@@ -19,8 +19,13 @@ module SolidLitequeen
         database: database_location
       )
 
-      # Retrieve a list of table names
-      @tables = DynamicDatabase.connection.tables
+      tables = DynamicDatabase.connection.tables
+
+
+      @table_info = tables.map do |table|
+        row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{table}").to_i
+        { name: table, row_count: row_count }
+      end
     end
   end
 end
