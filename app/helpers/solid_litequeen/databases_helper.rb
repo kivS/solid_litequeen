@@ -1,4 +1,4 @@
 module SolidLitequeen
-  module HomepageHelper
+  module DatabasesHelper
   end
 end

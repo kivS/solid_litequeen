@@ -1,3 +1,4 @@
 SolidLitequeen::Engine.routes.draw do
-  root to: "homepage#index"
+  resources :databases, only: [ :index, :show ]
+  root to: "databases#index"
 end

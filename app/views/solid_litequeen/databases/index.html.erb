@@ -5,7 +5,7 @@
 
 
     <div>
-        <p>Found <%= pluralize(@databases.count, "Sqlite database") %></p>
+    <p>Found <%= pluralize(@databases.count, "SQLite database") %></p>
     </div>
 
     <ul>
@@ -13,6 +13,7 @@
          <li>
             <p><%= db.env_name %> - <%= db.name %></p>
             <p><%= db.database %></p>
+            <a href="<%= database_path("#{db.env_name}-#{db.name}") %>">Open</a>
          </li>
         <% end %>
     </ul>
