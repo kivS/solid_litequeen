@@ -1,4 +1,13 @@
 <%= console %>
 <div>
     hello <%= params[:id] %>
+
+
+    <p>Tables</p>
+    <ul>
+        <% @tables.each do |table| %>
+            <li><%= table %></li>
+        <% end %>
+    </ul>
+
 </div>

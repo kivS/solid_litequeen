@@ -13,7 +13,7 @@
          <li>
             <p><%= db.env_name %> - <%= db.name %></p>
             <p><%= db.database %></p>
-            <a href="<%= database_path("#{db.env_name}-#{db.name}") %>">Open</a>
+            <a href="<%= database_path(Base64.urlsafe_encode64(db.database)) %>">Open</a>
          </li>
         <% end %>
     </ul>
