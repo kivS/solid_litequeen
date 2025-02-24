@@ -27,5 +27,19 @@ module SolidLitequeen
         { name: table, row_count: row_count }
       end
     end
+
+    def table_rows
+      database_id = params.expect(:database_id)
+      @table_name = params.expect(:table)
+
+      @database_location = Base64.urlsafe_decode64(database_id)
+
+      DynamicDatabase.establish_connection(
+        adapter: "sqlite3",
+        database: @database_location
+      )
+
+      @data = DynamicDatabase.connection.select_all("SELECT * FROM #{@table_name} LIMIT 100")
+    end
   end
 end
