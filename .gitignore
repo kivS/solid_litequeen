@@ -8,4 +8,4 @@
 /test/dummy/log/*.log
 /test/dummy/storage/
 /test/dummy/tmp/
-solid_litequeen-*.gem
+solid_litequeen.gem
