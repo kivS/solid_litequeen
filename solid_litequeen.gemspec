@@ -5,18 +5,18 @@ Gem::Specification.new do |spec|
   spec.version     = SolidLitequeen::VERSION
   spec.authors     = [ "Vik Borges" ]
   spec.email       = [ "kiv.d.dev@gmail.com" ]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of SolidLitequeen."
-  spec.description = "TODO: Description of SolidLitequeen."
+  spec.homepage    = "https://solid.litequeen.com"
+  spec.summary     = "Manage SQLite databases on your server with ease"
+  spec.description = "Lite Queen is an open-source SQLite database management software for Ruby on Rails projects"
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
   # to allow pushing to a single host or delete this section to allow pushing to any host.
-  spec.metadata["allowed_push_host"] = "http://mygemserver.com"
+  # spec.metadata["allowed_push_host"] = "http://mygemserver.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/kivS/solid_litequeen"
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["changelog_uri"] = "https://solid.litequeen.com"
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
