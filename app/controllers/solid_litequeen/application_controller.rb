@@ -1,5 +1,5 @@
 module SolidLitequeen
-  # class ApplicationController < ActionController::Base
+  # lets inherit directly from the host application, authentication and all
   class ApplicationController < ::ActionController
   end
 end
