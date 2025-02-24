@@ -1,13 +1,13 @@
 <%= console %>
 <div>
-    hello <%= params[:id] %>
+    hello <%= @database_location %>
 
 
     <p>Tables</p>
     <ul>
         <% @tables.each do |table| %>
             <li>
-                <%= link_to database_table_rows_path(params[:id], table[:name])  do %>
+                <%= link_to database_table_rows_path(@database_id, table[:name])  do %>
                     <%= table.dig(:name) %> - <%= pluralize(table.dig(:row_count), "Row") %>
                 <% end %>
             </li>

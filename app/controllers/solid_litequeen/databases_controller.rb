@@ -11,12 +11,12 @@ module SolidLitequeen
     end
 
     def show
-      db_id = params.expect(:id)
-      database_location = Base64.urlsafe_decode64(db_id)
+      @database_id = params.expect(:id)
+      @database_location = Base64.urlsafe_decode64(@database_id)
 
       DynamicDatabase.establish_connection(
         adapter: "sqlite3",
-        database: database_location
+        database: @database_location
       )
 
       tables = DynamicDatabase.connection.tables

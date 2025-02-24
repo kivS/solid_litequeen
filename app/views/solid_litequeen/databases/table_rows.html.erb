@@ -1,0 +1,23 @@
+<%= console %>
+<div>
+    <h1><%=  @database_location %> - <%= @table_name %></h1>
+
+    <table>
+        <thead>
+            <tr>
+                <% @data.columns.each do |column| %>
+                    <th><%= column %></th>
+                <% end %>
+            </tr>
+        </thead>
+        <tbody>
+            <% @data.rows.each do |row| %>
+                <tr>
+                    <% row.each do |item| %>
+                        <td><%= item %></td>
+                    <% end %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
