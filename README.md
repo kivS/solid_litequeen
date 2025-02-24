@@ -21,6 +21,20 @@ Or install it yourself as:
 $ gem install solid_litequeen
 ```
 
+After we need to mount in `routes.rb`:
+```ruby
+mount SolidLitequeen::Engine => "/solid_litequeen"
+```
+
+You can now navigate to `/solid_litequeen` to access the application
+
+
+
+## Authentication
+
+The application inherits from your `ApplicationController` and with it the authentication system you have in your application.
+
+
 ## Contributing
 Contribution directions go here.
 
