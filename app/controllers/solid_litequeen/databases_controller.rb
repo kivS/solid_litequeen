@@ -39,7 +39,7 @@ module SolidLitequeen
         database: @database_location
       )
 
-      @data = DynamicDatabase.connection.select_all("SELECT * FROM #{@table_name} LIMIT 100")
+      @data = DynamicDatabase.connection.select_all("SELECT * FROM #{@table_name} LIMIT 50")
     end
   end
 end
