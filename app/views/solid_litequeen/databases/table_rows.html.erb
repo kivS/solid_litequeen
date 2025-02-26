@@ -1,23 +1,28 @@
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Database: <%= @database_location %> - Table: <%= @table_name %></h1>
 
-<div>
-    <h1><%=  @database_location %> - <%= @table_name %></h1>
+    <div class="mb-6">
+        <p class="text-gray-600"><%= pluralize(@data.rows.count, "row") %> found</p>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <% @data.columns.each do |column| %>
-                    <th><%= column %></th>
-                <% end %>
-            </tr>
-        </thead>
-        <tbody>
-            <% @data.rows.each do |row| %>
-                <tr>
-                    <% row.each do |item| %>
-                        <td><%= item %></td>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <table class="w-full">
+            <thead>
+                <tr class="bg-gray-100 border-b border-gray-200">
+                    <% @data.columns.each do |column| %>
+                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700"><%= column %></th>
                     <% end %>
                 </tr>
-            <% end %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                <% @data.rows.each do |row| %>
+                    <tr class="hover:bg-gray-50">
+                        <% row.each do |item| %>
+                            <td class="px-6 py-4 text-sm text-gray-800"><%= item %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>

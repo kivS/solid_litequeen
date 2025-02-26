@@ -23,9 +23,14 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "rails", ">= 8.0.1"
-  spec.add_dependency "tailwindcss-rails", "~> 4.0"
+  spec.add_dependency "importmap-rails"
+  spec.add_dependency "stimulus-rails"
+  spec.add_dependency "tailwindcss-rails"
 
 
+  spec.add_development_dependency "debug"
   spec.add_development_dependency "web-console"
-  spec.add_development_dependency "debug", ">= 1.0.0"
+  spec.add_development_dependency "propshaft"
+  spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency "puma"
 end

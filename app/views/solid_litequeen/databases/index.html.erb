@@ -1,20 +1,37 @@
-<div>
+<div class="container mx-auto px-4 py-8">
     
-    <h1>Solid Lite Queen</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Solid Lite Queen</h1>
 
-
-    <div>
-    <p>Found <%= pluralize(@databases.count, "SQLite database") %></p>
+    <div class="mb-6">
+        <p class="text-gray-600"><%= pluralize(@databases.count, "SQLite database") %> found</p>
     </div>
 
-    <ul>
-        <% @databases.each do |db| %>
-         <li>
-            <p><%= db.env_name %> - <%= db.name %></p>
-            <p><%= db.database %></p>
-            <a href="<%= database_path(Base64.urlsafe_encode64(db.database)) %>">Open</a>
-         </li>
-        <% end %>
-    </ul>
+    <% if @databases.any? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <% @databases.each do |db| %>
+                <a href="<%= database_path(Base64.urlsafe_encode64(db.database)) %>" class="block bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <h2 class="text-lg font-semibold text-gray-900 truncate"><%= db.name %></h2>
+                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800"><%= db.env_name %></span>
+                        </div>
+                        <p class="text-sm text-gray-500 truncate mb-4"><%= db.database %></p>
+                        <div class="flex justify-end">
+                            <span class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800">
+                                Open
+                                <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            <% end %>
+        </div>
+    <% else %>
+        <div class="bg-gray-50 rounded-lg p-8 text-center">
+            <p class="text-gray-600">No databases found</p>
+        </div>
+    <% end %>
 
 </div>
