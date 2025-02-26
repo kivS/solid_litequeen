@@ -1,5 +1,10 @@
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-6">Database: <%= @database_location %></h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-6 flex gap-1 items-center justify-center">
+        <%= image_tag "solid_litequeen/icons/database.svg", class: "size-6" %>
+        <span>
+            <%= @database_location %>
+        </span>
+    </h1>
 
     <div class="mb-6">
         <h2 class="text-xl font-semibold text-gray-800">Tables</h2>
