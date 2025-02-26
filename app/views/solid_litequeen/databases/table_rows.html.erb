@@ -5,24 +5,26 @@
         <p class="text-gray-600"><%= pluralize(@data.rows.count, "row") %> found</p>
     </div>
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
-        <table class="w-full">
-            <thead>
-                <tr class="bg-gray-100 border-b border-gray-200">
-                    <% @data.columns.each do |column| %>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700"><%= column %></th>
-                    <% end %>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                <% @data.rows.each do |row| %>
-                    <tr class="hover:bg-gray-50">
-                        <% row.each do |item| %>
-                            <td class="px-6 py-4 text-sm text-gray-800"><%= item %></td>
+    <div class="bg-white rounded-lg shadow overflow-x-auto">
+        <div class="min-w-full inline-block align-middle">
+            <table class="min-w-full">
+                <thead>
+                    <tr class="bg-gray-100 border-b border-gray-200">
+                        <% @data.columns.each do |column| %>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap"><%= column %></th>
                         <% end %>
                     </tr>
-                <% end %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <% @data.rows.each do |row| %>
+                        <tr class="hover:bg-gray-50">
+                            <% row.each do |item| %>
+                                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap"><%= item %></td>
+                            <% end %>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
