@@ -41,5 +41,25 @@ module SolidLitequeen
 
       @data = DynamicDatabase.connection.select_all("SELECT * FROM #{@table_name} LIMIT 50")
     end
+
+    def download
+      database_id = params.expect(:id)
+      database_location = Base64.urlsafe_decode64(database_id)
+
+      # Verify the file exists
+      unless File.exist?(database_location)
+        flash[:error] = "Database file not found"
+        redirect_to databases_path and return
+      end
+
+      # Get the filename from the path
+      filename = File.basename(database_location)
+
+      # Send the file as a download
+      send_file database_location,
+                filename: filename,
+                type: "application/x-sqlite3",
+                disposition: "attachment"
+    end
   end
 end
