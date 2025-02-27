@@ -17,8 +17,8 @@
 
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
-            <table class="min-w-full">
-                <thead>
+            <table class="min-w-full relative">
+                <thead class="">
                     <tr class="bg-gray-100 border-b border-gray-200">
                         <% @data.columns.each do |column| %>
                             <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap"><%= column %></th>
@@ -29,7 +29,20 @@
                     <% @data.rows.each do |row| %>
                         <tr class="hover:bg-gray-50">
                             <% row.each do |item| %>
-                                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap"><%= item %></td>
+                                <% truncated_item =  item&.truncate(80) %>
+                                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" >
+
+                                    <div class="flex justify-between">
+
+                                        <span><%= truncated_item %></span>
+
+                                        <% if truncated_item&.to_s&.ends_with?("...") %>
+                                            <span title="<%= item %>" class="cursor-pointer size-4">
+                                                <%= image_tag "solid_litequeen/icons/info.svg", class: "size-4" %>
+                                            </span>
+                                        <% end %>
+                                    </div>
+                                </td>
                             <% end %>
                         </tr>
                     <% end %>
