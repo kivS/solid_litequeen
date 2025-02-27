@@ -13,6 +13,10 @@ development:
   primary:
     <<: *default
     database: storage/development.sqlite3
+  production-replica:
+    <<: *default
+    database: storage/production-replica.sqlite3
+    migrations_paths: false
   cache:
     <<: *default
     database: storage/development_cache.sqlite3
