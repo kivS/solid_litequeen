@@ -16,6 +16,13 @@
       --color-clifford: #da373d;
     }
   </style>
+
+   <%= javascript_importmap_tags %>
+    <!--
+      NOTE: To add engine's javascript functionality we have to load the
+            entrypoint here or `import` it in the main app `application.js`
+    -->
+    <%= javascript_import_module_tag "solid_litequeen/application" %>
 </head>
 <body class="">
 
