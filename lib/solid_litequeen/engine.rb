@@ -1,6 +1,5 @@
 require "importmap-rails"
 
-
 module SolidLitequeen
   class Engine < ::Rails::Engine
     isolate_namespace SolidLitequeen
