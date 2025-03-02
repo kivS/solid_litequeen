@@ -16,11 +16,12 @@
     }
   </style>
     
-   <%= javascript_importmap_tags %>
-    <!--
-      NOTE: To add engine's javascript functionality we have to load the
-            entrypoint here or `import` it in the main app `application.js`
-    -->
+  <%# Only include the importmap tags if we're not in a host application %>
+
+  <%= javascript_importmap_tags %>
+  
+    
+  <%# Always include the engine's JavaScript module %>
   <%= javascript_import_module_tag "solid_litequeen/application" %>
 
   <%= yield :head %>
