@@ -1,4 +1,7 @@
 require "importmap-rails"
+require "turbo-rails"
+require "stimulus-rails"
+
 
 module SolidLitequeen
   class Engine < ::Rails::Engine
