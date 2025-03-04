@@ -15,18 +15,13 @@
       --color-clifford: #da373d;
     }
   </style>
-    
-  <%# Only include the importmap tags if we're not in a host application %>
 
-  <%= javascript_importmap_tags %>
-  
-    
-  <%# Always include the engine's JavaScript module %>
-  <%= javascript_import_module_tag "solid_litequeen/application" %>
+
+  <%= javascript_importmap_tags "application", importmap: SolidLitequeen.importmap  %>
 
   <%= yield :head %>
 </head>
-<body class="">
+<body class="" data-controller="tet">
 
 
 <%= yield %>

@@ -2,5 +2,5 @@ require "solid_litequeen/version"
 require "solid_litequeen/engine"
 
 module SolidLitequeen
-  # Your code goes here...
+  mattr_accessor :importmap, default: Importmap::Map.new
 end
