@@ -23,8 +23,12 @@
 </head>
 <body class="">
 
+  <header class="flex justify-end mx-8 my-8">
+    <%= render "solid_litequeen/command-pallete" %>
+    <button onclick="command_pallete.showModal()">cmd + k</button>
+  </header>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
