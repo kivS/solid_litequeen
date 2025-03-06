@@ -44,7 +44,7 @@ module SolidLitequeen
     end
 
     def download
-      database_id = params.expect(:id)
+      database_id = params.expect(:database_id)
       database_location = Base64.urlsafe_decode64(database_id)
 
       # Verify the file exists
