@@ -40,6 +40,7 @@ module SolidLitequeen
       )
 
       @data = DynamicDatabase.connection.select_all("SELECT * FROM #{@table_name} LIMIT 50")
+      @row_count = row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{@table_name}").to_i
     end
 
     def download
