@@ -16,35 +16,30 @@ export default async function sitemap() {
 
 	return [
 		{
-			url: "https://litequeen.com/",
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 1,
-		},
-		{
-			url: "https://litequeen.com/?show-buy-card=true",
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 1,
-		},
-		{
-			url: "https://litequeen.com/guides/",
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 1,
-		},
-		{
-			url: "https://litequeen.com/faq/",
+			url: "https://solid.litequeen.com/",
 			lastModified: new Date(),
 			changeFrequency: "daily",
 			priority: 1,
 		},
 
-		...posts.map((post) => ({
-			url: `https://litequeen.com/guides/${post.slug}`,
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 1,
-		})),
+		// {
+		// 	url: "https://solid.litequeen.com/guides/",
+		// 	lastModified: new Date(),
+		// 	changeFrequency: "daily",
+		// 	priority: 1,
+		// },
+		// {
+		// 	url: "https://solid.litequeen.com/faq/",
+		// 	lastModified: new Date(),
+		// 	changeFrequency: "daily",
+		// 	priority: 1,
+		// },
+
+		// ...posts.map((post) => ({
+		// 	url: `https://solid.litequeen.com/guides/${post.slug}`,
+		// 	lastModified: new Date(),
+		// 	changeFrequency: "daily",
+		// 	priority: 1,
+		// })),
 	];
 }

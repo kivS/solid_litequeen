@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: litequeen-marketing
+service: solid-litequeen-landingpage
 
 # Name of the container image.
-image: kivsegrob/litequeen-marketing
+image: kivsegrob/solid-litequeen-landingpage
 
 # Deploy to these servers.
 servers:
@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: litequeen.com
+  host: solid.litequeen.com
   # Proxy connects to your container on port 80 by default.
   # app_port: 3000
 

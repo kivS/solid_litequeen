@@ -82,7 +82,7 @@ function FixedSidebar({ main, footer }) {
 							<Link href="/" className="flex gap-2 items-center">
 								<Logo id="logo" />
 								<span className=" dark:text-slate-200 font-sans text-lg font-semibold dark:font-black">
-									Lite Queen
+									Solid Lite Queen
 								</span>
 							</Link>
 						</div>
@@ -93,7 +93,7 @@ function FixedSidebar({ main, footer }) {
 						</div>
 					</div>
 					<div className="flex flex-1 items-end justify-center pb-4 lg:justify-start lg:pb-6">
-						{footer}
+						{/* {footer} */}
 					</div>
 				</div>
 			</div>
@@ -114,7 +114,7 @@ export function Layout({ children }) {
 			</div>
 
 			<ul className="flex  mr-14 z-50 mt-4 text-sm p-[2px] justify-end">
-				<li>
+				{/* <li>
 					<Link
 						href="/guides"
 						className="hover:underline items-center hover:text-landing-accent-light flex gap-2"
@@ -122,7 +122,7 @@ export function Layout({ children }) {
 						<BookIcon className="size-4" />
 						Guides
 					</Link>
-				</li>
+				</li> */}
 			</ul>
 
 			<p className="lg:w-1/2 z-10 lg:ml-auto opacity-60 text-sm mt-8 -mb-11 lg:-mb-20  text-center font-semibold dark:font-extrabold">

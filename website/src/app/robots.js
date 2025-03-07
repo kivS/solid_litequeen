@@ -7,6 +7,6 @@ export default function robots() {
 				// disallow: [""],
 			},
 		],
-		sitemap: "https://litequeen.com/sitemap.xml",
+		sitemap: "https://solid.litequeen.com/sitemap.xml",
 	};
 }

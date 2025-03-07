@@ -14,17 +14,17 @@ export function Intro() {
 		<>
 			<h1 className="mt-14 font-display text-4xl/none font-extrabold dark:text-white text-center">
 				Manage <span className="text-landing-accent-light ">SQLite</span>{" "}
-				databases on your server with{" "}
-				<span className="text-landing-accent-light">ease</span>
+				databases for your{" "}
+				<span className="text-landing-accent-light">Rails</span> app
 			</h1>
 
 			<div className="mt-8">
 				<p className="font-medium py-4 text-lg/6 dark:text-gray-300 text-pretty text-center">
-					Lite Queen is an open-source SQLite database management software that
-					runs on your server.
+					Lite Queen is a Rails engine you install into your app to manage
+					SQLite databases.
 				</p>
 				<div className="flex flex-col   gap-2">
-					<a
+					{/* <a
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/lite-queen"
@@ -32,7 +32,7 @@ export function Intro() {
 					>
 						<GitHubIcon className="size-6" />
 						<span className="md:text-lg">kivS/lite-queen</span>
-					</a>
+					</a> */}
 					<a
 						target="_blank"
 						rel="noreferrer"
@@ -60,7 +60,7 @@ export function Intro() {
 
 					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
-					<a
+					{/* <a
 						href="https://demo.litequeen.com"
 						target="_blank"
 						rel="noreferrer"
@@ -69,7 +69,7 @@ export function Intro() {
 					>
 						<DrumstickIcon className="size-5" />
 						<span>Demo</span>
-					</a>
+					</a> */}
 				</div>
 			</div>
 		</>
