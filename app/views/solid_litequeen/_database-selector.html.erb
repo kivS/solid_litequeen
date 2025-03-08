@@ -1,0 +1,25 @@
+
+<% if controller.controller_name == "databases" && action_name.in?([ "show", "table_rows"]) %>  
+    <div class="w-86">
+        <div class="database-selector p-4">
+            <select id="database-select" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                <option value="">Select a database...</option>
+                <% available_databases.each do |db| %>
+                <option value="<%= Base64.urlsafe_encode64(db.database) %>" <%= 'selected' if defined?(@database_id) && @database_id == Base64.urlsafe_encode64(db.database) %>>
+                    <%= db.database %>
+                </option>
+                <% end %>
+            </select>
+            
+            <script>
+                document.getElementById('database-select').addEventListener('change', function() {
+                if (this.value) {
+                    window.location.href = '<%= database_path("") %>' + this.value;
+                }
+                });
+            </script>
+        </div>
+
+    </div>
+<% end %>
+

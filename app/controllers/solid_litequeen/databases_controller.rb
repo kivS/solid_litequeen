@@ -29,10 +29,10 @@ module SolidLitequeen
     end
 
     def table_rows
-      database_id = params.expect(:database_id)
+      @database_id = params.expect(:database_id)
       @table_name = params.expect(:table)
 
-      @database_location = Base64.urlsafe_decode64(database_id)
+      @database_location = Base64.urlsafe_decode64(@database_id)
 
       DynamicDatabase.establish_connection(
         adapter: "sqlite3",

@@ -22,9 +22,10 @@
   <%= yield :head %>
 </head>
 <body class="">
-
-
-<%= yield %>
+  <header>
+    <%= render "solid_litequeen/database-selector" %>
+  </header>
+  <%= yield %>
 
 </body>
 </html>
