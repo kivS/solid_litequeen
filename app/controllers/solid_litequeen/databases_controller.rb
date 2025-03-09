@@ -32,6 +32,9 @@ module SolidLitequeen
       @database_id = params.expect(:database_id)
       @table_name = params.expect(:table)
 
+      @sort_column = params[:sort_by]
+      @sort_direction = params[:sort_direction]&.upcase == "DESC" ? "DESC" : "ASC"
+
       @database_location = Base64.urlsafe_decode64(@database_id)
 
       DynamicDatabase.establish_connection(
@@ -39,7 +42,18 @@ module SolidLitequeen
         database: @database_location
       )
 
-      @data = DynamicDatabase.connection.select_all("SELECT * FROM #{@table_name} LIMIT 50")
+      # Verify the sort column exists in the table to prevent SQL injection
+      valid_columns = DynamicDatabase.connection.columns(@table_name).map(&:name)
+
+      order_clause = if @sort_column.present? && valid_columns.include?(@sort_column)
+        "#{DynamicDatabase.connection.quote_column_name(@sort_column)} #{@sort_direction}"
+      end
+
+      sql = [ "SELECT * FROM #{@table_name}" ]
+      sql << "ORDER BY #{order_clause}" if order_clause
+      sql << "LIMIT 50"
+
+      @data = DynamicDatabase.connection.select_all(sql.join(" "))
       @row_count = row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{@table_name}").to_i
     end
 
