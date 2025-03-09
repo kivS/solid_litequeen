@@ -21,7 +21,19 @@
                 <thead class="">
                     <tr class="bg-gray-100 border-b border-gray-200">
                         <% @data.columns.each do |column| %>
-                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap"><%= column %></th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap">
+                                <%#= column %>
+
+                                  <%= link_to column, 
+                                    database_table_rows_path(
+                                        database_id: @database_id,
+                                        table: @table_name,
+                                        sort_column: column,
+                                        sort_direction: (@sort_column == column && @sort_direction == 'ASC') ? 'DESC' : 'ASC'
+                                    ) %>
+                                <%= '▼' if @sort_column == column && @sort_direction == 'DESC' %>
+                                <%= '▲' if @sort_column == column && @sort_direction == 'ASC' %>
+                            </th>
                         <% end %>
                     </tr>
                 </thead>

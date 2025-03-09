@@ -32,8 +32,25 @@ module SolidLitequeen
       @database_id = params.expect(:database_id)
       @table_name = params.expect(:table)
 
-      @sort_column = params[:sort_by]
-      @sort_direction = params[:sort_direction]&.upcase == "DESC" ? "DESC" : "ASC"
+      # Create a unique key for this table's sort preferences
+      sort_key = "#{@database_id}_#{@table_name}_sort"
+
+      # Update session if new sort params are provided
+      if params[:sort_column].present?
+        session[sort_key] = {
+          sort_column: params[:sort_column].to_s,
+          sort_direction: (params[:sort_direction]&.upcase == "DESC" ? "DESC" : "ASC")
+        }.stringify_keys # Ensure all keys are strings in session
+      end
+
+      # Get sort preferences from session or set defaults with string keys
+      sort_prefs = session[sort_key]&.with_indifferent_access || {
+        "sort_column" => nil,
+        "sort_direction" => "ASC"
+      }
+
+      @sort_column = sort_prefs["sort_column"]
+      @sort_direction = sort_prefs["sort_direction"]
 
       @database_location = Base64.urlsafe_decode64(@database_id)
 
@@ -52,6 +69,7 @@ module SolidLitequeen
       sql = [ "SELECT * FROM #{@table_name}" ]
       sql << "ORDER BY #{order_clause}" if order_clause
       sql << "LIMIT 50"
+
 
       @data = DynamicDatabase.connection.select_all(sql.join(" "))
       @row_count = row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{@table_name}").to_i
