@@ -43,11 +43,13 @@ module SolidLitequeen
       # Get sort preferences from session or set defaults with string keys
       sort_prefs = session[sort_key]&.with_indifferent_access || {
         "sort_column" => nil,
-        "sort_direction" => "ASC"
+        "sort_direction" => nil
       }
 
       @sort_column = sort_prefs["sort_column"]
       @sort_direction = sort_prefs["sort_direction"]
+
+      # debugger
 
       @database_location = Base64.urlsafe_decode64(@database_id)
 

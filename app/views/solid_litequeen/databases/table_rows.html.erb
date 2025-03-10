@@ -29,7 +29,7 @@
                                         database_id: @database_id,
                                         table: @table_name,
                                         sort_column: column,
-                                        sort_direction: (@sort_column == column && @sort_direction == 'ASC') ? 'DESC' : 'ASC'
+                                        sort_direction: (@sort_column == column && @sort_direction == 'DESC') ? 'ASC' : 'DESC'
                                     ) %>
                                 <%= '▼' if @sort_column == column && @sort_direction == 'DESC' %>
                                 <%= '▲' if @sort_column == column && @sort_direction == 'ASC' %>
