@@ -63,8 +63,6 @@ export default class extends Controller {
 
 		// Show a move indicator
 		e.dataTransfer.dropEffect = "move";
-
-		// console.log("dragover", e);
 	}
 
 	handleThDrop(e) {
@@ -84,8 +82,6 @@ export default class extends Controller {
 
 		// Optionally, update the table body columns accordingly if needed.
 		// (For example, iterate over each row and swap the corresponding cells.)
-
-		console.log("drop", e);
 	}
 
 	handleThDragend(e) {
@@ -94,6 +90,8 @@ export default class extends Controller {
 			e.preventDefault();
 			return;
 		}
-		console.log("dragend", e);
+
+		// Reset the dragged header
+		this.draggedTh = null;
 	}
 }
