@@ -15,13 +15,15 @@
         <p class="text-gray-600"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
+    <%= console %>
+
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
-            <table class="min-w-full relative">
+            <table data-controller="table" class="min-w-full relative">
                 <thead class="">
                     <tr class="bg-gray-100 border-b border-gray-200">
                         <% @data.columns.each do |column| %>
-                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap">
+                            <th  draggable="true" class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap">
                                 <%#= column %>
 
                                   <%= link_to column, 
