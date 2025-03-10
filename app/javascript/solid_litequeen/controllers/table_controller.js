@@ -98,7 +98,7 @@ export default class extends Controller {
 			body: JSON.stringify({ columnOrder }),
 		});
 
-		targetTh.removeAttribute("data-about-to-be-swapped");
+		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
 	}
 
 	handleThDragend(e) {
@@ -118,7 +118,7 @@ export default class extends Controller {
 		if (!targetTh || targetTh === this.draggedTh) {
 			return;
 		}
-		targetTh.setAttribute("data-about-to-be-swapped", true);
+		targetTh.setAttribute("data-column-order-about-to-be-swapped", true);
 		e.preventDefault();
 	}
 
@@ -127,7 +127,7 @@ export default class extends Controller {
 		if (!targetTh) {
 			return;
 		}
-		targetTh.removeAttribute("data-about-to-be-swapped");
+		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
 		e.preventDefault();
 	}
 }
