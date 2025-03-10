@@ -43,12 +43,13 @@
                         <% end %>
                     </tr>
                 </thead>
+
                 <tbody class="divide-y divide-gray-200">
                     <% @data.rows.each do |row| %>
-                        <tr class="hover:bg-gray-50">
-                            <% row.each do |item| %>
+                        <tr class="hover:bg-gray-50" >
+                            <% row.each_with_index do |item, index| %>
                                 <% truncated_item =  item&.truncate(80) %>
-                                <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" >
+                                <td data-column="<%= @data.columns[index] %>" class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" >
 
                                     <div class="flex justify-between">
 

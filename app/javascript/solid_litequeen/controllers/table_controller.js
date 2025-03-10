@@ -102,7 +102,24 @@ export default class extends Controller {
 			body: JSON.stringify({ columnOrder }),
 		}).then((result) => {
 			if (result.ok) {
-				Turbo.visit(window.location.href);
+				// Get all rows in the table body
+				const tbody = this.element.querySelector("tbody");
+				const rows = Array.from(tbody.querySelectorAll("tr"));
+
+				// Reorder cells in each row to match new column order
+				for (const row of rows) {
+					const cells = Array.from(row.querySelectorAll("td"));
+					const reorderedCells = columnOrder.map((colName) => {
+						// Find cell with matching data-column attribute
+						return cells.find((cell) => cell.dataset.column === colName);
+					});
+
+					// Clear row and append cells in new order
+					row.innerHTML = "";
+					for (const cell of reorderedCells) {
+						row.appendChild(cell);
+					}
+				}
 			}
 		});
 
