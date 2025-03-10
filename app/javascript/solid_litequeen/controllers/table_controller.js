@@ -14,25 +14,26 @@ export default class extends Controller {
 		this.element.addEventListener("dragover", this.handleThDragover.bind(this));
 		this.element.addEventListener("drop", this.handleThDrop.bind(this));
 		this.element.addEventListener("dragend", this.handleThDragend.bind(this));
+		this.element.addEventListener(
+			"dragenter",
+			this.handleThDragenter.bind(this),
+		);
+		this.element.addEventListener(
+			"dragleave",
+			this.handleThDragleave.bind(this),
+		);
 	}
 
 	disconnect() {
-		this.element.removeEventListener(
-			"dragstart",
-			this.handleThDragstart.bind(this),
-		);
+		this.element.removeEventListener("dragstart", this.handleThDragstart);
 
-		this.element.removeEventListener(
-			"dragover",
-			this.handleThDragover.bind(this),
-		);
+		this.element.removeEventListener("dragover", this.handleThDragover);
 
-		this.element.removeEventListener("drop", this.handleThDrop.bind(this));
+		this.element.removeEventListener("drop", this.handleThDrop);
 
-		this.element.removeEventListener(
-			"dragend",
-			this.handleThDragend.bind(this),
-		);
+		this.element.removeEventListener("dragend", this.handleThDragend);
+		this.element.removeEventListener("dragenter", this.handleThDragenter);
+		this.element.removeEventListener("dragleave", this.handleThDragleave);
 	}
 
 	handleThDragstart(e) {
@@ -50,9 +51,11 @@ export default class extends Controller {
 		// Some browsers require data to be set in order for dragging to work
 		e.dataTransfer.setData("text/plain", "");
 	}
+
 	handleThDragover(e) {
+		const targetTh = e.target.closest("th");
 		// Only allow dragging if the target is a table header
-		if (!e.target.matches("th")) {
+		if (!targetTh) {
 			e.preventDefault();
 			return;
 		}
@@ -64,14 +67,14 @@ export default class extends Controller {
 	}
 
 	handleThDrop(e) {
+		const targetTh = e.target.closest("th");
+
 		// Only handle drop if the target is a table header and we have a dragged header
-		if (!e.target.matches("th") || !this.draggedTh) {
+		if (!targetTh || !this.draggedTh) {
 			e.preventDefault();
 			return;
 		}
 		e.preventDefault();
-
-		const targetTh = e.target;
 
 		// Swap the positions of the dragged header and the target header
 		const parent = targetTh.parentElement;
@@ -94,6 +97,8 @@ export default class extends Controller {
 			},
 			body: JSON.stringify({ columnOrder }),
 		});
+
+		targetTh.removeAttribute("data-about-to-be-swapped");
 	}
 
 	handleThDragend(e) {
@@ -105,5 +110,24 @@ export default class extends Controller {
 
 		// Reset the dragged header
 		this.draggedTh = null;
+	}
+
+	handleThDragenter(e) {
+		const targetTh = e.target.closest("th");
+		// If there's no valid target or the target is the dragged header itself, do nothing
+		if (!targetTh || targetTh === this.draggedTh) {
+			return;
+		}
+		targetTh.setAttribute("data-about-to-be-swapped", true);
+		e.preventDefault();
+	}
+
+	handleThDragleave(e) {
+		const targetTh = e.target.closest("th");
+		if (!targetTh) {
+			return;
+		}
+		targetTh.removeAttribute("data-about-to-be-swapped");
+		e.preventDefault();
 	}
 }

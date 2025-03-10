@@ -15,7 +15,6 @@
         <p class="text-gray-600"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
-    <%= console %>
 
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
@@ -27,7 +26,7 @@
                                 draggable="true" 
                                 data-column-index="<%= index %>"
                                 data-column-name="<%= column %>"
-                                class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap"
+                                class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap data-[about-to-be-swapped]:bg-orange-300/50"
                             >
                                 <%#= column %>
 
@@ -37,7 +36,7 @@
                                         table: @table_name,
                                         sort_column: column,
                                         sort_direction: (@sort_column == column && @sort_direction == 'DESC') ? 'ASC' : 'DESC'
-                                    ) %>
+                                    ), class: "" %>
                                 <%= '▼' if @sort_column == column && @sort_direction == 'DESC' %>
                                 <%= '▲' if @sort_column == column && @sort_direction == 'ASC' %>
                             </th>

@@ -75,12 +75,6 @@ module SolidLitequeen
 
       @data = DynamicDatabase.connection.select_all(sql.join(" "))
 
-      # Get column order from session
-      column_order = session["#{@database_id}_#{@table_name}_column_order"]
-
-      if column_order.present?
-        # debugger
-      end
       @row_count = row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{@table_name}").to_i
     end
 
