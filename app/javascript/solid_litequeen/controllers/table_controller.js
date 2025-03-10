@@ -42,8 +42,6 @@ export default class extends Controller {
 			return;
 		}
 
-		console.log("dragstart", e);
-
 		// Save the dragged header element
 		this.draggedTh = e.target;
 
