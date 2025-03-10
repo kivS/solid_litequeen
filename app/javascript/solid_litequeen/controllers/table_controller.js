@@ -100,6 +100,10 @@ export default class extends Controller {
 				"X-CSRF-Token": token,
 			},
 			body: JSON.stringify({ columnOrder }),
+		}).then((result) => {
+			if (result.ok) {
+				Turbo.visit(window.location.href);
+			}
 		});
 
 		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
