@@ -46,6 +46,8 @@ export default class extends Controller {
 		// Save the dragged header element
 		this.draggedTh = e.target;
 
+		this.draggedTh.setAttribute("data-is-dragging", true);
+
 		e.dataTransfer.effectAllowed = "move";
 
 		// Some browsers require data to be set in order for dragging to work
@@ -64,6 +66,8 @@ export default class extends Controller {
 
 		// Show a move indicator
 		e.dataTransfer.dropEffect = "move";
+
+		this.draggedTh.removeAttribute("data-is-dragging");
 	}
 
 	handleThDrop(e) {
@@ -118,8 +122,10 @@ export default class extends Controller {
 		if (!targetTh || targetTh === this.draggedTh) {
 			return;
 		}
-		targetTh.setAttribute("data-column-order-about-to-be-swapped", true);
+
 		e.preventDefault();
+
+		targetTh.setAttribute("data-column-order-about-to-be-swapped", true);
 	}
 
 	handleThDragleave(e) {
@@ -127,7 +133,8 @@ export default class extends Controller {
 		if (!targetTh) {
 			return;
 		}
-		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
 		e.preventDefault();
+
+		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
 	}
 }
