@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    solid_litequeen (0.8.1)
+    solid_litequeen (0.9.0)
       importmap-rails
       rails (>= 8.0.1)
       stimulus-rails
