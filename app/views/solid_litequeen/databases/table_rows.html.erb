@@ -19,7 +19,7 @@
 
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
-            <table data-controller="table" class="min-w-full relative">
+            <table data-controller="table" data-set-table-order-path="<%= database_set_table_column_order_path(params[:database_id], @table_name) %>" class="min-w-full relative">
                 <thead class="">
                     <tr class="bg-gray-100 border-b border-gray-200">
                         <% @data.columns.each_with_index do |column, index| %>

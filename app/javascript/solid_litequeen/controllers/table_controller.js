@@ -78,8 +78,22 @@ export default class extends Controller {
 		// Insert the dragged header before the target header
 		parent.insertBefore(this.draggedTh, targetTh);
 
-		// Optionally, update the table body columns accordingly if needed.
-		// (For example, iterate over each row and swap the corresponding cells.)
+		const headers = Array.from(parent.querySelectorAll("th"));
+		const columnOrder = headers.map((th) => {
+			// You might want to use data attributes to store column identifiers
+			return th.dataset.columnName;
+		});
+
+		const token = document.querySelector('meta[name="csrf-token"]').content;
+
+		fetch(this.element.dataset.setTableOrderPath, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"X-CSRF-Token": token,
+			},
+			body: JSON.stringify({ columnOrder }),
+		});
 	}
 
 	handleThDragend(e) {

@@ -61,16 +61,26 @@ module SolidLitequeen
       # Verify the sort column exists in the table to prevent SQL injection
       valid_columns = DynamicDatabase.connection.columns(@table_name).map(&:name)
 
+      # Use the column order from session if it exists; otherwise, default to all columns
+      ordered_columns = session["#{@database_id}_#{@table_name}_column_order"] || valid_columns
+
       order_clause = if @sort_column.present? && valid_columns.include?(@sort_column)
         "#{DynamicDatabase.connection.quote_column_name(@sort_column)} #{@sort_direction}"
       end
 
-      sql = [ "SELECT * FROM #{@table_name}" ]
+      sql = [ "SELECT #{ordered_columns.join(', ')} FROM #{@table_name}" ]
       sql << "ORDER BY #{order_clause}" if order_clause
       sql << "LIMIT 50"
 
 
       @data = DynamicDatabase.connection.select_all(sql.join(" "))
+
+      # Get column order from session
+      column_order = session["#{@database_id}_#{@table_name}_column_order"]
+
+      if column_order.present?
+        # debugger
+      end
       @row_count = row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{@table_name}").to_i
     end
 
@@ -92,6 +102,18 @@ module SolidLitequeen
                 filename: filename,
                 type: "application/x-sqlite3",
                 disposition: "attachment"
+    end
+
+    def set_column_order
+      table_name = params[:table]
+      database_id = params[:database_id]
+
+      column_order = params[:columnOrder]
+
+      # Store column order in session using database and table as key
+      session["#{database_id}_#{table_name}_column_order"] = column_order
+
+      head :ok
     end
   end
 end
