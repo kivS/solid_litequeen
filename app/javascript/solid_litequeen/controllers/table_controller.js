@@ -175,7 +175,7 @@ export default class extends Controller {
 				if (column_item_datetime) {
 					try {
 						// Parse the UTC datetime string
-						const utcDate = new Date(column_item_datetime.trim());
+						const utcDate = new Date(`${column_item_datetime.trim()}Z`);
 
 						// Format to local datetime using Intl.DateTimeFormat
 						const localDatetime = new Intl.DateTimeFormat("default", {
@@ -187,10 +187,9 @@ export default class extends Controller {
 							second: "numeric",
 						}).format(utcDate);
 
-						item.setAttribute("title", localDatetime);
+						item.setAttribute("title", `${localDatetime} local time.`);
 					} catch (error) {
 						console.error("Error converting datetime:", error);
-						item.setAttribute("title", column_item_datetime);
 					}
 				}
 			}
