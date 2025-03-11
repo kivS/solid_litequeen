@@ -14,7 +14,7 @@
             <script>
                 document.getElementById('database-select').addEventListener('change', function() {
                 if (this.value) {
-                    window.location.href = '<%= database_path("") %>' + this.value;
+                    Turbo.visit('<%= database_path("") %>' + this.value);
                 }
                 });
             </script>
