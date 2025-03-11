@@ -94,21 +94,44 @@ module SolidLitequeen
       database_id = params.expect(:database_id)
       database_location = Base64.urlsafe_decode64(database_id)
 
-      # Verify the file exists
+      # Ensure the database file exists
       unless File.exist?(database_location)
         flash[:error] = "Database file not found"
         redirect_to databases_path and return
       end
 
-      # Get the filename from the path
-      filename = File.basename(database_location)
 
-      # Send the file as a download
-      send_file database_location,
-                filename: filename,
-                type: "application/x-sqlite3",
-                disposition: "attachment"
+      # Create a temporary file for the backup
+      backup_file = Tempfile.new([ "backup", ".sqlite3" ])
+      backup_file.close  # Close the file so SQLite3 can write to it
+
+      begin
+        # Open connections to the source and destination (backup) databases
+        source_db = SQLite3::Database.new(database_location)
+        backup_db = SQLite3::Database.new(backup_file.path)
+
+        # Perform the backup using SQLite3::Backup (for versions without the backup method)
+        backup = SQLite3::Backup.new(source_db, "main", backup_db, "main")
+        backup.step(-1)  # Copy all pages
+        backup.finish
+
+        # Close the backup connection
+        backup_db.close
+        source_db.close
+
+        # Send the backup file as a download
+        send_file backup_file.path,
+                  filename: File.basename(database_location),
+                  type: "application/x-sqlite3",
+                  disposition: "attachment"
+      ensure
+        # Cleanup: the Tempfile will be unlinked when garbage-collected,
+        # or you can explicitly unlink it here if needed.
+        backup_file.unlink if backup_file && File.exist?(backup_file.path)
+      end
     end
+
+
 
     def set_column_order
       table_name = params[:table]
