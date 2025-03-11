@@ -124,7 +124,7 @@ module SolidLitequeen
                   disposition: "attachment"
       ensure
         # Cleanup: the Tempfile will be unlinked when garbage-collected
-        backup_file.unlink if backup_file && File.exist?(backup_file.path)
+        # backup_file.unlink if backup_file && File.exist?(backup_file.path)
       end
     end
 
