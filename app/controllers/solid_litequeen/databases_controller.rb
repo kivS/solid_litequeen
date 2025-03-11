@@ -49,8 +49,6 @@ module SolidLitequeen
       @sort_column = sort_prefs["sort_column"]
       @sort_direction = sort_prefs["sort_direction"]
 
-
-
       @database_location = Base64.urlsafe_decode64(@database_id)
 
       DynamicDatabase.establish_connection(

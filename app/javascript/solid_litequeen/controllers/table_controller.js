@@ -22,6 +22,8 @@ export default class extends Controller {
 			"dragleave",
 			this.handleThDragleave.bind(this),
 		);
+
+		this.#load_datetime_local_title();
 	}
 
 	disconnect() {
@@ -157,5 +159,41 @@ export default class extends Controller {
 		e.preventDefault();
 
 		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
+	}
+
+	#load_datetime_local_title() {
+		setTimeout(() => {
+			const datetime_items = this.element.querySelectorAll(
+				'td[data-data_type="datetime"]',
+			);
+
+			for (const item of datetime_items) {
+				const column_item_datetime = item.querySelector(
+					"span[data-column_item]",
+				)?.textContent;
+
+				if (column_item_datetime) {
+					try {
+						// Parse the UTC datetime string
+						const utcDate = new Date(column_item_datetime.trim());
+
+						// Format to local datetime using Intl.DateTimeFormat
+						const localDatetime = new Intl.DateTimeFormat("default", {
+							year: "numeric",
+							month: "short",
+							day: "numeric",
+							hour: "numeric",
+							minute: "numeric",
+							second: "numeric",
+						}).format(utcDate);
+
+						item.setAttribute("title", localDatetime);
+					} catch (error) {
+						console.error("Error converting datetime:", error);
+						item.setAttribute("title", column_item_datetime);
+					}
+				}
+			}
+		}, 2000);
 	}
 }

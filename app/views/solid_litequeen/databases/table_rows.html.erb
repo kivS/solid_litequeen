@@ -59,7 +59,7 @@
 
                                     <div class="flex justify-between">
 
-                                        <span><%= truncated_item %></span>
+                                        <span data-column_item><%= truncated_item %></span>
 
                                         <% if truncated_item&.to_s&.ends_with?("...") %>
                                             <span title="<%= item %>" class="cursor-pointer size-4">
