@@ -49,7 +49,7 @@ module SolidLitequeen
       @sort_column = sort_prefs["sort_column"]
       @sort_direction = sort_prefs["sort_direction"]
 
-      # debugger
+
 
       @database_location = Base64.urlsafe_decode64(@database_id)
 
@@ -58,8 +58,22 @@ module SolidLitequeen
         database: @database_location
       )
 
+      table_columns = DynamicDatabase.connection.columns(@table_name)
+
+      @columns_info = table_columns.each_with_object({}) do |column, hash|
+        hash[column.name] = {
+          sql_type: column.sql_type_metadata.sql_type,
+          type: column.sql_type_metadata.type,
+          limit: column.sql_type_metadata.limit,
+          precision: column.sql_type_metadata.precision,
+          scale: column.sql_type_metadata.scale,
+          null: column.null,
+          default: column.default
+        }
+      end
+
       # Verify the sort column exists in the table to prevent SQL injection
-      valid_columns = DynamicDatabase.connection.columns(@table_name).map(&:name)
+      valid_columns = table_columns.map(&:name)
 
       # Use the column order from session if it exists; otherwise, default to all columns
       ordered_columns = session["#{@database_id}_#{@table_name}_column_order"] || valid_columns

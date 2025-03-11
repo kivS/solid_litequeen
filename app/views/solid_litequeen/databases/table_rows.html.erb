@@ -15,6 +15,7 @@
         <p class="text-gray-600"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
+    <%= console %>
 
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
@@ -49,7 +50,12 @@
                         <tr class="hover:bg-gray-50" >
                             <% row.each_with_index do |item, index| %>
                                 <% truncated_item =  item&.truncate(80) %>
-                                <td data-column="<%= @data.columns[index] %>" class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" >
+                                <% column_name = @data.columns[index] %>
+                                <td 
+                                    data-column="<%= column_name %>" 
+                                    data-data_type="<%= @columns_info.dig(column_name).dig(:type) %>"
+                                    class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" 
+                                >
 
                                     <div class="flex justify-between">
 
