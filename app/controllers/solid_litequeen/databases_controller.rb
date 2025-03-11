@@ -91,7 +91,7 @@ module SolidLitequeen
     end
 
     def download
-      database_id = params.expect(:database_id)
+      database_id = params[:database_id]
       database_location = Base64.urlsafe_decode64(database_id)
 
       # Ensure the database file exists
@@ -100,24 +100,22 @@ module SolidLitequeen
         redirect_to databases_path and return
       end
 
-
       # Create a temporary file for the backup
       backup_file = Tempfile.new([ "backup", ".sqlite3" ])
       backup_file.close  # Close the file so SQLite3 can write to it
 
       begin
-        # Open connections to the source and destination (backup) databases
-        source_db = SQLite3::Database.new(database_location)
-        backup_db = SQLite3::Database.new(backup_file.path)
+        # Establish connection like we've been doing elsewhere
+        DynamicDatabase.establish_connection(
+          adapter: "sqlite3",
+          database: database_location
+        )
 
-        # Perform the backup using SQLite3::Backup (for versions without the backup method)
-        backup = SQLite3::Backup.new(source_db, "main", backup_db, "main")
-        backup.step(-1)  # Copy all pages
-        backup.finish
+        # Use VACUUM INTO for a more efficient backup
+        DynamicDatabase.connection.execute("VACUUM INTO '#{backup_file.path}'")
 
-        # Close the backup connection
-        backup_db.close
-        source_db.close
+        # Close the connection
+        DynamicDatabase.connection.close
 
         # Send the backup file as a download
         send_file backup_file.path,
@@ -125,8 +123,7 @@ module SolidLitequeen
                   type: "application/x-sqlite3",
                   disposition: "attachment"
       ensure
-        # Cleanup: the Tempfile will be unlinked when garbage-collected,
-        # or you can explicitly unlink it here if needed.
+        # Cleanup: the Tempfile will be unlinked when garbage-collected
         backup_file.unlink if backup_file && File.exist?(backup_file.path)
       end
     end
