@@ -114,17 +114,11 @@ module SolidLitequeen
         # Use VACUUM INTO for a more efficient backup
         DynamicDatabase.connection.execute("VACUUM INTO '#{backup_file.path}'")
 
-        # Close the connection
-        DynamicDatabase.connection.close
-
         # Send the backup file as a download
         send_file backup_file.path,
                   filename: File.basename(database_location),
                   type: "application/x-sqlite3",
                   disposition: "attachment"
-      ensure
-        # Cleanup: the Tempfile will be unlinked when garbage-collected
-        # backup_file.unlink if backup_file && File.exist?(backup_file.path)
       end
     end
 
