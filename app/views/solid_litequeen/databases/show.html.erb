@@ -9,7 +9,16 @@
     <%= console %>
     <div class="mb-6">
         <h2 class="text-xl font-semibold text-gray-800">
-            Tables
+            <span>
+                Tables
+            </span>
+            <% if @tables.any? {|table| table[:relations].present?} %>
+
+                <%= render "table-relationships-dialog" %>
+
+                <button onclick="table_relationships.showModal()">🚀</button>
+
+            <% end %>
         </h2>
         <p class="text-gray-600"><%= pluralize(@tables.count, "table") %> found</p>
     </div>
