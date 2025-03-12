@@ -18,10 +18,10 @@ module SolidLitequeen
 
       tables = DynamicDatabase.connection.tables
 
-
       @tables = tables.map do |table|
+        relations = DynamicDatabase.connection.foreign_keys(table)
         row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{table}").to_i
-        { name: table, row_count: row_count }
+        { name: table, relations: relations, row_count: row_count }
       end
     end
 
