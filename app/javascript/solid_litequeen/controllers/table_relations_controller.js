@@ -36,6 +36,10 @@ export default class extends Controller {
 
 		this.#buildTables();
 		this.#buildLinks();
+
+		// setTimeout(() => {
+		// 	this.#applyLayout();
+		// }, 1000);
 	}
 
 	#buildTables() {
@@ -180,7 +184,7 @@ export default class extends Controller {
 		return [tableNode, ...fieldNodes];
 	}
 
-	applyLayout() {
+	#applyLayout() {
 		// Create a new directed graph
 		const g = new dagre.graphlib.Graph();
 
