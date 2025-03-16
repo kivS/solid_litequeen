@@ -42,6 +42,10 @@ export default class extends Controller {
 		// }, 1000);
 	}
 
+	disconnect() {
+		console.log("disconnected...");
+	}
+
 	#buildTables() {
 		this.tables.forEach((table, index) => {
 			// Initial position - will be adjusted by layout algorithm
