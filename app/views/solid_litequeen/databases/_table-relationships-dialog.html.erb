@@ -1,5 +1,7 @@
-<dialog id="table_relationships" class="w-3/4 h-full m-auto">
+<script src="https://cdn.jsdelivr.net/npm/@joint/core@4.0.1/dist/joint.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
 
-    <div></div>
-    <h1>ok</h1>
+<dialog id="table_relationships" data-controller="table-relations" data-relations="<%= @table_relations.to_json %>" class="w-[800px] h-full m-auto">
+   
+    <div id="paper" class="w-full h-[600px] border rounded"></div>
 </dialog>

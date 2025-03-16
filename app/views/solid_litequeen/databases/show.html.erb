@@ -12,7 +12,7 @@
             <span>
                 Tables
             </span>
-            <% if @tables.any? {|table| table[:relations].present?} %>
+            <% if @table_relations.any? %>
 
                 <%= render "table-relationships-dialog" %>
 

@@ -18,11 +18,46 @@ module SolidLitequeen
 
       tables = DynamicDatabase.connection.tables
 
+      foreign_keys = []
+
       @tables = tables.map do |table|
-        relations = DynamicDatabase.connection.foreign_keys(table)
+        fk = DynamicDatabase.connection.foreign_keys(table)
+        foreign_keys.concat(fk) unless fk.empty?
+
         row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{table}").to_i
-        { name: table, relations: relations, row_count: row_count }
+        { name: table, row_count: row_count }
       end
+
+      tables = {}
+      relations = []
+
+      foreign_keys.each do |rel|
+        from_table = rel[:from_table]
+        to_table = rel[:to_table]
+        fk_field =  rel.dig(:options).dig(:column)
+        pk_field = rel.dig(:options).dig(:primary_key)
+
+        # Initialize tables if not already present
+        tables[from_table] ||= { name: from_table, fields: [] }
+        tables[to_table]   ||= { name: to_table, fields: [] }
+
+        # Add fields if not already included
+        tables[from_table][:fields] << fk_field unless tables[from_table][:fields].include?(fk_field)
+        tables[to_table][:fields] << pk_field unless tables[to_table][:fields].include?(pk_field)
+
+        # Build a simplified relation object
+        relations << {
+          from_table: from_table,
+          from_field: fk_field,
+          to_table: to_table,
+          to_field: pk_field
+        }
+      end
+
+      @table_relations = {
+        tables: tables.values,
+        relations: relations
+      }
     end
 
     def table_rows
