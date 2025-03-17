@@ -34,12 +34,8 @@ export default class extends Controller {
 			},
 		});
 
-		this.#buildTables();
-		this.#buildLinks();
-
-		// setTimeout(() => {
-		// 	this.#applyLayout();
-		// }, 1000);
+		// so we can render stuff when we open the dialog to avoid render issues with wrong sizes
+		this.#observeDialogOpenStatus();
 	}
 
 	disconnect() {
@@ -273,5 +269,27 @@ export default class extends Controller {
 			padding: 50,
 			allowNewOrigin: "any",
 		});
+	}
+
+	#observeDialogOpenStatus() {
+		const observer = new MutationObserver((mutations) => {
+			for (const mutation of mutations) {
+				if (
+					mutation.type === "attributes" &&
+					mutation.attributeName === "open"
+				) {
+					if (this.element.hasAttribute("open")) {
+						// The dialog has been opened – run your code
+						setTimeout(() => {
+							this.#buildTables();
+							this.#buildLinks();
+							this.#applyLayout();
+						}, 50);
+					}
+				}
+			}
+		});
+
+		observer.observe(this.element, { attributes: true });
 	}
 }
