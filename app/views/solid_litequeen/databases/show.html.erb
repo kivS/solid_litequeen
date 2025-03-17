@@ -6,7 +6,6 @@
         </span>
     </h1>
 
-    <%= console %>
     <div class="mb-6">
         <h2 class="text-xl font-semibold text-gray-800">
             <span>
@@ -16,7 +15,9 @@
 
                 <%= render "table-relationships-dialog" %>
 
-                <button onclick="table_relationships.showModal()">🚀</button>
+                <button title="Relationships" onclick="table_relationships.showModal()" class="hover:cursor-pointer outline-none">
+                    <%= image_tag "solid_litequeen/icons/workflow.svg", class: "size-5 -mb-1" %>
+                </button>
 
             <% end %>
         </h2>
