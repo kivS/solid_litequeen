@@ -8,6 +8,7 @@ import Script from "next/script";
 import BuyCard from "./buy-card";
 import FeaturesCarousel from "./features-carousel";
 import { BookIcon, DrumstickIcon, IconSlash, X } from "./icons";
+import { Image } from "./image";
 
 export function Intro() {
 	return (
@@ -59,6 +60,16 @@ export function Intro() {
 					</a>
 
 					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
+
+					<h3 className="text-center font-semibold">
+						Installation instructions
+					</h3>
+
+					<Image
+						src={
+							"https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/gx0mrom2hg87fjuu2hlai1e1z4z4"
+						}
+					/>
 
 					{/* <a
 						href="https://demo.litequeen.com"
