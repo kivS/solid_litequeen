@@ -61,15 +61,17 @@ export function Intro() {
 
 					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
-					<h3 className="text-center font-semibold">
-						Installation instructions
-					</h3>
+					<div>
+						<h3 className="text-center font-semibold">
+							Installation instructions
+						</h3>
 
-					<Image
-						src={
-							"https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/gx0mrom2hg87fjuu2hlai1e1z4z4"
-						}
-					/>
+						<Image
+							src={
+								"https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/gx0mrom2hg87fjuu2hlai1e1z4z4"
+							}
+						/>
+					</div>
 
 					{/* <a
 						href="https://demo.litequeen.com"
