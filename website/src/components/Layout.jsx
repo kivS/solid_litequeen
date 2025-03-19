@@ -81,9 +81,9 @@ function FixedSidebar({ main, footer }) {
 						<div className="absolute top-3 left-4">
 							<Link href="/" className="flex gap-2 items-center">
 								<Logo id="logo" />
-								<span className=" dark:text-slate-200 font-sans text-lg font-semibold dark:font-black">
+								{/* <span className=" dark:text-slate-200 font-sans text-lg font-semibold dark:font-black">
 									Solid Lite Queen
-								</span>
+								</span> */}
 							</Link>
 						</div>
 
