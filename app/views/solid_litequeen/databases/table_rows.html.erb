@@ -65,7 +65,7 @@
 
                                             <%= render "table-data-context-dialog", dialog_id: dialog_id, column_name: column_name, data: item %>
 
-                                            <button class="cursor-pointer size-4" onclick="document.getElementById('<%= dialog_id %>').showModal()">
+                                            <button onclick="document.getElementById('<%= dialog_id %>').showModal()" class="cursor-pointer size-4 outline-none">
                                                 <%= image_tag "solid_litequeen/icons/circle-elipsis.svg", class: "size-4" %>
                                                 
                                             </button>
