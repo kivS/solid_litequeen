@@ -43,7 +43,8 @@
                         <% end %>
                     </tr>
                 </thead>
-
+                
+                <%= console %>
                 <tbody class="divide-y divide-gray-200">
                     <% @data.rows.each do |row| %>
                         <tr class="hover:bg-gray-50" >
@@ -59,11 +60,18 @@
                                     <div class="flex justify-between">
 
                                         <span data-column_item><%= truncated_item %></span>
-
+                                        <%# TODO: we can use one dynamic modal instead and fetch the data. for now this works and is (s)crapy! %>
                                         <% if truncated_item&.to_s&.ends_with?("...") %>
-                                            <span title="<%= item %>" class="cursor-pointer size-4">
-                                                <%= image_tag "solid_litequeen/icons/info.svg", class: "size-4" %>
-                                            </span>
+                                            <% dialog_id = "#{column_name}_#{SecureRandom.hex(8)}_context_dialog"  %>
+
+                                            <%= render "table-data-context-dialog", dialog_id: dialog_id, column_name: column_name, data: item %>
+
+                                            <button class="cursor-pointer size-4" onclick="document.getElementById('<%= dialog_id %>').showModal()">
+                                                <%= image_tag "solid_litequeen/icons/circle-elipsis.svg", class: "size-4" %>
+                                                
+                                            </button>
+
+                                         
                                         <% end %>
                                     </div>
                                 </td>

@@ -1,0 +1,13 @@
+<dialog id="<%= dialog_id %>" class="w-[800px]  m-auto overscroll-y-contain"> 
+    <form method="submit" class="flex  flex-row-reverse">
+        <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
+            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
+        </button>
+    </form>
+
+    <h1 class="text-lg font-semibold text-center"><%= column_name %></h1>
+
+    <div class="flex items-center max-w-[90%] h-40 mx-auto my-4 p-2 overflow-auto bg-gray-100 rounded ">
+        <%= data %>
+    </div>
+</dialog>
