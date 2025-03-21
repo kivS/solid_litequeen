@@ -56,9 +56,14 @@
                                     class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" 
                                 >
 
-                                    <div class="flex justify-between">
+                                    <div class="flex justify-between gap-1">
 
                                         <span data-column_item><%= truncated_item %></span>
+                                        <button class="size-4 mt-0.5 hover:cursor-pointer">
+                                             <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4" %>
+                                        </button>
+
+
                                         <%# TODO: we can use one dynamic modal instead and fetch the data. for now this works and is (s)crapy! %>
                                         <% if truncated_item&.to_s&.ends_with?("...") %>
                                             <% dialog_id = "#{column_name}_#{SecureRandom.hex(8)}_context_dialog"  %>
@@ -72,6 +77,8 @@
 
                                          
                                         <% end %>
+
+                                        
                                     </div>
                                 </td>
                             <% end %>
