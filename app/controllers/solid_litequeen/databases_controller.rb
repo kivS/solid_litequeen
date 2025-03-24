@@ -185,5 +185,29 @@ module SolidLitequeen
 
       head :ok
     end
+    
+    def get_foreign_key_data
+      @database_id = params.expect(:database_id)
+      @table_name = params.expect(:table)
+      @target_table = params.expect(:target_table)
+      @target_field = params.expect(:target_field)
+      @target_field_value = params.expect(:target_field_value)
+
+      @database_location = Base64.urlsafe_decode64(@database_id)
+
+      DynamicDatabase.establish_connection(
+        adapter: "sqlite3",
+        database: @database_location
+      )
+
+
+      # Query the target table for the record matching the foreign key value
+      query = "SELECT * FROM #{@target_table} WHERE #{@target_field} = ? LIMIT 1"
+      @result = DynamicDatabase.connection.exec_query(query, "SQL", [@target_field_value])
+
+      
+      render partial: "foreign-key-data-dialog"
+      
+    end
   end
 end

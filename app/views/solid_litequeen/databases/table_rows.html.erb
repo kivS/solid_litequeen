@@ -15,8 +15,6 @@
         <p class="text-gray-600"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
-    <%= console %>
-
 
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
@@ -70,7 +68,6 @@
                                                 data-fk_target_field="<%=  foreign_key[:primary_key]%>" 
                                                 data-fk_target_field_value="<%=  truncated_item %>" 
                                                 class="size-4 mt-0.5 hover:cursor-pointer flex-grow outline-none"
-
                                                 >
                                                 <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4 filter-blue" %>
                                             </button>
@@ -101,91 +98,10 @@
                 </tbody>
             </table>
 
-            <dialog id="foreign-key-data" data-controller="dialog" class="w-[800px] m-auto overscroll-y-contain">
-                <form method="submit" class="flex flex-row-reverse">
-                    <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
-                        <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
-                    </button>
-                </form>
-                
-                <h1 class="text-lg font-semibold text-center">Foreign Key Reference</h1>
-                
-                <div class="mx-auto my-4 p-4 max-w-[90%]">
-                    <table class="min-w-full divide-y divide-gray-200 border">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Column Name
-                                </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Value
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-
-                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-
-                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-
-                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-
-                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-
-                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">user_id</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">John Doe</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </dialog>
+            <turbo-frame id="foreign-key-data-frame" src="/solid_litequeen/databases/c3RvcmFnZS9wcm9kdWN0aW9uLXJlcGxpY2Euc3FsaXRlMw==/tables/dependency_stats/foreign-key-data/dependencies/id/19">
+               
+            </turbo-frame>
+           
         </div>
     </div>
 </div>
