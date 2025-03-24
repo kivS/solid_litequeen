@@ -93,8 +93,17 @@ module SolidLitequeen
 
       table_columns = DynamicDatabase.connection.columns(@table_name)
 
+      foreign_keys = DynamicDatabase.connection.foreign_keys(@table_name)
+
+      # Build a mapping from column name to its foreign key details
+      fk_info = {}
+      foreign_keys.each do |fk|
+        # Depending on your Rails version, you might access these properties as below:
+        fk_info[fk.column] = { to_table: fk.to_table, primary_key: fk.primary_key }
+      end
+
       @columns_info = table_columns.each_with_object({}) do |column, hash|
-        hash[column.name] = {
+        info = {
           sql_type: column.sql_type_metadata.sql_type,
           type: column.sql_type_metadata.type,
           limit: column.sql_type_metadata.limit,
@@ -103,6 +112,12 @@ module SolidLitequeen
           null: column.null,
           default: column.default
         }
+
+        # Append foreign key info if available for this column
+        if fk_info[column.name]
+          info[:foreign_key] = fk_info[column.name]
+        end
+        hash[column.name] = info
       end
 
       # Verify the sort column exists in the table to prevent SQL injection
