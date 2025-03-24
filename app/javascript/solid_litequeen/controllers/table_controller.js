@@ -178,8 +178,18 @@ export default class extends Controller {
 
 		const new_frame_src = `${this.element.dataset.database_table_path}/foreign-key-data/${fk_target_table}/${fk_target_field}/${fk_target_field_value}`;
 
-		foreign_key_data_frame.src = new_frame_src;
+		// if the src didn't change let's just show what we have
+		if (foreign_key_data_frame.src) {
+			const frame_src_current_path = new URL(foreign_key_data_frame.src)
+				?.pathname;
 
+			if (new_frame_src === frame_src_current_path) {
+				foreign_key_data_dialog.showModal();
+				return;
+			}
+		}
+
+		foreign_key_data_frame.src = new_frame_src;
 		foreign_key_data_dialog.showModal();
 	}
 
