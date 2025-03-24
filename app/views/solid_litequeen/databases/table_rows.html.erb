@@ -102,16 +102,22 @@
                     <% end %>
                 </tbody>
 
-                <dialog id="foreign-key-data" data-controller="dialog" class="w-[800px] m-auto overscroll-y-contain">
-                    <form method="submit" class="flex flex-row-reverse">
-                        <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
-                            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
-                        </button>
+                <dialog id="foreign-key-data" data-controller="dialog" class="w-[900px] m-auto overscroll-y-contain">
+                    <form method="submit" class="">
+                        <div class="flex flex-row-reverse">
+                            <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
+                                <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
+                            </button>
+
+                        </div>
                     </form>
+
+                    <div class="overflow-x-auto">
+                        <turbo-frame id="foreign-key-data-frame" >
+                            <h1>loading...</h1>
+                        </turbo-frame>
+                    </div>
                      
-                    <turbo-frame id="foreign-key-data-frame" >
-                        <h1>loading...</h1>
-                    </turbo-frame>
 
                 </dialog>
             </table>
