@@ -206,7 +206,7 @@ module SolidLitequeen
       @result = DynamicDatabase.connection.exec_query(query, "SQL", [@target_field_value])
 
       
-      render partial: "foreign-key-data-dialog"
+      render partial: "foreign-key-data"
       
     end
   end
