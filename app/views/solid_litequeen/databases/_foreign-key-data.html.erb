@@ -1,7 +1,12 @@
+<turbo-frame id="foreign-key-data-frame">
 
-  <turbo-frame id="foreign-key-data-frame">
         
-    <h1 class="text-lg font-semibold text-center">Foreign Key Reference</h1>
+    <h1 class="text-lg  text-center">
+        <span> <%= @table_name %></span>
+        <span> &gt;</span>
+        <span class="font-semibold"><%= @target_table %></span>
+      
+    </h1>
     
     <div class="mx-auto my-4 p-4 max-w-[90%]">
         <table class="min-w-full divide-y divide-gray-200 border">
