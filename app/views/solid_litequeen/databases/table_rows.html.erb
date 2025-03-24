@@ -63,8 +63,15 @@
 
                                         <span data-column_item><%= truncated_item %></span>
                                         
-                                        <% if foreign_key.present? %>
-                                            <button onclick="document.querySelector('dialog#foreign-key-data').showModal()" class="size-4 mt-0.5 hover:cursor-pointer flex-grow outline-none">
+                                        <% if item.present? and foreign_key.present? %>
+                                            <button 
+                                                onclick="document.querySelector('dialog#foreign-key-data').showModal()" 
+                                                data-fk_target_table="<%= foreign_key[:to_table] %>" 
+                                                data-fk_target_field="<%=  foreign_key[:primary_key]%>" 
+                                                data-fk_target_field_value="<%=  truncated_item %>" 
+                                                class="size-4 mt-0.5 hover:cursor-pointer flex-grow outline-none"
+
+                                                >
                                                 <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4 filter-blue" %>
                                             </button>
                                           
