@@ -161,6 +161,28 @@ export default class extends Controller {
 		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
 	}
 
+	load_foreign_key_data(e) {
+		const foreign_key_data_dialog = document.querySelector(
+			"dialog#foreign-key-data",
+		);
+
+		const foreign_key_data_frame = document.querySelector(
+			"#foreign-key-data-frame",
+		);
+
+		const fk_data_dialog_button = e.currentTarget;
+		const fk_target_table = fk_data_dialog_button.dataset.fk_target_table;
+		const fk_target_field = fk_data_dialog_button.dataset.fk_target_field;
+		const fk_target_field_value =
+			fk_data_dialog_button.dataset.fk_target_field_value;
+
+		const new_frame_src = `${this.element.dataset.database_table_path}/foreign-key-data/${fk_target_table}/${fk_target_field}/${fk_target_field_value}`;
+
+		foreign_key_data_frame.src = new_frame_src;
+
+		foreign_key_data_dialog.showModal();
+	}
+
 	#load_datetime_local_title() {
 		setTimeout(() => {
 			const datetime_items = this.element.querySelectorAll(
