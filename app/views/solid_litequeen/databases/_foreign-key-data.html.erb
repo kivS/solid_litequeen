@@ -1,4 +1,4 @@
-<turbo-frame id="foreign-key-data-frame">
+<turbo-frame id="foreign-key-data-frame" >
 
         
     <h1 class="text-lg  text-center">
@@ -25,7 +25,7 @@
                     <% @result.columns.zip(row).each do |column, value| %>
                         <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"><%= column %></td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= value&.truncate(80) %></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 in-aria-busy:blur"><%= value&.truncate(80) %></td>
                         </tr>
                     <% end %>
                 <% end %>
