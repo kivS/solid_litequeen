@@ -9,7 +9,7 @@
     </h1>
     
     <div class="mx-auto my-4 p-4 max-w-[90%]">
-        <table class="min-w-full divide-y divide-gray-200 border">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -22,12 +22,12 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 <% @result.rows.each do |row| %>
-                <% @result.columns.zip(row).each do |column, value| %>
-                    <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"><%= column %></td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= value&.truncate(80) %></td>
-                    </tr>
-                <% end %>
+                    <% @result.columns.zip(row).each do |column, value| %>
+                        <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"><%= column %></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= value&.truncate(80) %></td>
+                        </tr>
+                    <% end %>
                 <% end %>
 
             </tbody>
