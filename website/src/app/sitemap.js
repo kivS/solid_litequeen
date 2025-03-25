@@ -23,12 +23,12 @@ export default async function sitemap() {
 			priority: 1,
 		},
 
-		// {
-		// 	url: "https://solid.litequeen.com/guides/",
-		// 	lastModified: new Date(),
-		// 	changeFrequency: "daily",
-		// 	priority: 1,
-		// },
+		{
+			url: "https://solid.litequeen.com/guides/",
+			lastModified: new Date(),
+			changeFrequency: "daily",
+			priority: 1,
+		},
 		// {
 		// 	url: "https://solid.litequeen.com/faq/",
 		// 	lastModified: new Date(),
@@ -36,11 +36,11 @@ export default async function sitemap() {
 		// 	priority: 1,
 		// },
 
-		// ...posts.map((post) => ({
-		// 	url: `https://solid.litequeen.com/guides/${post.slug}`,
-		// 	lastModified: new Date(),
-		// 	changeFrequency: "daily",
-		// 	priority: 1,
-		// })),
+		...posts.map((post) => ({
+			url: `https://solid.litequeen.com/guides/${post.slug}`,
+			lastModified: new Date(),
+			changeFrequency: "daily",
+			priority: 1,
+		})),
 	];
 }

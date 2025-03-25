@@ -62,8 +62,10 @@ export function Intro() {
 					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
 					<div>
-						<h3 className="text-center font-semibold">
-							Installation instructions
+						<h3 className="text-center font-semibold my-2 text-cyan-500">
+							<Link href="/guides/how-to-install-solid-litequeen-in-your-rails-app">
+								Installation instructions
+							</Link>
 						</h3>
 
 						<Image

@@ -1,0 +1,31 @@
+
+
+Solid litequeen can be installed in your Rails app as a mountable gem.
+
+
+
+1. **Add gem to your Gemfile:** 
+
+    ```text
+    gem 'solid_litequeen'
+    ```
+
+2. **Install it**:
+
+    ```bash
+    bundle install
+    ```
+
+
+3. **Mount the engine in your `routes.rb`:** 
+
+    ```ruby
+    Rails.application routes draw do
+        # ...
+        mount SolidLitequeen:: Engine, at: "/sqlite"
+
+        # ...
+    ``` 
+
+4. **That's it.** You can now open `/sqlite` in your browser to access the application
+    
