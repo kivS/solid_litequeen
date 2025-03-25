@@ -94,16 +94,16 @@ export function Intro() {
 export function IntroFooter() {
 	return (
 		<p className="flex items-baseline  gap-x-2 text-[0.8125rem]/6 text-gray-500">
-			<IconLink href="/guides" icon={BookIcon} className="flex-none">
+			{/* <IconLink href="/guides" icon={BookIcon} className="flex-none">
 				Guides
-			</IconLink>
-			<span>/</span>
+			</IconLink> */}
+			{/* <span>/</span> */}
 
-			<IconLink href="/faq" icon={FaqIcon} className="flex-none">
+			{/* <IconLink href="/faq" icon={FaqIcon} className="flex-none">
 				FAQ
-			</IconLink>
-			<span>/</span>
-			<IconLink
+			</IconLink> */}
+			{/* <span>/</span> */}
+			{/* <IconLink
 				href="https://github.com/kivS/lite-queen/discussions/new?category=q-a"
 				icon={SupportIcon}
 				data-umami-event="Support link"
@@ -111,7 +111,7 @@ export function IntroFooter() {
 				external
 			>
 				Support
-			</IconLink>
+			</IconLink> */}
 			{/* <span>/</span>
 			<IconLink
 				data-umami-event="RSS link"
@@ -121,7 +121,7 @@ export function IntroFooter() {
 			>
 				RSS
 			</IconLink> */}
-			<span>/</span>
+			{/* <span>/</span> */}
 			<IconLink
 				href="https://twitter.com/kivsegrob"
 				data-umami-event="X - Vik link"

@@ -93,7 +93,7 @@ function FixedSidebar({ main, footer }) {
 						</div>
 					</div>
 					<div className="flex flex-1 items-end justify-center pb-4 lg:justify-start lg:pb-6">
-						{/* {footer} */}
+						{footer}
 					</div>
 				</div>
 			</div>
