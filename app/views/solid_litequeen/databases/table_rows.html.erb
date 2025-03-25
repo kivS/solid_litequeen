@@ -102,7 +102,7 @@
                     <% end %>
                 </tbody>
 
-                <dialog id="foreign-key-data" data-controller="dialog" class="w-[900px] m-auto overscroll-y-contain">
+                <dialog id="foreign-key-data"  data-controller="dialog" class="w-[900px] m-auto overscroll-y-contain">
                     <form method="submit" class="">
                         <div class="flex flex-row-reverse">
                             <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
@@ -112,13 +112,21 @@
                         </div>
                     </form>
 
-                    <div class="overflow-x-auto">
-                        <turbo-frame id="foreign-key-data-frame" >
-                            <h1>loading...</h1>
-                        </turbo-frame>
-                    </div>
-                     
+                    <div class="overflow-x-auto relative">
+                        <turbo-frame id="foreign-key-data-frame" class="peer" aria-busy="true">
+                            <%# loading animation for the first render %>
+                            <div class="flex w-full h-52  items-center justify-center">
+                                <%= render "solid_litequeen/loading-animation" %>
+                            </div>
 
+                        </turbo-frame>
+
+                        <%# loading animation everytime we load a new foreign key data %>
+                        <div class="hidden peer-aria-busy:flex absolute inset-0 w-full h-52  items-center justify-center">
+                            <%= render "solid_litequeen/loading-animation" %>
+                        </div>
+
+                    </div>
                 </dialog>
             </table>
            

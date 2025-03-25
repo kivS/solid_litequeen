@@ -185,7 +185,7 @@ module SolidLitequeen
 
       head :ok
     end
-    
+
     def get_foreign_key_data
       @database_id = params.expect(:database_id)
       @table_name = params.expect(:table)
@@ -203,11 +203,10 @@ module SolidLitequeen
 
       # Query the target table for the record matching the foreign key value
       query = "SELECT * FROM #{@target_table} WHERE #{@target_field} = ? LIMIT 1"
-      @result = DynamicDatabase.connection.exec_query(query, "SQL", [@target_field_value])
+      @result = DynamicDatabase.connection.exec_query(query, "SQL", [ @target_field_value ])
 
-      
+
       render partial: "foreign-key-data"
-      
     end
   end
 end

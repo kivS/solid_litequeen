@@ -161,6 +161,11 @@ export default class extends Controller {
 		targetTh.removeAttribute("data-column-order-about-to-be-swapped");
 	}
 
+	/**
+	 *
+	 * @param {MouseEvent} e
+	 * @returns
+	 */
 	load_foreign_key_data(e) {
 		const foreign_key_data_dialog = document.querySelector(
 			"dialog#foreign-key-data",
