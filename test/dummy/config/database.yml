@@ -16,7 +16,7 @@ development:
   production-replica:
     <<: *default
     database: storage/production-replica.sqlite3
-    migrations_paths: []
+    database_tasks: false
   cache:
     <<: *default
     database: storage/development_cache.sqlite3
