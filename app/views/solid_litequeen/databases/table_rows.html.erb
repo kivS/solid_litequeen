@@ -15,7 +15,6 @@
         <p class="text-gray-600"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
-
     <div class="bg-white rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <table 
@@ -33,9 +32,99 @@
                                 data-column-name="<%= column %>"
                                 class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap data-[is-dragging]:bg-orange-300/30 data-[column-order-about-to-be-swapped]:bg-green-300/30"
                             >
-                                <%#= column %>
 
-                                  <%= link_to column, 
+                                <%# popover the the column info %>
+                                <% popover_id = "popover_#{column}_#{SecureRandom.hex(8)}" %>
+
+                                <button popovertarget="<%= popover_id %>" class="mr-3 hover:cursor-pointer">ℹ️</button>
+                                
+                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 m-auto bg-gray-100 border-gray-400 border p-4 rounded-md">
+                                    <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
+                                      
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <% column_info = @columns_info[column]  %>
+                                           
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Type</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:sql_type) %></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Primary Key</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:is_primary_key) %></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Nullable</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:null) %></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Default</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:default) %></td>
+                                            </tr>
+
+                                            <% if column_info&.dig(:foreign_key).present? %>
+                                              
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Foreign Key</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                        <%= column_info&.dig(:foreign_key).dig(:to_table) %>
+                                                        &gt;
+                                                        <%= column_info&.dig(:foreign_key).dig(:primary_key) %>
+                                                    </td>
+                                                </tr> 
+
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">ON_UPDATE</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= column_info&.dig(:foreign_key).dig(:on_update) %></td>
+                                                </tr>  
+                                                
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">ON_DELETE</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= column_info&.dig(:foreign_key).dig(:on_delete) %></td>
+                                                </tr>
+
+                                            <% end %>  
+                                            
+                                            <% if column_info&.dig(:indexes).present? %>
+                                              
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "> </td>
+                                                </tr>
+
+                                                <% column_info&.dig(:indexes).each do |index| %>
+                                                    <tr>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Index Name</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                            <%= index[:name] %>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Unique</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                            <%= index[:unique] %>
+                                                        </td>
+                                                    </tr>
+                                                <% end %>
+
+                                              
+                                            <% end %>
+
+
+                                              
+                                        </tbody>
+                                    </table>                                    
+                                </div>
+                                
+                                <%# link to sort the columns %>
+                                <%= link_to column, 
                                     database_table_rows_path(
                                         database_id: @database_id,
                                         table: @table_name,

@@ -95,11 +95,29 @@ module SolidLitequeen
 
       foreign_keys = DynamicDatabase.connection.foreign_keys(@table_name)
 
+      primary_key_column_name = DynamicDatabase.connection.primary_key(@table_name)
+
+
       # Build a mapping from column name to its foreign key details
       fk_info = {}
       foreign_keys.each do |fk|
         # Depending on your Rails version, you might access these properties as below:
-        fk_info[fk.column] = { to_table: fk.to_table, primary_key: fk.primary_key }
+        fk_info[fk.column] = {
+          to_table: fk.to_table,
+          primary_key: fk.primary_key,
+          on_update: fk.options.dig(:on_update),
+          on_delete: fk.options.dig(:on_delete)
+        }
+      end
+
+      # Retrieve index info
+      indexes = DynamicDatabase.connection.indexes(@table_name)
+      index_data = {}
+      indexes.each do |index|
+        index.columns.each do |column_name|
+          index_data[column_name] ||= []
+          index_data[column_name] << { name: index.name, unique: index.unique }
+        end
       end
 
       @columns_info = table_columns.each_with_object({}) do |column, hash|
@@ -110,13 +128,18 @@ module SolidLitequeen
           precision: column.sql_type_metadata.precision,
           scale: column.sql_type_metadata.scale,
           null: column.null,
-          default: column.default
+          default: column.default,
+          is_primary_key: primary_key_column_name == column.name
         }
 
         # Append foreign key info if available for this column
         if fk_info[column.name]
           info[:foreign_key] = fk_info[column.name]
         end
+
+        # Append index info if available for this column
+        info[:indexes] = index_data[column.name] if index_data[column.name]
+
         hash[column.name] = info
       end
 
