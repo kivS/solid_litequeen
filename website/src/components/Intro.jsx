@@ -25,15 +25,15 @@ export function Intro() {
 					SQLite databases.
 				</p>
 				<div className="flex flex-col   gap-2">
-					{/* <a
+					<a
 						target="_blank"
 						rel="noreferrer"
-						href="https://github.com/kivS/lite-queen"
+						href="https://github.com/kivS/solid_litequeen"
 						className="flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105   dark:border-gray-900  rounded-lg font-medium "
 					>
 						<GitHubIcon className="size-6" />
-						<span className="md:text-lg">kivS/lite-queen</span>
-					</a> */}
+						<span className="md:text-lg">kivS/solid_litequeen</span>
+					</a>
 					<a
 						target="_blank"
 						rel="noreferrer"
@@ -103,15 +103,15 @@ export function IntroFooter() {
 				FAQ
 			</IconLink> */}
 			{/* <span>/</span> */}
-			{/* <IconLink
-				href="https://github.com/kivS/lite-queen/discussions/new?category=q-a"
+			<IconLink
+				href="https://github.com/kivS/solid_litequeen/discussions/new?category=q-a"
 				icon={SupportIcon}
 				data-umami-event="Support link"
 				className="flex-none"
 				external
 			>
 				Support
-			</IconLink> */}
+			</IconLink>
 			{/* <span>/</span>
 			<IconLink
 				data-umami-event="RSS link"
@@ -121,7 +121,7 @@ export function IntroFooter() {
 			>
 				RSS
 			</IconLink> */}
-			{/* <span>/</span> */}
+			<span>/</span>
 			<IconLink
 				href="https://twitter.com/kivsegrob"
 				data-umami-event="X - Vik link"
