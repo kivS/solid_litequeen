@@ -1,8 +1,7 @@
 # SolidLitequeen
-Short description and motivation.
+Lite Queen is a Rails engine that allows you to manage SQLite databases in your Rails application. It provides a user-friendly interface to view and maintain your SQLite data directly from your app.
 
-## Usage
-How to use my plugin.
+
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -23,10 +22,10 @@ $ gem install solid_litequeen
 
 After we need to mount in `routes.rb`:
 ```ruby
-mount SolidLitequeen::Engine => "/solid_litequeen"
+mount SolidLitequeen::Engine => "/sqlite"
 ```
 
-You can now navigate to `/solid_litequeen` to access the application
+You can now navigate to `/sqlite` to access the application
 
 
 
