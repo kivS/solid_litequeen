@@ -36,11 +36,11 @@
                                 <%# popover the the column info %>
                                 <% popover_id = "popover_#{column}_#{SecureRandom.hex(8)}" %>
 
-                                <button popovertarget="<%= popover_id %>" class="mr-1 p-1 hover:cursor-pointer">
+                                <button popovertarget="<%= popover_id %>" class="mr-1 p-1 hover:cursor-pointer" style="anchor-name: --anchor_<%= popover_id %>;">
                                            <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5" %>
                                 </button>
                                 
-                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 m-auto bg-gray-100 border-gray-400 border p-4 rounded-md">
+                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 bg-gray-100 border-gray-400 border p-4 rounded-md" style="position-anchor: --anchor_<%= popover_id%>;  top: anchor(--anchor_<%= popover_id%> bottom);  left: anchor(--anchor_<%= popover_id%> right);">
                                     <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
                                       
                                         <tbody class="bg-white divide-y divide-gray-200">

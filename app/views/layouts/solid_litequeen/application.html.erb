@@ -15,6 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
   <style type="text/tailwindcss">
     @plugins "form";
+
    
     @theme {
       --color-clifford: #da373d;
@@ -24,6 +25,20 @@
       filter: invert(32%) sepia(65%) saturate(6380%) hue-rotate(219deg) brightness(98%) contrast(102%);
     }
 
+
+    /* popover fix for safari */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      /* Safari-only CSS here */
+      _::-webkit-full-page-media, _:future, :root div[popover] {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        max-width: 90vw;
+        z-index: 1000;
+      }
+    }
     
   </style>
 
