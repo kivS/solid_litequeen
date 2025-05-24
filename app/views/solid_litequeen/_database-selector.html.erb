@@ -13,9 +13,13 @@
             
             <script>
                 document.getElementById('database-select').addEventListener('change', function() {
-                if (this.value) {
+                    if(!this.value){
+                         Turbo.visit('<%= database_path("") %>');
+                         return
+                    }
+                   
                     Turbo.visit('<%= database_path("") %>' + this.value);
-                }
+                    
                 });
             </script>
         </div>
