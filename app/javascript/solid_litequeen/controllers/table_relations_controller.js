@@ -1,11 +1,14 @@
 import { Controller } from "@hotwired/stimulus";
+import * as joint from "@joint/core";
+import * as dagre from "@dagrejs/dagre";
 
 // Connects to data-controller="table-relations"
 export default class extends Controller {
-	connect() {
-		const table_relations_data = JSON.parse(
-			table_relationships.dataset.relations,
-		);
+        connect() {
+                const table_relationships = document.getElementById("table_relationships");
+                const table_relations_data = JSON.parse(
+                        table_relationships.dataset.relations,
+                );
 		this.tables = table_relations_data.tables;
 		this.relations = table_relations_data.relations;
 

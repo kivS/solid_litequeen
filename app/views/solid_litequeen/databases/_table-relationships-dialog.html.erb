@@ -1,6 +1,6 @@
 <dialog id="table_relationships" data-controller="dialog table-relations" data-relations="<%= @table_relations.to_json %>" class="w-[1000px] h-full m-auto overscroll-y-contain">
     <form method="submit" class="flex  flex-row-reverse">
-        <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
+        <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none" data-action="dialog#close">
             <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
         </button>
     </form>

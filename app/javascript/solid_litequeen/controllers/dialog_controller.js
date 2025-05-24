@@ -8,7 +8,11 @@ export default class extends Controller {
 			"click",
 			this.handleClickOusideDialog.bind(this),
 		);
-	}
+        }
+
+        close() {
+                this.element?.close();
+        }
 
 	disconnect() {
 		this.element.removeEventListener(
