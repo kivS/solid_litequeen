@@ -1,13 +1,13 @@
-<dialog id="<%= dialog_id %>" data-controller="dialog" class="w-[800px]  m-auto overscroll-y-contain"> 
+<dialog id="<%= dialog_id %>" data-controller="dialog" class="bg-[var(--color-background)] dark:border dark:rounded dark:border-gray-50/20 w-[800px]  m-auto overscroll-y-contain"> 
     <div  class="flex  flex-row-reverse">
         <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none"> 
-            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
+            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 dark:filter-white" %>
         </button>
     </div>
 
     <h1 class="text-lg font-semibold text-center"><%= column_name %></h1>
 
-    <div class="flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2  bg-gray-100 rounded ">
+    <div class="flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2 dark:bg-transparent  bg-gray-100  dark:border dark:border-gray-50/50 rounded ">
         <p class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2">
             <%= data %>
         </p>

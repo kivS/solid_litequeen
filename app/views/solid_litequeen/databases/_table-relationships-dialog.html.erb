@@ -1,10 +1,10 @@
-<dialog id="table_relationships" data-controller="dialog table-relations" data-relations="<%= @table_relations.to_json %>" class="w-[1000px] h-full m-auto overscroll-y-contain">
+<dialog id="table_relationships" data-controller="dialog table-relations" data-relations="<%= @table_relations.to_json %>" class="dark:bg-[var(--color-background)] dark:border dark:border-gray-50/20 rounded w-[1000px] h-full m-auto overscroll-y-contain">
     <div class="flex  flex-row-reverse">
         <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none">
-            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
+            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 dark:filter-white" %>
         </button>
     </div>
-    <h1 class="text-black text-center mt-4">Table Relationships</h1>
+    <h1 class=" text-center mt-4">Table Relationships</h1>
     
     <div class="w-full p-4 mx-auto overflow-x-auto">
         <div id="paper" class="m-auto my-10 w-full h-[600px] border rounded"></div>

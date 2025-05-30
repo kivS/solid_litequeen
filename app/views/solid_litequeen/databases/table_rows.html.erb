@@ -1,10 +1,10 @@
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-6 flex gap-1 items-center justify-center">
+    <h1 class="text-3xl font-bold  mb-6 flex gap-1 items-center justify-center">
         <%= link_to database_path(params[:database_id])  do %>
-            <%= image_tag "solid_litequeen/icons/database.svg", class: "size-6" %>
+            <%= image_tag "solid_litequeen/icons/database.svg", class: "size-6 dark:filter-white" %>
         <% end %>
 
-        <%= image_tag "solid_litequeen/icons/chevron-right.svg", class: "size-6" %>
+        <%= image_tag "solid_litequeen/icons/chevron-right.svg", class: "size-6 dark:filter-white" %>
 
         <span>
             <%= @table_name %>
@@ -12,7 +12,7 @@
     </h1>
 
     <div class="mb-6">
-        <p class="text-gray-600"><%= pluralize(@row_count, "row") %> found</p>
+        <p class="text-[var(--color-text-muted)]"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
     <div class="bg-white rounded-lg shadow overflow-x-auto">
@@ -193,10 +193,10 @@
                     <% end %>
                 </tbody>
 
-                <dialog id="foreign-key-data"  data-controller="dialog" class="w-[900px] m-auto overscroll-y-contain">
+                <dialog id="foreign-key-data"  data-controller="dialog" class="bg-[var(--color-background)] dark:border dark:rounded dark:border-gray-50/20 w-[900px] m-auto overscroll-y-contain">
                         <div class="flex flex-row-reverse">
                             <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none"> 
-                                <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
+                                <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 dark:filter-white" %>
                             </button>
                             
                         </div>
