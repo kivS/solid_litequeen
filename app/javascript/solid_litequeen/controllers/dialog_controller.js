@@ -19,6 +19,10 @@ export default class extends Controller {
 		this.element?.close();
 	}
 
+	close(){
+		this.element?.close()
+	}
+
 	/**
 	 * Handles mouse events for the search dialog.
 	 * @param {MouseEvent} event - The mouse event triggered by user interaction.

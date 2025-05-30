@@ -195,11 +195,10 @@
 
                 <dialog id="foreign-key-data"  data-controller="dialog" class="w-[900px] m-auto overscroll-y-contain">
                         <div class="flex flex-row-reverse">
-                            <form method="submit">
-                                <button formmethod="dialog" class="cursor-pointer mr-4 mt-2 outline-none"> 
-                                    <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
-                                </button>
-                            </form>
+                            <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none"> 
+                                <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5" %>
+                            </button>
+                            
                         </div>
 
                     <div class="overflow-x-auto relative">
