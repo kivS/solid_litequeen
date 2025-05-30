@@ -9,7 +9,7 @@
     <% if available_databases.any? %>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <% available_databases.each do |db| %>
-                <a href="<%= database_path(Base64.urlsafe_encode64(db.database)) %>" class="block bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
+                <a href="<%= database_path(Base64.urlsafe_encode64(db.database)) %>" class="block bg-[var(--color-surface)] rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
                     <div class="p-5">
                         <div class="flex items-center justify-between mb-2">
                             <h2 class="text-lg font-semibold text-gray-900 truncate"><%= db.name %></h2>
@@ -29,7 +29,7 @@
             <% end %>
         </div>
     <% else %>
-        <div class="bg-gray-50 rounded-lg p-8 text-center">
+        <div class="bg-[var(--color-surface)] rounded-lg p-8 text-center">
             <p class="text-gray-600">No databases found</p>
         </div>
     <% end %>

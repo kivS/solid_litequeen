@@ -16,10 +16,23 @@
   <style type="text/tailwindcss">
     @plugins "form";
 
-    :root{
+    :root {
       color-scheme: light dark;
+      --color-bg: #ffffff;
+      --color-text: #0f172a;
+      --color-surface: #ffffff;
+      --color-surface-alt: #f3f4f6;
     }
-   
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #0a0a0a;
+        --color-text: #ffffff;
+        --color-surface: #1f2937;
+        --color-surface-alt: #374151;
+      }
+    }
+
     @theme {
       --color-clifford: #da373d;
     }
@@ -50,7 +63,7 @@
 
   <%= yield :head %>
 </head>
-<body class="">
+<body class="bg-[var(--color-bg)] text-[var(--color-text)]">
   <header class="container mx-auto mt-4 mb-8">
     <%= render "solid_litequeen/database-selector" %>
   </header>

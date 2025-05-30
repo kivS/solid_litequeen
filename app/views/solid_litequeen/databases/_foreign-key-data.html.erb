@@ -10,7 +10,7 @@
     
     <div class="mx-auto my-4 p-4 max-w-[90%]">
         <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
-            <thead class="bg-gray-50">
+            <thead class="bg-[var(--color-surface-alt)]">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Column Name
@@ -20,7 +20,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="bg-[var(--color-surface)] divide-y divide-gray-200">
                 <% @result.rows.each do |row| %>
                     <% @result.columns.zip(row).each do |column, value| %>
                         <tr>

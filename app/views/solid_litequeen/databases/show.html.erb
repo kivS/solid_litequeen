@@ -24,17 +24,17 @@
         <p class="text-gray-600"><%= pluralize(@tables.count, "table") %> found</p>
     </div>
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-[var(--color-surface)] rounded-lg shadow overflow-hidden">
         <table class="w-full">
             <thead>
-                <tr class="bg-gray-100 border-b border-gray-200">
+                <tr class="bg-[var(--color-surface-alt)] border-b border-gray-200">
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Table Name</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Row Count</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 <% @tables.each do |table| %>
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-[var(--color-surface-alt)]">
                         <td class="px-6 py-4">
                             <%= link_to database_table_rows_path(@database_id, table[:name]), class: "text-blue-600 hover:text-blue-800 font-medium" do %>
                                 <%= table.dig(:name) %>
