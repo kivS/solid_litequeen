@@ -24,23 +24,23 @@
         <p class="text-[var(--color-text-muted)]"><%= pluralize(@tables.count, "table") %> found</p>
     </div>
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-white dark:bg-transparent rounded-lg shadow overflow-hidden">
         <table class="w-full">
             <thead>
-                <tr class="bg-gray-100 border-b border-gray-200">
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Table Name</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Row Count</th>
+                <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200">
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)] ">Table Name</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)]">Row Count</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-200/50">
                 <% @tables.each do |table| %>
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-gray-50 dark:hover:bg-[var(--color-background-light)]/50">
                         <td class="px-6 py-4">
-                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: "text-blue-600 hover:text-blue-800 font-medium" do %>
+                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: "text-blue-600 hover:text-blue-800 dark:text-cyan-500 dark:hover:text-cyan-600 font-medium" do %>
                                 <%= table.dig(:name) %>
                             <% end %>
                         </td>
-                        <td class="px-6 py-4 text-gray-600">
+                        <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
                             <%= pluralize(table.dig(:row_count), "Row") %>
                         </td>
                     </tr>

@@ -15,7 +15,7 @@
         <p class="text-[var(--color-text-muted)]"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
-    <div class="bg-white rounded-lg shadow overflow-x-auto">
+    <div class="bg-white dark:bg-transparent rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <table 
                 data-controller="table" 
@@ -24,46 +24,46 @@
                 class="min-w-full relative"
                 >
                 <thead class="">
-                    <tr class="bg-gray-100 border-b border-gray-200">
+                    <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200">
                         <% @data.columns.each_with_index do |column, index| %>
                             <th 
                                 draggable="true" 
                                 data-column-index="<%= index %>"
                                 data-column-name="<%= column %>"
-                                class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 whitespace-nowrap data-[is-dragging]:bg-orange-300/30 data-[column-order-about-to-be-swapped]:bg-green-300/30"
+                                class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)] whitespace-nowrap data-[is-dragging]:bg-orange-300/30 data-[column-order-about-to-be-swapped]:bg-green-300/30"
                             >
 
                                 <%# popover the the column info %>
                                 <% popover_id = "popover_#{column}_#{SecureRandom.hex(8)}" %>
 
                                 <button popovertarget="<%= popover_id %>" class="mr-1 p-1 hover:cursor-pointer" style="anchor-name: --anchor_<%= popover_id %>;">
-                                           <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5" %>
+                                           <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 dark:filter-white" %>
                                 </button>
                                 
-                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 bg-gray-100 border-gray-400 border p-4 rounded-md" style="position-anchor: --anchor_<%= popover_id%>;  top: anchor(--anchor_<%= popover_id%> bottom);  left: anchor(--anchor_<%= popover_id%> right);">
+                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 bg-gray-100 dark:bg-[var(--color-background)] border-gray-400 dark:border-gray-200/50 border p-4 rounded-md" style="position-anchor: --anchor_<%= popover_id%>;  top: anchor(--anchor_<%= popover_id%> bottom);  left: anchor(--anchor_<%= popover_id%> right);">
                                     <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
                                       
-                                        <tbody class="bg-white divide-y divide-gray-200">
+                                        <tbody class="bg-white dark:dark:bg-[var(--color-background-light)] divide-y divide-gray-200 dark:divide-gray-200/50 ">
                                             <% column_info = @columns_info[column]  %>
                                            
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Type</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:sql_type) %></td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]  font-semibold">Type</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:sql_type) %></td>
                                             </tr>
 
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Primary Key</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:is_primary_key) %></td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Primary Key</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:is_primary_key) %></td>
                                             </tr>
 
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Nullable</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:null) %></td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Nullable</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:null) %></td>
                                             </tr>
 
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Default</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "><%= column_info&.dig(:default) %></td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Default</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:default) %></td>
                                             </tr>
 
                                             <% if column_info&.dig(:foreign_key).present? %>
@@ -140,9 +140,9 @@
                     </tr>
                 </thead>
                 
-                <tbody class="divide-y divide-gray-200">
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-200/50">
                     <% @data.rows.each do |row| %>
-                        <tr class="hover:bg-gray-50" >
+                        <tr class="hover:bg-gray-50 dark:hover:bg-[var(--color-background-light)]/50" >
                             <% row.each_with_index do |item, index| %>
                                 <% truncated_item =  item&.truncate(80) %>
                                 <% column_name = @data.columns[index] %>
@@ -150,7 +150,7 @@
                                 <td 
                                     data-column="<%= column_name %>" 
                                     data-data_type="<%= @columns_info.dig(column_name).dig(:type) %>"
-                                    class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap" 
+                                    class="px-6 py-4 text-sm text-gray-800 dark:text-gray-300 whitespace-nowrap" 
                                 >
 
                                     <div class="flex justify-between gap-1">
@@ -165,7 +165,7 @@
                                                 data-fk_target_field_value="<%=  truncated_item %>" 
                                                 class="size-4 mt-0.5 hover:cursor-pointer flex-grow outline-none"
                                                 >
-                                                <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4 filter-blue" %>
+                                                <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4 filter-blue dark:filter-cyan" %>
                                             </button>
                                           
                                         <% end %>
