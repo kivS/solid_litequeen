@@ -69,13 +69,13 @@
                                             <% if column_info&.dig(:foreign_key).present? %>
                                               
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"></td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "> </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold"></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "> </td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Foreign Key</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Foreign Key</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
                                                         <%= column_info&.dig(:foreign_key).dig(:to_table) %>
                                                         &gt;
                                                         <%= column_info&.dig(:foreign_key).dig(:primary_key) %>
@@ -83,13 +83,13 @@
                                                 </tr> 
 
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">ON_UPDATE</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= column_info&.dig(:foreign_key).dig(:on_update) %></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">ON_UPDATE</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80"><%= column_info&.dig(:foreign_key).dig(:on_update) %></td>
                                                 </tr>  
                                                 
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">ON_DELETE</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= column_info&.dig(:foreign_key).dig(:on_delete) %></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">ON_DELETE</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80"><%= column_info&.dig(:foreign_key).dig(:on_delete) %></td>
                                                 </tr>
 
                                             <% end %>  
@@ -97,20 +97,20 @@
                                             <% if column_info&.dig(:indexes).present? %>
                                               
                                                 <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold"></td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 "> </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold"></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "> </td>
                                                 </tr>
 
                                                 <% column_info&.dig(:indexes).each do |index| %>
                                                     <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Index Name</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Index Name</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
                                                             <%= index[:name] %>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold">Unique</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Unique</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
                                                             <%= index[:unique] %>
                                                         </td>
                                                     </tr>
