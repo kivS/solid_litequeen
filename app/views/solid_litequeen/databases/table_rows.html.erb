@@ -24,7 +24,7 @@
                 class="min-w-full relative"
                 >
                 <thead class="">
-                    <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200">
+                    <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200 dark:border-gray-50/20">
                         <% @data.columns.each_with_index do |column, index| %>
                             <th 
                                 draggable="true" 
@@ -40,8 +40,8 @@
                                            <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 dark:filter-white" %>
                                 </button>
                                 
-                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 bg-gray-100 dark:bg-[var(--color-background)] border-gray-400 dark:border-gray-200/50 border p-4 rounded-md" style="position-anchor: --anchor_<%= popover_id%>;  top: anchor(--anchor_<%= popover_id%> bottom);  left: anchor(--anchor_<%= popover_id%> right);">
-                                    <table class="min-w-full divide-y divide-gray-200 border border-gray-200">
+                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 bg-gray-100 dark:bg-[var(--color-background)] border-gray-400  dark:border-gray-200/50 border p-4 rounded-md" style="position-anchor: --anchor_<%= popover_id%>;  top: anchor(--anchor_<%= popover_id%> bottom);  left: anchor(--anchor_<%= popover_id%> right);">
+                                    <table class="min-w-full divide-y divide-gray-200 black:divide-gray-50/20 border border-gray-200 dark:border-gray-50/20">
                                       
                                         <tbody class="bg-white dark:dark:bg-[var(--color-background-light)] divide-y divide-gray-200 dark:divide-gray-200/50 ">
                                             <% column_info = @columns_info[column]  %>
