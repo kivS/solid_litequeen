@@ -68,7 +68,7 @@ export default class extends Controller {
 				target: { id: targetId },
 				attrs: {
 					line: {
-						stroke: "#333",
+						stroke: "var(--color-paper-links)",
 						strokeWidth: 2,
 						targetMarker: {
 							type: "path",
@@ -128,13 +128,13 @@ export default class extends Controller {
 				size: { width: width, height: fieldHeight },
 				attrs: {
 					body: {
-						fill: "transparent",
+						fill: "var(--color-paper-background)",
 						strokeWidth: 1,
 						stroke: "#ddd",
 					},
 					label: {
 						text: field,
-						fill: "#333",
+						fill: "var(--color-text)",
 						fontSize: 14,
 					},
 				},
