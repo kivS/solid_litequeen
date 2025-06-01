@@ -21,7 +21,7 @@ export default class extends Controller {
 			gridSize: 10,
 			drawGrid: true,
 			background: {
-				color: "#f8f9fa",
+				color: this.element.dataset.paperBackgroundColor,
 			},
 			interactive: (cellView) => {
 				// If this cell is embedded (a field node),
@@ -128,7 +128,7 @@ export default class extends Controller {
 				size: { width: width, height: fieldHeight },
 				attrs: {
 					body: {
-						fill: "#ffffff",
+						fill: "transparent",
 						strokeWidth: 1,
 						stroke: "#ddd",
 					},
