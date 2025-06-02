@@ -6,12 +6,13 @@
 ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
 require "bundler/setup" if File.exist?(ENV["BUNDLE_GEMFILE"])
 
-# NOTE: importmap requires some rails goodness that we don't have in the engine,
-#       because we don't have `config/application.rb` that loads the environment.
+# importmap-rails expects a Rails environment
 require "rails"
-
-# importmap-rails is not loaded automatically
+require "solid_litequeen"
 require "importmap-rails"
 
-# the actual command runner
+# Point Rails.root to the engine so Importmap::Commands works
+Rails.singleton_class.define_method(:root) { SolidLitequeen::Engine.root }
+
 require "importmap/commands"
+
