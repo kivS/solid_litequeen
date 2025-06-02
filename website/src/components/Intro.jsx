@@ -15,14 +15,13 @@ export function Intro() {
 		<>
 			<h1 className="mt-14 font-display text-4xl/none font-extrabold dark:text-white text-center">
 				Manage <span className="text-landing-accent-light ">SQLite</span>{" "}
-				databases for your{" "}
+				databases in your{" "}
 				<span className="text-landing-accent-light">Rails</span> app
 			</h1>
 
 			<div className="mt-8">
 				<p className="font-medium py-4 text-lg/6 dark:text-gray-300 text-pretty text-center">
-					Lite Queen is a Rails engine you install into your app to manage
-					SQLite databases.
+					Mount the engine into your Rails app and start managing your SQLite databases
 				</p>
 				<div className="flex flex-col   gap-2">
 					<a
@@ -34,6 +33,18 @@ export function Intro() {
 						<GitHubIcon className="size-6" />
 						<span className="md:text-lg">kivS/solid_litequeen</span>
 					</a>
+
+					<a
+						href="https://demo.solid.litequeen.com"
+						target="_blank"
+						rel="noreferrer"
+						data-umami-event="Demo button"
+						className="flex mt-4 border bg-sky-700 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-900  rounded-lg font-medium "
+					>
+						<DrumstickIcon className="size-5" />
+						<span>Demo</span>
+					</a>
+					
 					<a
 						target="_blank"
 						rel="noreferrer"
@@ -59,16 +70,6 @@ export function Intro() {
 						<span className="md:text-lg">Sponsor</span>
 					</a>
 
-					<a
-						href="https://demo.solid.litequeen.com"
-						target="_blank"
-						rel="noreferrer"
-						data-umami-event="Demo button"
-						className="flex mt-4 border bg-sky-700 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-900  rounded-lg font-medium "
-					>
-						<DrumstickIcon className="size-5" />
-						<span>Demo</span>
-					</a>
 
 					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
