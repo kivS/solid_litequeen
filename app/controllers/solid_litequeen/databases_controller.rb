@@ -120,6 +120,8 @@ module SolidLitequeen
         end
       end
 
+      enum_info = enum_mappings[@table_name] || {}
+
       @columns_info = table_columns.each_with_object({}) do |column, hash|
         info = {
           sql_type: column.sql_type_metadata.sql_type,
@@ -136,6 +138,9 @@ module SolidLitequeen
         if fk_info[column.name]
           info[:foreign_key] = fk_info[column.name]
         end
+
+        # Append enum options if present
+        info[:enum_options] = enum_info[column.name] if enum_info[column.name]
 
         # Append index info if available for this column
         info[:indexes] = index_data[column.name] if index_data[column.name]
@@ -230,6 +235,18 @@ module SolidLitequeen
 
 
       render partial: "foreign-key-data"
+    end
+
+    private
+
+    def enum_mappings
+      Rails.application.eager_load! unless Rails.application.config.eager_load
+      ActiveRecord::Base.descendants.each_with_object({}) do |model, map|
+        next if model.abstract_class?
+        model.defined_enums.each do |attr, mapping|
+          (map[model.table_name] ||= {})[attr] = mapping
+        end
+      end
     end
   end
 end
