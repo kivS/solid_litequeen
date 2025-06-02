@@ -1,0 +1,2 @@
+The main application, the gem, is located at the root of the application and it's a gem for managing Sqlite databases for Rails projects.
+We also have a nextjs documentation website living in `website/`
