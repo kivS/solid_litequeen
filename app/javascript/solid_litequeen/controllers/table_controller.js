@@ -181,7 +181,10 @@ export default class extends Controller {
 		const fk_target_field_value =
 			fk_data_dialog_button.dataset.fk_target_field_value;
 
-		const new_frame_src = `${this.element.dataset.database_table_path}/foreign-key-data/${fk_target_table}/${fk_target_field}/${fk_target_field_value}`;
+		// Extract just the path without any query parameters
+		const clean_database_table_path = new URL(this.element.dataset.database_table_path, window.location.origin).pathname;
+
+		const new_frame_src = `${clean_database_table_path}/foreign-key-data/${fk_target_table}/${fk_target_field}/${fk_target_field_value}`;
 
 		// if the src didn't change let's just show what we have
 		if (foreign_key_data_frame.src) {
