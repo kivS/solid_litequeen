@@ -66,6 +66,15 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:default) %></td>
                                             </tr>
 
+                                            <% if column_info[:enum_options] %>
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Enum values</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
+                                                        <%= column_info[:enum_options].map { |k, v| "#{k}: #{v}" }.join(', ') %>
+                                                    </td>
+                                                </tr>
+                                            <% end %>
+
                                             <% if column_info&.dig(:foreign_key).present? %>
                                               
                                                 <tr>
@@ -155,7 +164,9 @@
 
                                     <div class="flex justify-between gap-1">
 
-                                        <span data-column_item><%= truncated_item %></span>
+                                        <% enum_opts = @columns_info[column_name][:enum_options] %>
+                                        <% enum_label = enum_opts&.key(item.to_s) %>
+                                        <span data-column_item title="<%= enum_label if enum_label %>"><%= truncated_item %></span>
                                         
                                         <% if item.present? and foreign_key.present? %>
                                             <button 

@@ -3,7 +3,9 @@
 one:
   title: MyString
   text: MyText
+  status: draft
 
 two:
   title: MyString
   text: MyText
+  status: published
