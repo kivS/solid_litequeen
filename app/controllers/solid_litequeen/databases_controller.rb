@@ -19,6 +19,14 @@ module SolidLitequeen
       tables = DynamicDatabase.connection.tables
 
       foreign_keys = []
+      column_meta = {}
+
+      tables.each do |table|
+        column_meta[table] = {}
+        DynamicDatabase.connection.columns(table).each do |column|
+          column_meta[table][column.name] = column.null
+        end
+      end
 
       @tables = tables.map do |table|
         fk = DynamicDatabase.connection.foreign_keys(table)
@@ -41,9 +49,13 @@ module SolidLitequeen
         tables[from_table] ||= { name: from_table, fields: [] }
         tables[to_table]   ||= { name: to_table, fields: [] }
 
-        # Add fields if not already included
-        tables[from_table][:fields] << fk_field unless tables[from_table][:fields].include?(fk_field)
-        tables[to_table][:fields] << pk_field unless tables[to_table][:fields].include?(pk_field)
+        # Add fields with nullability info if not already included
+        unless tables[from_table][:fields].any? { |f| f[:name] == fk_field }
+          tables[from_table][:fields] << { name: fk_field, null: column_meta[from_table][fk_field] }
+        end
+        unless tables[to_table][:fields].any? { |f| f[:name] == pk_field }
+          tables[to_table][:fields] << { name: pk_field, null: column_meta[to_table][pk_field] }
+        end
 
         # Build a simplified relation object
         relations << {
