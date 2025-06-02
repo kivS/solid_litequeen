@@ -119,7 +119,7 @@ export default class extends Controller {
 
 		// Create field nodes
                 const fieldNodes = fields.map((field, index) => {
-                        const label = field.null ? `${field.name} (NULL)` : `${field.name} (NOT NULL)`;
+                        const label = field.null ? `${field.name} (NULLABLE)` : `${field.name}`;
                         const fieldNode = new joint.shapes.standard.Rectangle({
                                 id: `${id}-${field.name}`,
                                 position: {

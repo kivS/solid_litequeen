@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    solid_litequeen (0.17.0)
+    solid_litequeen (0.17.1)
       importmap-rails
       rails (>= 8.0.1)
       sqlite3
