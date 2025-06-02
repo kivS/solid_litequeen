@@ -29,7 +29,7 @@ export function Intro() {
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/solid_litequeen"
-						className="flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105   dark:border-gray-900  rounded-lg font-medium "
+						className=" flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-2 justify-center w-2/3 mx-auto hover:scale-105   dark:border-gray-900  rounded-lg font-medium "
 					>
 						<GitHubIcon className="size-6" />
 						<span className="md:text-lg">kivS/solid_litequeen</span>
