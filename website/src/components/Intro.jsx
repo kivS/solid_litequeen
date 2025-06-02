@@ -29,7 +29,7 @@ export function Intro() {
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/solid_litequeen"
-						className="flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105   dark:border-gray-900  rounded-lg font-medium "
+						className="flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105   dark:border-gray-900  rounded-lg font-medium "
 					>
 						<GitHubIcon className="size-6" />
 						<span className="md:text-lg">kivS/solid_litequeen</span>
@@ -59,6 +59,17 @@ export function Intro() {
 						<span className="md:text-lg">Sponsor</span>
 					</a>
 
+					<a
+						href="https://demo.solid.litequeen.com"
+						target="_blank"
+						rel="noreferrer"
+						data-umami-event="Demo button"
+						className="flex mt-4 border bg-sky-700 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-900  rounded-lg font-medium "
+					>
+						<DrumstickIcon className="size-5" />
+						<span>Demo</span>
+					</a>
+
 					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
 					<div>
@@ -75,16 +86,6 @@ export function Intro() {
 						/>
 					</div>
 
-					{/* <a
-						href="https://demo.litequeen.com"
-						target="_blank"
-						rel="noreferrer"
-						data-umami-event="Demo button"
-						className="flex mt-4 border bg-sky-700 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-900  rounded-lg font-medium "
-					>
-						<DrumstickIcon className="size-5" />
-						<span>Demo</span>
-					</a> */}
 				</div>
 			</div>
 		</>
