@@ -42,20 +42,20 @@ export default class extends Controller {
 		console.log("disconnected...");
 	}
 
-	#buildTables() {
-		this.tables.forEach((table, index) => {
-			// Initial position - will be adjusted by layout algorithm
-			const position = { x: 100, y: 100 };
-			// Create table node for each table with its fields
-			const tableCells = this.#createTableNode(
-				table.name,
-				table.name,
-				table.fields,
-				position,
-			);
-			this.graph.addCells(tableCells);
-		});
-	}
+        #buildTables() {
+                this.tables.forEach((table, index) => {
+                        // Initial position - will be adjusted by layout algorithm
+                        const position = { x: 100, y: 100 };
+                        // Create table node for each table with its fields
+                        const tableCells = this.#createTableNode(
+                                table.name,
+                                table.name,
+                                table.fields,
+                                position,
+                        );
+                        this.graph.addCells(tableCells);
+                });
+        }
 
 	#buildLinks() {
 		// biome-ignore lint/complexity/noForEach: <explanation>
@@ -118,26 +118,27 @@ export default class extends Controller {
 		});
 
 		// Create field nodes
-		const fieldNodes = fields.map((field, index) => {
-			const fieldNode = new joint.shapes.standard.Rectangle({
-				id: `${id}-${field}`,
-				position: {
-					x: position.x,
-					y: position.y + headerHeight + index * fieldHeight,
-				},
-				size: { width: width, height: fieldHeight },
-				attrs: {
-					body: {
-						fill: "var(--color-paper-background)",
-						strokeWidth: 1,
-						stroke: "#ddd",
-					},
-					label: {
-						text: field,
-						fill: "var(--color-text)",
-						fontSize: 14,
-					},
-				},
+                const fieldNodes = fields.map((field, index) => {
+                        const label = field.null ? `${field.name} (NULL)` : `${field.name} (NOT NULL)`;
+                        const fieldNode = new joint.shapes.standard.Rectangle({
+                                id: `${id}-${field.name}`,
+                                position: {
+                                        x: position.x,
+                                        y: position.y + headerHeight + index * fieldHeight,
+                                },
+                                size: { width: width, height: fieldHeight },
+                                attrs: {
+                                        body: {
+                                                fill: "var(--color-paper-background)",
+                                                strokeWidth: 1,
+                                                stroke: "#ddd",
+                                        },
+                                        label: {
+                                                text: label,
+                                                fill: "var(--color-text)",
+                                                fontSize: 14,
+                                        },
+                                },
 				ports: {
 					groups: {
 						left: {
