@@ -17,6 +17,10 @@ development:
     <<: *default
     database: storage/production-replica.sqlite3
     database_tasks: false
+  production-pal:
+    <<: *default
+    database: storage/production-pal.sqlite3
+    database_tasks: false
   cache:
     <<: *default
     database: storage/development_cache.sqlite3
