@@ -13,12 +13,12 @@
             
             <script>
                 document.getElementById('database-select').addEventListener('change', function() {
-                    if(!this.value){
-                         Turbo.visit('<%= database_path("") %>');
+                   if(!this.value){
+                         Turbo.visit('<%= URI(database_path("")).path %>');
                          return
                     }
                    
-                    Turbo.visit('<%= database_path("") %>' + this.value);
+                    Turbo.visit('<%= URI(database_path("")).path %>' + this.value);
                     
                 });
             </script>
