@@ -109,19 +109,31 @@ export default class extends Controller {
 				const rows = Array.from(tbody.querySelectorAll("tr"));
 
 				// Reorder cells in each row to match new column order
-				for (const row of rows) {
-					const cells = Array.from(row.querySelectorAll("td"));
-					const reorderedCells = columnOrder.map((colName) => {
-						// Find cell with matching data-column attribute
-						return cells.find((cell) => cell.dataset.column === colName);
-					});
+                                for (const row of rows) {
+                                        const cells = Array.from(row.querySelectorAll("td"));
+                                        const reorderedCells = columnOrder
+                                                .map((colName) => {
+                                                        // Find cell with matching data-column attribute
+                                                        const match = cells.find(
+                                                                (cell) =>
+                                                                        cell.dataset.column === colName,
+                                                        );
+                                                        if (!match) {
+                                                                console.warn(
+                                                                        `Column ${colName} not found in row`,
+                                                                        row,
+                                                                );
+                                                        }
+                                                        return match;
+                                                })
+                                                .filter(Boolean);
 
-					// Clear row and append cells in new order
-					row.innerHTML = "";
-					for (const cell of reorderedCells) {
-						row.appendChild(cell);
-					}
-				}
+                                        // Clear row and append cells in new order
+                                        row.innerHTML = "";
+                                        for (const cell of reorderedCells) {
+                                                row.appendChild(cell);
+                                        }
+                                }
 			}
 		});
 
