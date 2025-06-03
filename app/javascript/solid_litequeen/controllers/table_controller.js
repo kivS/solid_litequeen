@@ -105,9 +105,10 @@ export default class extends Controller {
 		}).then((result) => {
 			if (result.ok) {
 				// Get all rows in the table body
-				const tbody = this.element.querySelector("tbody");
+				const tbody = this.element.querySelector("tbody.main");
 				const rows = Array.from(tbody.querySelectorAll("tr"));
 
+			
 				// Reorder cells in each row to match new column order
 				for (const row of rows) {
 					const cells = Array.from(row.querySelectorAll("td"));
