@@ -1,4 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
+import * as joint from "@joint/core";
+import dagre from "@dagrejs/dagre";
 
 // Connects to data-controller="table-relations"
 export default class extends Controller {

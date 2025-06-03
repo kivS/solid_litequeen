@@ -10,4 +10,5 @@
 /test/dummy/tmp/
 solid_litequeen.gem
 .DS_Store
-/vendor
+/vendor/*
+!/vendor/javascript/
