@@ -181,7 +181,7 @@
                                           
                                         <% end %>
 
-
+                                        
                                         <%# TODO: we can use one dynamic modal instead and fetch the data. for now this works and is (s)crapy! %>
                                         <% if truncated_item&.to_s&.ends_with?("...") %>
                                             <% dialog_id = "#{column_name}_#{SecureRandom.hex(8)}_context_dialog"  %>

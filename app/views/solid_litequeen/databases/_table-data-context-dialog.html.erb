@@ -1,3 +1,19 @@
+<%
+  # Try to parse the data as JSON if possible
+  begin
+    parsed_json = JSON.parse(data) if data.is_a?(String)
+
+    # in case the json string is doubly encoded
+    if parsed_json.is_a?(String)
+        parsed_json = JSON.parse(parsed_json)
+    end
+
+    is_json = parsed_json.present?
+  rescue JSON::ParserError
+    is_json = false
+  end
+%>
+
 <dialog id="<%= dialog_id %>" data-controller="dialog" class="bg-[var(--color-background-light)] dark:border dark:rounded dark:border-gray-50/20 w-[800px]  m-auto overscroll-y-contain"> 
     <div  class="flex  flex-row-reverse">
         <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none"> 
@@ -6,10 +22,14 @@
     </div>
 
     <h1 class="text-lg font-semibold text-center"><%= column_name %></h1>
-
+     
     <div class="flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2 dark:bg-transparent  bg-gray-100  dark:border dark:border-gray-50/50 rounded ">
-        <p class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2">
-            <%= data %>
-        </p>
+        <% if is_json %>
+            <pre class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2"><%= JSON.pretty_generate(parsed_json) %></pre>
+        <% else %>
+            <p class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2">
+                <%= data %>
+            </p>
+        <% end %>
     </div>
 </dialog>
