@@ -23,11 +23,17 @@
 
     <h1 class="text-lg font-semibold text-center"><%= column_name %></h1>
      
-    <div class="flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2 dark:bg-transparent  bg-gray-100  dark:border dark:border-gray-50/50 rounded ">
+    <div data-controller="clipboard" class="relative flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2 dark:bg-transparent  bg-gray-100  dark:border dark:border-gray-50/50 rounded ">
+        
+        <button title="Copy" data-action="clipboard#copy" class="absolute top-2 right-2 hover:cursor-pointer">
+            <%= image_tag "solid_litequeen/icons/copy-clipboard.svg", class: "in-data-copied:hidden size-5 dark:filter-white opacity-50" %>
+            <span class="hidden in-data-copied:block">Copied!</span>
+        </button>
+
         <% if is_json %>
-            <pre class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2"><%= JSON.pretty_generate(parsed_json) %></pre>
+            <pre data-clipboard-target="source" class="text-wrap overflow-auto w-full h-[inherit] p-2"><%= JSON.pretty_generate(parsed_json) %></pre>
         <% else %>
-            <p class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2">
+            <p data-clipboard-target="source" class="text-wrap overflow-auto w-[inherit] h-[inherit] p-2">
                 <%= data %>
             </p>
         <% end %>
