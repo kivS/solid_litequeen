@@ -151,8 +151,10 @@ module SolidLitequeen
       # Verify the sort column exists in the table to prevent SQL injection
       valid_columns = table_columns.map(&:name)
 
-      # Use the column order from session if it exists; otherwise, default to all columns
-      ordered_columns = session["#{@database_id}_#{@table_name}_column_order"] || valid_columns
+      stored_order = session["#{@database_id}_#{@table_name}_column_order"] || []
+      ordered_columns = stored_order & valid_columns
+      ordered_columns += valid_columns - ordered_columns
+      session["#{@database_id}_#{@table_name}_column_order"] = ordered_columns
 
       order_clause = if @sort_column.present? && valid_columns.include?(@sort_column)
         "#{DynamicDatabase.connection.quote_column_name(@sort_column)} #{@sort_direction}"
@@ -206,10 +208,19 @@ module SolidLitequeen
       table_name = params[:table]
       database_id = params[:database_id]
 
-      column_order = params[:columnOrder]
+      column_order = params[:columnOrder] || []
 
-      # Store column order in session using database and table as key
-      session["#{database_id}_#{table_name}_column_order"] = column_order
+      database_location = Base64.urlsafe_decode64(database_id)
+
+      DynamicDatabase.establish_connection(
+        adapter: "sqlite3",
+        database: database_location
+      )
+
+      valid_columns = DynamicDatabase.connection.columns(table_name).map(&:name)
+      sanitized_order = column_order & valid_columns
+
+      session["#{database_id}_#{table_name}_column_order"] = sanitized_order
 
       head :ok
     end
