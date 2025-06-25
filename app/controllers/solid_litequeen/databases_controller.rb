@@ -154,6 +154,7 @@ module SolidLitequeen
       stored_order = session["#{@database_id}_#{@table_name}_column_order"] || []
       ordered_columns = stored_order & valid_columns
       ordered_columns += valid_columns - ordered_columns
+      # Persist merged column order so future requests use the updated schema
       session["#{@database_id}_#{@table_name}_column_order"] = ordered_columns
 
       order_clause = if @sort_column.present? && valid_columns.include?(@sort_column)
