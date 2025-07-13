@@ -27,20 +27,25 @@
                     <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200 dark:border-gray-50/20">
                         <% @data.columns.each_with_index do |column, index| %>
                             <th 
-                                draggable="true" 
+                                draggable="true"
+                                data-controller="orbit" 
                                 data-column-index="<%= index %>"
                                 data-column-name="<%= column %>"
                                 class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)] whitespace-nowrap data-[is-dragging]:bg-orange-300/30 data-[column-order-about-to-be-swapped]:bg-green-300/30"
                             >
 
                                 <%# popover the the column info %>
-                                <% popover_id = "popover_#{column}_#{SecureRandom.hex(8)}" %>
+                                <% 
+                                    popover_id = "popover_#{column}_#{SecureRandom.hex(8)}"
+                                    anchor_name = "--anchor_#{popover_id}"
+                                %>
+                                
 
-                                <button popovertarget="<%= popover_id %>" class="mr-1 p-1 hover:cursor-pointer" style="anchor-name: --anchor_<%= popover_id %>;">
-                                           <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 dark:filter-white" %>
+                                <button popovertarget="<%= popover_id %>" data-orbit-target="planet" class="mr-1 p-1 hover:cursor-pointer" style="anchor-name: <%= anchor_name %> ;">
+                                    <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 dark:filter-white" %>
                                 </button>
                                 
-                                <div popover id="<%= popover_id %>"  class="max-w-lg min-h-10 bg-gray-100 dark:bg-[var(--color-background)] border-gray-400  dark:border-gray-200/50 border p-4 rounded-md" style="position-anchor: --anchor_<%= popover_id%>;  top: anchor(--anchor_<%= popover_id%> bottom);  left: anchor(--anchor_<%= popover_id%> right);">
+                                <div popover id="<%= popover_id %>" data-orbit-target="moon"  class="max-w-lg min-h-10 bg-gray-100 dark:bg-[var(--color-background)] border-gray-400  dark:border-gray-200/50 border p-4 rounded-md" style="position-anchor: <%= anchor_name %>;">
                                     <table class="min-w-full divide-y divide-gray-200 black:divide-gray-50/20 border border-gray-200 dark:border-gray-50/20">
                                       
                                         <tbody class="bg-white dark:dark:bg-[var(--color-background-light)] divide-y divide-gray-200 dark:divide-gray-200/50 ">
