@@ -249,12 +249,58 @@ module SolidLitequeen
     end
 
     def get_command_palette_data
-      render json: { "status": "ok" }
+      palette_data = []
+      id_counter = 1
+
+      @available_databases ||= ActiveRecord::Base.configurations.configurations.select do |config|
+        config.adapter == "sqlite3" && config.env_name == Rails.env && config.database.present?
+      end
+
+      @available_databases.each do |db|
+        db_id = Base64.urlsafe_encode64(db.database)
+        db_file_name = db.database
+
+        # Add database entry
+        palette_data << {
+          id: id_counter,
+          type: "database",
+          name: db.name,
+          database_file_name: db_file_name,
+          rowCount: nil,
+          path: database_path(db_id)
+        }
+        id_counter += 1
+
+        # Establish a connection to fetch tables for this database
+        DynamicDatabase.establish_connection(
+          adapter: "sqlite3",
+          database: db.database
+        )
+
+        DynamicDatabase.connection.tables.each do |table_name|
+          row_count = DynamicDatabase.connection.select_value("SELECT COUNT(*) FROM #{table_name}").to_i
+
+          # Add table entry
+          palette_data << {
+            id: id_counter,
+            type: "table",
+            name: table_name,
+            database_name: db.name,
+            database_file_name: db_file_name,
+            rowCount: row_count,
+            path: database_table_rows_path(db_id, table_name)
+          }
+          id_counter += 1
+        end
+      end
+
+      render json: palette_data
     end
 
     private
 
     def enum_mappings
+      # get all the enums defined in models in the app
       Rails.application.eager_load! unless Rails.application.config.eager_load
       ActiveRecord::Base.descendants.each_with_object({}) do |model, map|
         next if model.abstract_class?
