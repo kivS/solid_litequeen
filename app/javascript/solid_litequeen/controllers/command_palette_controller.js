@@ -25,6 +25,7 @@ export default class extends Controller {
         this.modal = document.getElementById('commandPaletteModal');
         this.dialog = document.getElementById('commandPaletteDialog');
         this.input = document.getElementById('commandPaletteInput');
+        this.input_timeout = null;
         this.resultsList = document.getElementById('resultsList');
         this.noResults = document.getElementById('noResults');
         this.resultsCount = document.getElementById('resultsCount');
@@ -97,14 +98,22 @@ export default class extends Controller {
     }
 
     handleSearch(query) {
+        clearTimeout(this.input_timeout);
+
         if (!query) {
             this.filteredItems = [...this.searchItems];
         } else {
-            this.filteredItems = this.searchItems.filter(item =>
-                item.name.toLowerCase().includes(query.toLowerCase()) ||
-                (item.database_name && item.database_name.toLowerCase().includes(query.toLowerCase())) ||
-                (item.database_file_name && item.database_file_name.toLowerCase().includes(query.toLowerCase()))
-            );
+            
+            this.input_timeout = setTimeout(() => {       
+                this.filteredItems = this.searchItems.filter(item =>
+                    item.name.toLowerCase().includes(query.toLowerCase()) ||
+                    (item.database_name && item.database_name.toLowerCase().includes(query.toLowerCase())) ||
+                    (item.database_file_name && item.database_file_name.toLowerCase().includes(query.toLowerCase()))               
+                );
+
+                this.selectedIndex = 0;
+                this.updateResults();
+            }, 200);
         }
 
         this.selectedIndex = 0;
