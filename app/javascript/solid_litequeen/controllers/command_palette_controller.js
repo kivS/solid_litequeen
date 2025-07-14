@@ -65,6 +65,8 @@ export default class extends Controller {
         // Global shortcut
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
+            if(this.isOpen) return this.close();
+            
             this.open();
             return;
         }
