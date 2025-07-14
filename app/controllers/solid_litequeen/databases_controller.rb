@@ -249,7 +249,7 @@ module SolidLitequeen
     end
 
     def get_command_palette_data
-      { "status": ok }
+      render json: { "status": "ok" }
     end
 
     private
