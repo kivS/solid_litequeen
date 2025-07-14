@@ -135,8 +135,8 @@ export default class extends Controller {
             const isSelected = index === this.selectedIndex;
             
             const icon = item.type === 'database'
-                ? `<img src="${this.element.dataset.database_svg_img_path}" class=size-4 dark:filter-white" />`
-                : `<img src="${this.element.dataset.table_svg_img_path}" class=size-4 dark:filter-white" />`;
+                ? `<img src="${this.element.dataset.database_svg_img_path}" class="size-4 filter-blue" />`
+                : `<img src="${this.element.dataset.table_svg_img_path}" class="size-4 filter-lime" />`;
 
             const badge = item.type === 'table'
                 ? `<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">${item.rowCount?.toLocaleString()} rows</span>`
