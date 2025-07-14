@@ -1,7 +1,5 @@
 <style>
-        .backdrop {
-            backdrop-filter: blur(8px);
-        }
+      
         .dialog-enter {
             animation: dialogEnter 0.2s ease-out;
         }
@@ -28,12 +26,6 @@
                 transform: scale(0.95);
             }
         }
-        .selected {
-            background-color: rgb(241 245 249);
-        }
-        .dark .selected {
-            background-color: rgb(51 65 85);
-        }
 </style>
 
 <section 
@@ -44,12 +36,12 @@
 
     >
     <!-- Command Palette Trigger -->
-    <button id="commandPaletteTrigger" class="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 bg-gray-100  rounded-md hover:bg-gray-200 transition-colors">
+    <button id="commandPaletteTrigger" class="flex items-center gap-2 px-3 py-2 text-sm bg-base-200  border border-base-content/20 hover:bg-base-100  rounded-md  transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
         <span>Search databases and tables...</span>
-        <kbd class="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-gray-200 px-1.5 font-mono text-[10px] font-medium text-gray-600 opacity-100">
+        <kbd class="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-base-300 px-1.5 font-mono text-[10px] font-medium  opacity-100">
             <span class="text-xs">⌘</span>K
         </kbd>
     </button>
@@ -57,13 +49,13 @@
     <!-- Command Palette Modal -->
     <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden">
         <!-- Backdrop -->
-        <div class="fixed inset-0  bg-black dark:bg-slate-500 opacity-75"></div>
+        <div class="fixed inset-0  backdrop-blur "></div>
         
         <!-- Dialog -->
         <div class="fixed inset-0 flex items-start justify-center pt-[10vh]">
-            <div id="commandPaletteDialog" class="bg-white dark:bg-[var(--color-background)] rounded-lg shadow-xl w-full max-w-2xl mx-4 dialog-enter">
+            <div id="commandPaletteDialog" class="bg-base-200 border border-base-content/20 rounded-lg shadow-xl w-full max-w-2xl mx-4 dialog-enter">
                 <!-- Search Input -->
-                <div class="flex items-center border-b px-3">
+                <div class="flex items-center border-b border-base-content/30 px-3">
                     <svg class="mr-2 h-4 w-4 shrink-0 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
@@ -78,14 +70,14 @@
 
                 <!-- Results -->
                 <div id="commandPaletteResults" class="max-h-[400px] overflow-y-auto">
-                    <div id="noResults" class="py-6 text-center text-sm text-gray-500 hidden">
+                    <div id="noResults" class="py-6 text-center text-sm text-base-content/60 hidden">
                         No databases or tables found.
                     </div>
                     <div id="resultsList" class="p-2"></div>
                 </div>
 
                 <!-- Footer -->
-                <div class="border-t border-gray-200/70 px-3 py-2 text-xs text-gray-500">
+                <div class="border-t border-base-content/30 px-3 py-2 text-xs text-base-content/60">
                     <div class="flex items-center justify-between">
                         <span>Use ↑↓ to navigate, Enter to select, Esc to close</span>
                         <span id="resultsCount">0 results</span>

@@ -139,19 +139,19 @@ export default class extends Controller {
             const isSelected = index === this.selectedIndex;
             
             const icon = item.type === 'database'
-                ? `<img  src="${this.element.dataset.database_svg_img_path}" class="size-4 filter-blue" />`
-                : `<img src="${this.element.dataset.table_svg_img_path}" class="size-4 filter-lime" />`;
+                ? `<img  src="${this.element.dataset.database_svg_img_path}" class="size-4 filter-blue opacity-80" />`
+                : `<img src="${this.element.dataset.table_svg_img_path}" class="size-4 filter-lime opacity-80" />`;
 
             const badge = item.type === 'table'
-                ? `<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">${item.rowCount?.toLocaleString()} rows</span>`
+                ? `<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-neutral-content text-neutral">${item.rowCount?.toLocaleString()} rows</span>`
                 : '';
 
             const database = item.database_file_name
-                ? `<div class="text-xs text-gray-500 truncate">in ${item.database_file_name}</div>`
+                ? `<div class="text-xs text-base-content/60 truncate">in ${item.database_file_name}</div>`
                 : '';
 
             return `
-                <div ${isSelected ? 'data-selected' : ''} class="flex items-center gap-3 data-selected:bg-gray-200 dark:data-selected:bg-[var(--color-background-light)] rounded-md px-3 py-2 text-sm cursor-pointer transition-colors" 
+                <div ${isSelected ? 'data-selected' : ''} class="flex items-center gap-3 data-selected:bg-base-100 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors" 
                      data-index="${index}">
                     ${icon}
                     <div class="flex-1 min-w-0">
@@ -161,7 +161,7 @@ export default class extends Controller {
                         </div>
                         ${database}
                     </div>
-                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-base-content/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </div>
