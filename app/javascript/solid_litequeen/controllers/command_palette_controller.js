@@ -151,7 +151,7 @@ export default class extends Controller {
                 : '';
 
             return `
-                <div class="flex items-center gap-3 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors hover:bg-gray-100 ${isSelected ? 'selected' : ''}" 
+                <div ${isSelected ? 'data-selected' : ''} class="flex items-center gap-3 data-selected:bg-gray-200 dark:data-selected:bg-[var(--color-background-light)] rounded-md px-3 py-2 text-sm cursor-pointer transition-colors" 
                      data-index="${index}">
                     ${icon}
                     <div class="flex-1 min-w-0">
@@ -181,10 +181,10 @@ export default class extends Controller {
     updateSelection() {
         this.resultsList.querySelectorAll('[data-index]').forEach((element, index) => {
             if (index === this.selectedIndex) {
-                element.classList.add('selected');
+                element.setAttribute('data-selected', true);
                 element.scrollIntoView({ block: 'nearest' });
             } else {
-                element.classList.remove('selected');
+                element.removeAttribute('data-selected');
             }
         });
     }
