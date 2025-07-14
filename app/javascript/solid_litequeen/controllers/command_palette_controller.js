@@ -186,7 +186,7 @@ export default class extends Controller {
     }
 
     selectItem(item) {
-        this.close();
+        this.close(true);
         Turbo.visit(item.path);
 
     }
@@ -200,11 +200,18 @@ export default class extends Controller {
         this.handleSearch('');
     }
 
-    close() {
+    close(quiet=false) {
         this.isOpen = false;
         this.dialog.classList.remove('dialog-enter');
-        this.dialog.classList.add('dialog-exit');
 
+        if(quiet){
+            this.modal.classList.add('hidden');
+            this.selectedIndex = 0;
+            return
+        }
+
+        this.dialog.classList.add('dialog-exit');
+    
         setTimeout(() => {
             this.modal.classList.add('hidden');
             this.dialog.classList.remove('dialog-exit');
