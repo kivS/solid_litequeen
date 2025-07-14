@@ -102,6 +102,9 @@ export default class extends Controller {
 
         if (!query) {
             this.filteredItems = [...this.searchItems];
+            this.selectedIndex = 0;
+            this.updateResults();
+
         } else {
             
             this.input_timeout = setTimeout(() => {       
@@ -116,8 +119,7 @@ export default class extends Controller {
             }, 200);
         }
 
-        this.selectedIndex = 0;
-        this.updateResults();
+      
     }
 
     updateResults() {
@@ -135,7 +137,7 @@ export default class extends Controller {
             const isSelected = index === this.selectedIndex;
             
             const icon = item.type === 'database'
-                ? `<img src="${this.element.dataset.database_svg_img_path}" class="size-4 filter-blue" />`
+                ? `<img  src="${this.element.dataset.database_svg_img_path}" class="size-4 filter-blue" />`
                 : `<img src="${this.element.dataset.table_svg_img_path}" class="size-4 filter-lime" />`;
 
             const badge = item.type === 'table'
@@ -211,12 +213,12 @@ export default class extends Controller {
         }
 
         this.dialog.classList.add('dialog-exit');
-    
+        
         setTimeout(() => {
             this.modal.classList.add('hidden');
             this.dialog.classList.remove('dialog-exit');
             this.selectedIndex = 0;
-        }, 200);
+        }, 100);
     }
 
   
