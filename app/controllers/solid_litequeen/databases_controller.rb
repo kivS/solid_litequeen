@@ -204,7 +204,6 @@ module SolidLitequeen
     end
 
 
-
     def set_column_order
       table_name = params[:table]
       database_id = params[:database_id]
@@ -247,6 +246,10 @@ module SolidLitequeen
 
 
       render partial: "foreign-key-data"
+    end
+
+    def get_command_palette_data
+      { "status": ok }
     end
 
     private

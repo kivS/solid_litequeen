@@ -5,5 +5,6 @@ SolidLitequeen::Engine.routes.draw do
     get "/tables/:table/foreign-key-data/:target_table/:target_field/:target_field_value", to: "databases#get_foreign_key_data", as: :get_table_foreign_key_data
     get "download", to: "databases#download", as: "download"
   end
+  get "command-palette-data", to: "databases#get_command_palette_data"
   root to: "databases#index"
 end
