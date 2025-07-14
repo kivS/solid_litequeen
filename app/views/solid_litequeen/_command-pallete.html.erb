@@ -1,3 +1,343 @@
-<div>
-    <p>let's go</p>
-</div>
+<style>
+        .backdrop {
+            backdrop-filter: blur(8px);
+        }
+        .dialog-enter {
+            animation: dialogEnter 0.2s ease-out;
+        }
+        .dialog-exit {
+            animation: dialogExit 0.2s ease-in;
+        }
+        @keyframes dialogEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes dialogExit {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+        .selected {
+            background-color: rgb(241 245 249);
+        }
+        .dark .selected {
+            background-color: rgb(51 65 85);
+        }
+</style>
+
+<section>
+    <!-- Command Palette Trigger -->
+    <button id="commandPaletteTrigger" class="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <span>Search databases and tables...</span>
+        <kbd class="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-gray-200 px-1.5 font-mono text-[10px] font-medium text-gray-600 opacity-100">
+            <span class="text-xs">⌘</span>K
+        </kbd>
+    </button>
+
+    <!-- Command Palette Modal -->
+    <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 backdrop bg-black opacity-75"></div>
+        
+        <!-- Dialog -->
+        <div class="fixed inset-0 flex items-start justify-center pt-[10vh]">
+            <div id="commandPaletteDialog" class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-4 dialog-enter">
+                <!-- Search Input -->
+                <div class="flex items-center border-b px-3">
+                    <svg class="mr-2 h-4 w-4 shrink-0 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input
+                        id="commandPaletteInput"
+                        type="text"
+                        placeholder="Search databases and tables..."
+                        class="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none border-0 focus:ring-0"
+                        autocomplete="off"
+                    />
+                </div>
+
+                <!-- Results -->
+                <div id="commandPaletteResults" class="max-h-[400px] overflow-y-auto">
+                    <div id="noResults" class="py-6 text-center text-sm text-gray-500 hidden">
+                        No databases or tables found.
+                    </div>
+                    <div id="resultsList" class="p-2"></div>
+                </div>
+
+                <!-- Footer -->
+                <div class="border-t px-3 py-2 text-xs text-gray-500">
+                    <div class="flex items-center justify-between">
+                        <span>Use ↑↓ to navigate, Enter to select, Esc to close</span>
+                        <span id="resultsCount">0 results</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data - replace with your actual data
+        const mockDatabases = [
+            {
+                id: "1",
+                name: "production.db",
+                tables: [
+                    { id: "1", name: "users", rowCount: 1250 },
+                    { id: "2", name: "posts", rowCount: 3420 },
+                    { id: "3", name: "comments", rowCount: 8930 },
+                    { id: "4", name: "sessions", rowCount: 456 },
+                ],
+            },
+            {
+                id: "2",
+                name: "development.db",
+                tables: [
+                    { id: "5", name: "users", rowCount: 25 },
+                    { id: "6", name: "posts", rowCount: 67 },
+                    { id: "7", name: "comments", rowCount: 123 },
+                    { id: "8", name: "test_data", rowCount: 500 },
+                ],
+            },
+            {
+                id: "3",
+                name: "analytics.db",
+                tables: [
+                    { id: "9", name: "events", rowCount: 15420 },
+                    { id: "10", name: "page_views", rowCount: 45230 },
+                    { id: "11", name: "user_sessions", rowCount: 2340 },
+                ],
+            },
+        ];
+
+        class CommandPalette {
+            constructor() {
+                this.isOpen = false;
+                this.selectedIndex = 0;
+                this.searchItems = [];
+                this.filteredItems = [];
+                
+                this.modal = document.getElementById('commandPaletteModal');
+                this.dialog = document.getElementById('commandPaletteDialog');
+                this.input = document.getElementById('commandPaletteInput');
+                this.resultsList = document.getElementById('resultsList');
+                this.noResults = document.getElementById('noResults');
+                this.resultsCount = document.getElementById('resultsCount');
+                this.trigger = document.getElementById('commandPaletteTrigger');
+
+                this.initializeSearchItems();
+                this.bindEvents();
+                this.updateResults();
+            }
+
+            initializeSearchItems() {
+                this.searchItems = [];
+                
+                mockDatabases.forEach((db) => {
+                    // Add database item
+                    this.searchItems.push({
+                        type: "database",
+                        id: db.id,
+                        name: db.name,
+                        path: `/databases/${db.id}`,
+                    });
+
+                    // Add table items
+                    db.tables.forEach((table) => {
+                        this.searchItems.push({
+                            type: "table",
+                            id: table.id,
+                            name: table.name,
+                            database: db.name,
+                            rowCount: table.rowCount,
+                            path: `/databases/${db.id}/tables/${table.id}`,
+                        });
+                    });
+                });
+            }
+
+            bindEvents() {
+                // Trigger button click
+                this.trigger.addEventListener('click', () => this.open());
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+
+                // Input change
+                this.input.addEventListener('input', (e) => this.handleSearch(e.target.value));
+
+                // Click outside to close
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) {
+                        this.close();
+                    }
+                });
+            }
+
+            handleKeyDown(e) {
+                // Global shortcut
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                    e.preventDefault();
+                    this.open();
+                    return;
+                }
+
+                if (!this.isOpen) return;
+
+                switch (e.key) {
+                    case 'Escape':
+                        this.close();
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        this.selectedIndex = this.selectedIndex < this.filteredItems.length - 1 
+                            ? this.selectedIndex + 1 
+                            : 0;
+                        this.updateSelection();
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        this.selectedIndex = this.selectedIndex > 0 
+                            ? this.selectedIndex - 1 
+                            : this.filteredItems.length - 1;
+                        this.updateSelection();
+                        break;
+                    case 'Enter':
+                        if (this.filteredItems[this.selectedIndex]) {
+                            this.selectItem(this.filteredItems[this.selectedIndex]);
+                        }
+                        break;
+                }
+            }
+
+            handleSearch(query) {
+                if (!query) {
+                    this.filteredItems = [...this.searchItems];
+                } else {
+                    this.filteredItems = this.searchItems.filter(item =>
+                        item.name.toLowerCase().includes(query.toLowerCase()) ||
+                        (item.database && item.database.toLowerCase().includes(query.toLowerCase()))
+                    );
+                }
+                
+                this.selectedIndex = 0;
+                this.updateResults();
+            }
+
+            updateResults() {
+                this.resultsCount.textContent = `${this.filteredItems.length} results`;
+
+                if (this.filteredItems.length === 0) {
+                    this.noResults.classList.remove('hidden');
+                    this.resultsList.innerHTML = '';
+                    return;
+                }
+
+                this.noResults.classList.add('hidden');
+                
+                this.resultsList.innerHTML = this.filteredItems.map((item, index) => {
+                    const isSelected = index === this.selectedIndex;
+                    const icon = item.type === 'database' 
+                        ? '<%= image_tag "solid_litequeen/icons/database.svg", class: "size-4 dark:filter-white" %>'
+                        : '<%= image_tag "solid_litequeen/icons/table.svg", class: "size-4 dark:filter-white" %>';
+                    
+                    const badge = item.type === 'table' 
+                        ? `<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">${item.rowCount?.toLocaleString()} rows</span>`
+                        : '';
+                    
+                    const database = item.database 
+                        ? `<div class="text-xs text-gray-500 truncate">in ${item.database}</div>`
+                        : '';
+
+                    return `
+                        <div class="flex items-center gap-3 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors hover:bg-gray-100 ${isSelected ? 'selected' : ''}" 
+                             data-index="${index}">
+                            ${icon}
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium truncate">${item.name}</span>
+                                    ${badge}
+                                </div>
+                                ${database}
+                            </div>
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    `;
+                }).join('');
+
+                // Add click handlers to result items
+                this.resultsList.querySelectorAll('[data-index]').forEach((element, index) => {
+                    element.addEventListener('click', () => this.selectItem(this.filteredItems[index]));
+                    element.addEventListener('mouseenter', () => {
+                        this.selectedIndex = index;
+                        this.updateSelection();
+                    });
+                });
+            }
+
+            updateSelection() {
+                this.resultsList.querySelectorAll('[data-index]').forEach((element, index) => {
+                    if (index === this.selectedIndex) {
+                        element.classList.add('selected');
+                        element.scrollIntoView({ block: 'nearest' });
+                    } else {
+                        element.classList.remove('selected');
+                    }
+                });
+            }
+
+            selectItem(item) {
+                // Navigate to the item (replace with your actual navigation logic)
+                console.log('Navigating to:', item.path);
+                alert(`Navigating to: ${item.name} (${item.path})`);
+                
+                // In a real app, you would do something like:
+                // window.location.href = item.path;
+                // or use your router
+                
+                this.close();
+            }
+
+            open() {
+                this.isOpen = true;
+                this.modal.classList.remove('hidden');
+                this.dialog.classList.add('dialog-enter');
+                this.input.focus();
+                this.input.value = '';
+                this.handleSearch('');
+            }
+
+            close() {
+                this.isOpen = false;
+                this.dialog.classList.remove('dialog-enter');
+                this.dialog.classList.add('dialog-exit');
+                
+                setTimeout(() => {
+                    this.modal.classList.add('hidden');
+                    this.dialog.classList.remove('dialog-exit');
+                    this.selectedIndex = 0;
+                }, 200);
+            }
+        }
+
+        // Initialize the command palette when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new CommandPalette();
+        });
+    </script>
+</section>
