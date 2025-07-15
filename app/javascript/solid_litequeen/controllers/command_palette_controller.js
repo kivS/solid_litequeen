@@ -151,7 +151,7 @@ export default class extends Controller {
                 : '';
 
             return `
-                <div ${isSelected ? 'data-selected': ''} data-index="${index}" class="data-selected:outline-2 outline-[var(--color-primary)] data-selected:bg-[var(--color-base-100)]  flex items-center gap-3 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors">
+                <div ${isSelected ? 'data-selected': ''} data-index="${index}" class="data-selected:outline-2 outline-[var(--color-success)]/50 data-selected:bg-[var(--color-base-100)]  flex items-center gap-3 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors">
                     ${icon}
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2">

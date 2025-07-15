@@ -36,7 +36,7 @@
                 <% @tables.each do |table| %>
                     <tr class="hover:bg-base-100 border-b last:border-none border-base-content/10">
                         <td class="px-6 py-4">
-                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: "link-primary font-medium" do %>
+                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: " font-medium" do %>
                                 <%= table.dig(:name) %>
                             <% end %>
                         </td>
@@ -48,5 +48,5 @@
             </tbody>
         </table>
     </div>
-    <%= link_to "Download Database", database_download_path(@database_id), class: "link link-hover link-secondary text-xs mt-4" %>
+    <%= link_to "Download Database", database_download_path(@database_id), class: "link link-hover link-info text-xs mt-5" %>
 </div>

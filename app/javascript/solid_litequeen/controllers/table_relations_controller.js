@@ -110,7 +110,7 @@ export default class extends Controller {
 				},
 				headerText: {
 					text: tableName,
-					fill: "var(--color-primary)",
+					fill: "var(--color-base-content)",
 					fontWeight: "bold",
 					fontSize: 16,
 				},
