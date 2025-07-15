@@ -21,7 +21,7 @@ export default class extends Controller {
 			gridSize: 10,
 			drawGrid: true,
 			background: {
-				color: "var(--color-paper-background)",
+				// color: "var(--color-neutral)",
 			},
 			interactive: (cellView) => {
 				// If this cell is embedded (a field node),
@@ -68,7 +68,7 @@ export default class extends Controller {
 				target: { id: targetId },
 				attrs: {
 					line: {
-						stroke: "var(--color-paper-links)",
+						stroke: "var(--color-info)",
 						strokeWidth: 2,
 						targetMarker: {
 							type: "path",
@@ -98,19 +98,19 @@ export default class extends Controller {
 			size: { width: width, height: height },
 			attrs: {
 				body: {
-					fill: "#f5f5f5",
+					fill: "var(--color-base-100)",
 					strokeWidth: 2,
-					stroke: "#ccc",
+					stroke: "var(--color-base-100)",
 				},
 				header: {
-					fill: "#e0e0e0",
+					fill: "var(--color-base-100)",
 					strokeWidth: 1,
-					stroke: "#ccc",
+					stroke: "var(--color-base-content)",
 					height: headerHeight,
 				},
 				headerText: {
 					text: tableName,
-					fill: "#000",
+					fill: "var(--color-primary)",
 					fontWeight: "bold",
 					fontSize: 16,
 				},
@@ -128,13 +128,13 @@ export default class extends Controller {
 				size: { width: width, height: fieldHeight },
 				attrs: {
 					body: {
-						fill: "var(--color-paper-background)",
+						fill: "var(--color-base-100)",
 						strokeWidth: 1,
-						stroke: "#ddd",
+						stroke: "var(--color-base-content)",
 					},
 					label: {
 						text: field,
-						fill: "var(--color-text)",
+						fill: "var(--color-base-content)",
 						fontSize: 14,
 					},
 				},
