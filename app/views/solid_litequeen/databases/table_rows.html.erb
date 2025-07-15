@@ -12,10 +12,10 @@
     </h1>
 
     <div class="mb-6">
-        <p class="text-[var(--color-text-muted)]"><%= pluralize(@row_count, "row") %> found</p>
+        <p class="text-base-content/60"><%= pluralize(@row_count, "row") %> found</p>
     </div>
 
-    <div class="bg-white dark:bg-transparent rounded-lg shadow overflow-x-auto">
+    <div class="bg-base-200 border border-base-content/20 rounded-lg shadow overflow-x-auto">
         <div class="min-w-full inline-block align-middle">
             <table 
                 data-controller="table" 
@@ -24,14 +24,14 @@
                 class="min-w-full relative"
                 >
                 <thead class="">
-                    <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200 dark:border-gray-50/20">
+                    <tr class="bg-base-300  border-b border-base-content/20">
                         <% @data.columns.each_with_index do |column, index| %>
                             <th 
                                 draggable="true"
                                 data-controller="orbit" 
                                 data-column-index="<%= index %>"
                                 data-column-name="<%= column %>"
-                                class="hover:cursor-move px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)] whitespace-nowrap data-[is-dragging]:bg-orange-300/30 data-[column-order-about-to-be-swapped]:bg-green-300/30"
+                                class="hover:cursor-move px-6 py-3 text-left text-sm font-medium whitespace-nowrap data-[is-dragging]:bg-orange-300/30 data-[column-order-about-to-be-swapped]:bg-green-300/30"
                             >
 
                                 <%# popover the the column info %>
@@ -42,39 +42,39 @@
                                 
 
                                 <button popovertarget="<%= popover_id %>" data-orbit-target="planet" class="mr-1 p-1 hover:cursor-pointer" style="anchor-name: <%= anchor_name %> ;">
-                                    <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 dark:filter-white" %>
+                                    <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 opacity-60 dark:filter-white" %>
                                 </button>
                                 
-                                <div popover id="<%= popover_id %>" data-orbit-target="moon"  class="max-w-lg min-h-10 bg-gray-100 dark:bg-[var(--color-background)] border-gray-400  dark:border-gray-200/50 border p-4 rounded-md" style="position-anchor: <%= anchor_name %>;">
-                                    <table class="min-w-full divide-y divide-gray-200 black:divide-gray-50/20 border border-gray-200 dark:border-gray-50/20">
+                                <div popover id="<%= popover_id %>" data-orbit-target="moon"  class="max-w-lg min-h-10 bg-base-200 border border-base-content/20 p-4 rounded-md" style="position-anchor: <%= anchor_name %>;">
+                                    <table class="min-w-full divide-y  border border-base-content/10">
                                       
-                                        <tbody class="bg-white dark:dark:bg-[var(--color-background-light)] divide-y divide-gray-200 dark:divide-gray-200/50 ">
+                                        <tbody class="bg-base-100">
                                             <% column_info = @columns_info[column]  %>
                                            
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]  font-semibold">Type</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:sql_type) %></td>
+                                            <tr class="border-b last:border-none border-base-content/10">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content  font-semibold">Type</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 "><%= column_info&.dig(:sql_type) %></td>
                                             </tr>
 
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Primary Key</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:is_primary_key) %></td>
+                                            <tr class="border-b last:border-none border-base-content/10">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Primary Key</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 "><%= column_info&.dig(:is_primary_key) %></td>
                                             </tr>
 
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Nullable</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:null) %></td>
+                                            <tr class="border-b last:border-none border-base-content/10">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Nullable</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 "><%= column_info&.dig(:null) %></td>
                                             </tr>
 
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Default</td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "><%= column_info&.dig(:default) %></td>
+                                            <tr class="border-b last:border-none border-base-content/10">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Default</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 "><%= column_info&.dig(:default) %></td>
                                             </tr>
 
                                             <% if column_info[:enum_options] %>
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Enum values</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
+                                                <tr class="border-b last:border-none border-base-content/10">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Enum values</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80">
                                                         <%= column_info[:enum_options].map { |k, v| "#{k}: #{v}" }.join(', ') %>
                                                     </td>
                                                 </tr>
@@ -82,49 +82,49 @@
 
                                             <% if column_info&.dig(:foreign_key).present? %>
                                               
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold"></td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "> </td>
+                                                <tr class="border-b last:border-none border-base-content/10">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold"></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 "> </td>
                                                 </tr>
 
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Foreign Key</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
+                                                <tr class="border-b last:border-none border-base-content/10">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Foreign Key</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80">
                                                         <%= column_info&.dig(:foreign_key).dig(:to_table) %>
                                                         &gt;
                                                         <%= column_info&.dig(:foreign_key).dig(:primary_key) %>
                                                     </td>
                                                 </tr> 
 
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">ON_UPDATE</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80"><%= column_info&.dig(:foreign_key).dig(:on_update) %></td>
+                                                <tr class="border-b last:border-none border-base-content/10">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">ON_UPDATE</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80"><%= column_info&.dig(:foreign_key).dig(:on_update) %></td>
                                                 </tr>  
                                                 
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">ON_DELETE</td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80"><%= column_info&.dig(:foreign_key).dig(:on_delete) %></td>
+                                                <tr class="border-b last:border-none border-base-content/10">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">ON_DELETE</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80"><%= column_info&.dig(:foreign_key).dig(:on_delete) %></td>
                                                 </tr>
 
                                             <% end %>  
                                             
                                             <% if column_info&.dig(:indexes).present? %>
                                               
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold"></td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 "> </td>
+                                                <tr class="border-b last:border-none border-base-content/10">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold"></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 "> </td>
                                                 </tr>
 
                                                 <% column_info&.dig(:indexes).each do |index| %>
-                                                    <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Index Name</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
+                                                    <tr class="border-b last:border-none border-base-content/10">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Index Name</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80">
                                                             <%= index[:name] %>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)] font-semibold">Unique</td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80">
+                                                    <tr class="border-b last:border-none border-base-content/10">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content font-semibold">Unique</td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80">
                                                             <%= index[:unique] %>
                                                         </td>
                                                     </tr>
