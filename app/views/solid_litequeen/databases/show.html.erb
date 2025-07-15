@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold  mb-6 flex gap-1 items-center justify-center">
-        <%= image_tag "solid_litequeen/icons/database.svg", class: "size-6 dark:filter-white" %>
+        <%= image_tag "solid_litequeen/icons/database.svg", class: "opacity-60 size-6 dark:filter-white" %>
         <span>
             <%= @database_location %>
         </span>
@@ -16,31 +16,31 @@
                 <%= render "table-relationships-dialog" %>
 
                 <button title="Relationships" onclick="table_relationships.showModal()" class="hover:cursor-pointer outline-none">
-                    <%= image_tag "solid_litequeen/icons/workflow.svg", class: "size-5 -mb-1 dark:filter-white" %>
+                    <%= image_tag "solid_litequeen/icons/workflow.svg", class: "size-5 -mb-1 opacity-60 dark:filter-white" %>
                 </button>
 
             <% end %>
         </h2>
-        <p class="text-[var(--color-text-muted)]"><%= pluralize(@tables.count, "table") %> found</p>
+        <p class="text-base-content/60"><%= pluralize(@tables.count, "table") %> found</p>
     </div>
 
-    <div class="bg-white dark:bg-transparent rounded-lg shadow overflow-hidden">
+    <div class="bg-base-200 border border-base-content/20 rounded-lg shadow overflow-hidden">
         <table class="w-full">
             <thead>
-                <tr class="bg-gray-100 dark:bg-[var(--color-background-light)] border-b border-gray-200">
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)] ">Table Name</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-[var(--color-text)]">Row Count</th>
+                <tr class="bg-base-300 border-b border-base-content/20">
+                    <th class="px-6 py-3 text-left text-sm font-medium ">Table Name</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium">Row Count</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-200/50">
+            <tbody class="">
                 <% @tables.each do |table| %>
-                    <tr class="hover:bg-gray-50 dark:hover:bg-[var(--color-background-light)]/50">
+                    <tr class="hover:bg-base-100 border-b last:border-none border-base-content/10">
                         <td class="px-6 py-4">
-                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: "text-blue-600 hover:text-blue-800 dark:text-cyan-500 dark:hover:text-cyan-600 font-medium" do %>
+                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: "link-primary font-medium" do %>
                                 <%= table.dig(:name) %>
                             <% end %>
                         </td>
-                        <td class="px-6 py-4 text-gray-600 dark:text-gray-300">
+                        <td class="px-6 py-4 text-base-content/60">
                             <%= pluralize(table.dig(:row_count), "Row") %>
                         </td>
                     </tr>
@@ -48,5 +48,5 @@
             </tbody>
         </table>
     </div>
-    <%= link_to "Download Database", database_download_path(@database_id), class: "btn btn-primary text-xs mt-4" %>
+    <%= link_to "Download Database", database_download_path(@database_id), class: "link link-hover link-secondary text-xs mt-4" %>
 </div>
