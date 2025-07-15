@@ -55,7 +55,7 @@ export default class extends Controller {
 
         // Click outside to close
         this.modal.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
+            if (!this.dialog.contains(e.target)) {
                 this.close();
             }
         });
