@@ -1,10 +1,10 @@
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold  mb-6 flex gap-1 items-center justify-center">
         <%= link_to database_path(params[:database_id])  do %>
-            <%= image_tag "solid_litequeen/icons/database.svg", class: "size-6 dark:filter-white" %>
+            <%= image_tag "solid_litequeen/icons/database.svg", class: "opacity-60  size-6 dark:filter-white" %>
         <% end %>
 
-        <%= image_tag "solid_litequeen/icons/chevron-right.svg", class: "size-6 dark:filter-white" %>
+        <%= image_tag "solid_litequeen/icons/chevron-right.svg", class: "opacity-60 size-6 dark:filter-white" %>
 
         <span>
             <%= @table_name %>
