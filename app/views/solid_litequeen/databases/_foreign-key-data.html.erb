@@ -9,23 +9,23 @@
     </h1>
     
     <div class="mx-auto my-4 p-4 max-w-[90%]">
-        <table class="min-w-full divide-y divide-gray-200 dark:border-gray-200/50 border border-gray-200">
-            <thead class="bg-gray-50 dark:bg-[var(--color-background)]/40">
+        <table class="min-w-full border border-base-content/20">
+            <thead class="bg-base-300 border-b border-base-content/20">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium dark:font-bold text-gray-500 dark:text-[var(--color-text)] uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium dark:font-bold  uppercase tracking-wider">
                         Column Name
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium dark:font-bold text-gray-500 dark:text-[var(--color-text)] uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium dark:font-bold  uppercase tracking-wider">
                         Value
                     </th>
                 </tr>
             </thead>
-            <tbody class="bg-white dark:bg-transparent divide-y divide-gray-200 dark:divide-gray-200/50">
+            <tbody class="bg-base-200 ">
                 <% @result.rows.each do |row| %>
                     <% @result.columns.zip(row).each do |column, value| %>
-                        <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]  font-semibold"><%= column %></td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]/80 in-aria-busy:blur"><%= value&.truncate(80) %></td>
+                        <tr class="border-b border-base-content/10 last:border-none hover:bg-base-100">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content  font-semibold"><%= column %></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 in-aria-busy:blur"><%= value&.truncate(80) %></td>
                         </tr>
                     <% end %>
                 <% end %>
