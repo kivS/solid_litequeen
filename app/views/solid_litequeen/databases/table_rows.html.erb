@@ -154,9 +154,9 @@
                     </tr>
                 </thead>
                 
-                <tbody class="main divide-y divide-gray-200 dark:divide-gray-200/50">
+                <tbody class="main">
                     <% @data.rows.each do |row| %>
-                        <tr class="hover:bg-gray-50 dark:hover:bg-[var(--color-background-light)]/50" >
+                        <tr class="border-b border-base-content/10 last:border-none hover:bg-base-100" >
                             <% row.each_with_index do |item, index| %>
                                 <% truncated_item =  item&.truncate(80) %>
                                 <% column_name = @data.columns[index] %>
@@ -164,7 +164,7 @@
                                 <td 
                                     data-column="<%= column_name %>" 
                                     data-data_type="<%= @columns_info.dig(column_name).dig(:type) %>"
-                                    class="px-6 py-4 text-sm text-gray-800 dark:text-gray-300 whitespace-nowrap" 
+                                    class="px-6 py-4 text-sm whitespace-nowrap" 
                                 >
 
                                     <div class="flex justify-between gap-1">
@@ -181,7 +181,7 @@
                                                 data-fk_target_field_value="<%=  truncated_item %>" 
                                                 class="size-4 mt-0.5 hover:cursor-pointer flex-grow outline-none"
                                                 >
-                                                <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4 filter-blue dark:filter-cyan" %>
+                                                <%= image_tag "solid_litequeen/icons/spline.svg", class: "size-4 filter-orange" %>
                                             </button>
                                           
                                         <% end %>
@@ -194,7 +194,7 @@
                                             <%= render "table-data-context-dialog", dialog_id: dialog_id, column_name: column_name, data: item %>
 
                                             <button onclick="document.getElementById('<%= dialog_id %>').showModal()" class="cursor-pointer size-4 outline-none">
-                                                <%= image_tag "solid_litequeen/icons/circle-elipsis.svg", class: "size-4 dark:filter-white" %>
+                                                <%= image_tag "solid_litequeen/icons/circle-elipsis.svg", class: "opacity-60 size-4 dark:filter-white" %>
                                                 
                                             </button>
 
@@ -209,10 +209,10 @@
                     <% end %>
                 </tbody>
 
-                <dialog id="foreign-key-data"  data-controller="dialog" class="bg-[var(--color-background-light)] dark:border dark:rounded dark:border-gray-50/20 w-[900px] m-auto overscroll-y-contain">
+                <dialog id="foreign-key-data"  data-controller="dialog" class="bg-base-200 border rounded border-base-content/20 w-[900px] m-auto overscroll-y-contain">
                         <div class="flex flex-row-reverse">
                             <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none"> 
-                                <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 dark:filter-white" %>
+                                <%= image_tag "solid_litequeen/icons/x.svg", class: "opacity-60 size-5 dark:filter-white" %>
                             </button>
                             
                         </div>

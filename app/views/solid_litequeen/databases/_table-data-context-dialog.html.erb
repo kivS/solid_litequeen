@@ -14,16 +14,16 @@
   end
 %>
 
-<dialog id="<%= dialog_id %>" data-controller="dialog" class="bg-[var(--color-background-light)] dark:border dark:rounded dark:border-gray-50/20 w-[800px]  m-auto overscroll-y-contain"> 
+<dialog id="<%= dialog_id %>" data-controller="dialog" class="bg-base-200 rounded border border-base-content/20 w-[800px]  m-auto overscroll-y-contain"> 
     <div  class="flex  flex-row-reverse">
         <button data-action="click->dialog#close" class="cursor-pointer mr-4 mt-2 outline-none"> 
-            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 dark:filter-white" %>
+            <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 opacity-60 dark:filter-white" %>
         </button>
     </div>
 
     <h1 class="text-lg font-semibold text-center"><%= column_name %></h1>
      
-    <div data-controller="clipboard" class="relative flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2 dark:bg-transparent  bg-gray-100  dark:border dark:border-gray-50/50 rounded ">
+    <div data-controller="clipboard" class="relative flex items-center max-w-[90%] h-80 max-h-80 mx-auto my-4 p-2 dark:bg-transparent  bg-base-300  rounded ">
         
         <button title="Copy" data-action="clipboard#copy" class="absolute top-2 right-2 hover:cursor-pointer">
             <%= image_tag "solid_litequeen/icons/copy-clipboard.svg", class: "in-data-copied:hidden size-5 dark:filter-white opacity-50" %>
