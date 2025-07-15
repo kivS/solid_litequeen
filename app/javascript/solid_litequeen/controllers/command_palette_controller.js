@@ -151,8 +151,7 @@ export default class extends Controller {
                 : '';
 
             return `
-                <div ${isSelected ? 'data-selected' : ''} class="flex items-center gap-3 data-selected:bg-base-100 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors" 
-                     data-index="${index}">
+                <div ${isSelected ? 'data-selected': ''} data-index="${index}" class="data-selected:bg-[var(--color-accent)]/30  flex items-center gap-3 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors">
                     ${icon}
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2">
@@ -198,7 +197,7 @@ export default class extends Controller {
     open() {
         this.isOpen = true;
         this.modal.classList.remove('hidden');
-        this.dialog.classList.add('dialog-enter');
+        // this.dialog.classList.add('dialog-enter');
         this.input.focus();
         this.input.value = '';
         this.handleSearch('');
@@ -206,7 +205,7 @@ export default class extends Controller {
 
     close(quiet=false) {
         this.isOpen = false;
-        this.dialog.classList.remove('dialog-enter');
+        // this.dialog.classList.remove('dialog-enter');
 
         if(quiet){
             this.modal.classList.add('hidden');
@@ -214,11 +213,11 @@ export default class extends Controller {
             return
         }
 
-        this.dialog.classList.add('dialog-exit');
+        // this.dialog.classList.add('dialog-exit');
         
         setTimeout(() => {
             this.modal.classList.add('hidden');
-            this.dialog.classList.remove('dialog-exit');
+            // this.dialog.classList.remove('dialog-exit');
             this.selectedIndex = 0;
         }, 100);
     }
