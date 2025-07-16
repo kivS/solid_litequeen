@@ -1,3 +1,3 @@
 module SolidLitequeen
-  VERSION = "0.19.2"
+  VERSION = "0.19.3"
 end

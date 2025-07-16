@@ -36,6 +36,8 @@ export default class extends Controller {
 
 		// so we can render stuff when we open the dialog to avoid render issues with wrong sizes
 		this.#observeDialogOpenStatus();
+
+
 	}
 
 	disconnect() {
@@ -69,12 +71,19 @@ export default class extends Controller {
 				attrs: {
 					line: {
 						stroke: "var(--color-info)",
+						opacity: 0.8,
 						strokeWidth: 2,
 						targetMarker: {
 							type: "path",
 							d: "M 10 -5 0 0 10 5 z",
+							fill: "var(--color-info)",
+							fill: "var(--color-primary)",
+							stroke: "none",
+				
 						},
 					},
+					
+
 				},
 				router: { name: "manhattan" },
 				connector: { name: "rounded" },
@@ -135,6 +144,7 @@ export default class extends Controller {
 					label: {
 						text: field,
 						fill: "var(--color-base-content)",
+						opacity: 0.6,
 						fontSize: 14,
 					},
 				},
