@@ -1,5 +1,5 @@
 # SolidLitequeen
-Lite Queen is a Rails engine that allows you to manage SQLite databases in your Rails application. It provides a user-friendly interface to view and maintain your SQLite data directly from your app.
+Solid Lite Queen is a Rails engine that allows you to manage SQLite databases in your Rails application. It provides a user-friendly interface to view and maintain your SQLite data directly from your app.
 
 
 

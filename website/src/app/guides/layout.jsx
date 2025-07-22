@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 export const metadata = {
-	title: "Guides - Lite Queen | Guides About Using Lite Queen",
+	title: "Guides - Solid Lite Queen | Guides About Using Solid Lite Queen",
 	description:
-		"Learn how to use Lite Queen with guides covering topics from installation and more.",
+		"Learn how to use Solid Lite Queen with guides covering topics from installation and more.",
 };
 
 export default function GuidesLayout({ children }) {

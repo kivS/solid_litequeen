@@ -17,7 +17,7 @@ const inter = Inter({
 export const metadata = {
 	title: "Solid Lite Queen - Manage SQLite databases in your Rails app",
 	description:
-		"Lite Queen is an open-source SQLite database management software for your Rails app.",
+		"Solid Lite Queen is an open-source SQLite database management software for your Rails app.",
 	alternates: {
 		types: {
 			"application/rss+xml": "https://solid.litequeen.com/feed.xml",

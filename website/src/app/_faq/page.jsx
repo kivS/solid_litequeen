@@ -3,8 +3,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import Link from "next/link";
 
 export const metadata = {
-	title: "FAQ - Lite Queen | Common Questions Answered",
-	description: "Find answers to the most common questions about Lite Queen.",
+	title: "FAQ - Solid Lite Queen | Common Questions Answered",
+	description: "Find answers to the most common questions about Solid Lite Queen.",
 };
 
 export default async function FaqPage() {
@@ -41,7 +41,7 @@ export default async function FaqPage() {
 				<p className="text-center mt-20">
 					You still have questions?{" "}
 					<a
-						href="https://github.com/kivS/lite-queen/discussions/new?category=q-a"
+						href="https://github.com/kivS/solid_litequeen/discussions/new?category=q-a"
 						className="underline"
 					>
 						Let's us know.
