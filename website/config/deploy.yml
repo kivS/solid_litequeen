@@ -25,8 +25,7 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  registry:
-    server: "localhost:5555"
+  server: "localhost:5555"
 
 # Configure builder setup.
 builder:
