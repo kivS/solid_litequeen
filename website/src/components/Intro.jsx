@@ -34,7 +34,7 @@ export function Intro() {
 						<span className="md:text-lg">kivS/solid_litequeen</span>
 					</a>
 
-					<a
+					{/* <a
 						href="https://demo.solid.litequeen.com"
 						target="_blank"
 						rel="noreferrer"
@@ -43,8 +43,8 @@ export function Intro() {
 					>
 						<DrumstickIcon className="size-5" />
 						<span>Demo</span>
-					</a>
-					
+					</a> */}
+
 					<a
 						target="_blank"
 						rel="noreferrer"
