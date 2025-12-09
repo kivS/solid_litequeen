@@ -19,6 +19,12 @@ An engine we can mount to manage SQLITE databases in the Rails app.
     - https://turbo.hotwired.dev/reference/drive
 
     - https://github.com/hotwired/turbo
+
+
+- Turbo morphing is used to refresh the page without full page reloads when things change in the backend
+    - https://turbo.hotwired.dev/handbook/page_refreshes
+
+    - We have it enabled alongside scroll preservation at app/views/layouts/application.html.erb
     
 
 - Kamal to deploy the marketing site to our VPS
