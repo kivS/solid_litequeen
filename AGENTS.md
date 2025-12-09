@@ -10,6 +10,15 @@ An engine we can mount to manage SQLITE databases in the Rails app.
 
 - Ruby on Rails engine
     - https://guides.rubyonrails.org/engines.html
+
+
+
+- Turbo for frontend
+    - https://turbo.hotwired.dev/handbook/introduction
+
+    - https://turbo.hotwired.dev/reference/drive
+
+    - https://github.com/hotwired/turbo
     
 
 - Kamal to deploy the marketing site to our VPS
