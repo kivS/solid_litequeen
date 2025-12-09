@@ -1,4 +1,4 @@
-The main application, the gem, is located at the root of the application and it's a gem for managing Sqlite databases for Rails projects.
+The main application, the gem, is located at the root of the application and it's a gem for managing SQLITE databases for Rails projects.
 We also have a nextjs documentation website(our marketing site) living in `website/`
 
 ## Project Goal
@@ -11,6 +11,7 @@ An engine we can mount to manage SQLITE databases in the Rails app.
 - Ruby on Rails engine
     - https://guides.rubyonrails.org/engines.html
 
+    - the dependencies of the engfine itself are defined in `solid_litequeen.gemspec`
 
 
 - Turbo for frontend
