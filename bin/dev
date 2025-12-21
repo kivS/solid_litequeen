@@ -1,3 +1,11 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-rails server
+procfile="${PROCFILE:-Procfile.dev}"
+
+if command -v foreman >/dev/null 2>&1; then
+  exec foreman start -f "$procfile"
+fi
+
+echo "foreman is required to run $procfile. Install with: gem install foreman" >&2
+exit 1

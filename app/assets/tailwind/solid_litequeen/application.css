@@ -1,2 +1,5 @@
 @import "tailwindcss";
+@source "../../../views";
+@source "../../../helpers";
+@source "../../../javascript";
 @import "./engine.css";

@@ -1,0 +1,2 @@
+web: bin/rails server --port 3000
+css: bundle exec tailwindcss --minify -i app/assets/tailwind/solid_litequeen/application.css -o app/assets/stylesheets/solid_litequeen/tailwind.css --watch

@@ -1,27 +1,46 @@
 <!DOCTYPE html>
+
 <html class="text-base-content bg-base-100">
-<head>
-  <title>Solid litequeen</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title>Solid litequeen</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <meta name="turbo-refresh-method" content="morph">
-  <meta name="turbo-refresh-scroll" content="preserve">
-  <meta name="view-transition" content="same-origin">
+    <meta name="turbo-refresh-method" content="morph">
+    <meta name="turbo-refresh-scroll" content="preserve">
+    <meta name="view-transition" content="same-origin">
 
-  <%= stylesheet_link_tag "solid_litequeen/tailwind", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag "solid_litequeen/application", media: "all", "data-turbo-track": "reload" %>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.0.1/dist/joint.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.7.2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.2"></script>
-  <%= javascript_importmap_tags "application", importmap: SolidLitequeen.importmap  %>
+    <%= stylesheet_link_tag "solid_litequeen/tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "solid_litequeen/application", media: "all", "data-turbo-track": "reload" %>
 
-  <%= yield :head %>
-</head>
-<script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    >
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.0.1/dist/joint.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.7.2"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.2"></script>
+
+    <%= javascript_importmap_tags "application", importmap: SolidLitequeen.importmap %>
+
+    <%= yield :head %>
+  </head>
+
+  <script>
   const setTheme = () => {
     const storedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -30,16 +49,18 @@
   setTheme();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
 </script>
-<body class="">
-  <header class="container flex items-center justify-between mx-auto mt-4 mb-8">
-    <%= render "solid_litequeen/database-selector" %>
 
-    <%= render "solid_litequeen/command-palette" %>
-  </header>
-  <%= yield %>
+  <body class="">
+    <header class="container flex items-center justify-between mx-auto mt-4 mb-8">
+      <%= render "solid_litequeen/database-selector" %>
 
-  <footer class="container mx-auto mt-8 mb-4 text-center text-base-content/60 text-xs">
-    <p>Solid litequeen v<%= SolidLitequeen::VERSION %></p>
-  </footer>
-</body>
+      <%= render "solid_litequeen/command-palette" %>
+    </header>
+
+    <%= yield %>
+
+    <footer class="container mx-auto mt-8 mb-4 text-center text-base-content/60 text-xs">
+      <p>Solid litequeen v<%= SolidLitequeen::VERSION %></p>
+    </footer>
+  </body>
 </html>

@@ -1,7 +1,3 @@
-@source "../../../views";
-@source "../../../helpers";
-@source "../../../javascript";
-
 /* @plugin "@tailwindcss/forms"; */
 
 /* @utility text-muted {
