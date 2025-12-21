@@ -1,18 +1,24 @@
 <div class="space-y-8">
   <div class="flex flex-wrap items-end justify-between gap-6">
     <div>
-      <p class="text-xs uppercase tracking-[0.35em] text-faint">Inventory</p>
-      <h1 class="mt-2 text-3xl font-display font-semibold text-[var(--text)] sm:text-4xl">
+      <h1
+        class="
+          mt-2 text-3xl font-display font-semibold text-[var(--text)]
+          sm:text-4xl
+        "
+      >
         SQLite Databases
       </h1>
-      <p class="mt-3 max-w-2xl text-sm text-muted">
-        A calm overview of every SQLite file available in this app. Open a database to explore tables,
-        relationships, and column details without losing context.
-      </p>
     </div>
+
     <div class="surface-panel px-4 py-2 text-sm text-muted">
-      <span class="font-semibold text-[var(--text)]"><%= available_databases.count %></span>
-      <span><%= "database".pluralize(available_databases.count) %> available</span>
+      <span class="font-semibold text-[var(--text)]">
+        <%= available_databases.count %>
+      </span>
+
+      <span>
+        <%= "database".pluralize(available_databases.count) %> available
+      </span>
     </div>
   </div>
 
@@ -21,26 +27,37 @@
       <% available_databases.each do |db| %>
         <a
           href="<%= database_path(Base64.urlsafe_encode64(db.database)) %>"
-          class="group surface-card flex h-full flex-col gap-4 p-5 transition hover:-translate-y-0.5 hover:shadow-[0_28px_70px_-45px_var(--shadow-strong)]"
+          class="
+            group surface-card flex h-full flex-col gap-4 p-5 transition
+            hover:-translate-y-0.5
+            hover:shadow-[0_28px_70px_-45px_var(--shadow-strong)]
+          "
         >
           <div class="flex items-start justify-between gap-3">
             <div class="min-w-0">
               <h2 class="text-lg font-semibold text-[var(--text)]">
                 <span class="block truncate"><%= db.name %></span>
               </h2>
+
               <p class="mt-1 text-sm text-muted">
                 <span class="block truncate"><%= db.database %></span>
               </p>
             </div>
+
             <span class="slq-chip slq-chip--warm"><%= db.env_name %></span>
           </div>
 
           <div class="mt-auto flex items-center justify-between text-xs text-faint">
             <span>Open database</span>
+
             <span class="inline-flex items-center gap-1 text-[var(--accent)]">
               Explore
               <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
               </svg>
             </span>
           </div>

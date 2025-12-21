@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" class="h-full">
   <head>
     <title>Solid litequeen</title>
@@ -12,6 +13,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
@@ -32,12 +34,20 @@
     <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 pb-12">
       <header class="mt-8 flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-4">
-          <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--accent),var(--accent-warm))] shadow-[0_18px_30px_-22px_var(--shadow-strong)]">
+          <div
+            class="
+              flex h-11 w-11 items-center justify-center rounded-2xl
+              bg-[linear-gradient(135deg,var(--accent),var(--accent-warm))]
+              shadow-[0_18px_30px_-22px_var(--shadow-strong)]
+            "
+          >
             <%= image_tag "solid_litequeen/icons/database.svg", class: "size-5 icon-on-accent" %>
           </div>
+
           <div>
-            <p class="text-xs uppercase tracking-[0.35em] text-faint">Solid Litequeen</p>
-            <p class="font-display text-lg font-semibold tracking-tight">SQLite Control Room</p>
+            <p class="text-xs uppercase tracking-[0.35em] text-faint">
+              Solid Litequeen
+            </p>
           </div>
         </div>
 
@@ -47,14 +57,11 @@
         </div>
       </header>
 
-      <main class="mt-8 flex-1">
-        <%= yield %>
-      </main>
+      <main class="mt-8 flex-1"><%= yield %></main>
 
       <footer class="mt-12 text-center text-xs text-faint">
         <p>Solid litequeen v<%= SolidLitequeen::VERSION %></p>
       </footer>
     </div>
-
   </body>
 </html>

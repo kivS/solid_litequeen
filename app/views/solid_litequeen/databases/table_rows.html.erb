@@ -36,11 +36,37 @@
                 <%
                   popover_id = "popover_#{column}_#{SecureRandom.hex(8)}"
                   anchor_name = "--anchor_#{popover_id}"
+                  sort_arrow =
+                    if @sort_column == column && @sort_direction == 'DESC'
+                      '▼'
+                    elsif @sort_column == column && @sort_direction == 'ASC'
+                      '▲'
+                    end
                 %>
 
-                <button popovertarget="<%= popover_id %>" data-orbit-target="planet" class="mr-1 p-1" style="anchor-name: <%= anchor_name %> ;">
-                  <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 icon-muted" %>
-                </button>
+                <div class="inline-flex items-center gap-2 whitespace-nowrap">
+                  <button
+                    type="button"
+                    popovertarget="<%= popover_id %>"
+                    data-orbit-target="planet"
+                    class="inline-flex size-6 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-faint shadow-sm transition hover:-translate-y-0.5 hover:text-[var(--accent)] hover:shadow-md"
+                    style="anchor-name: <%= anchor_name %>;"
+                  >
+                    <%= image_tag "solid_litequeen/icons/info.svg", class: "size-3.5 icon-muted" %>
+                  </button>
+
+                  <%= link_to database_table_rows_path(
+                      database_id: @database_id,
+                      table: @table_name,
+                      sort_column: column,
+                      sort_direction: (@sort_column == column && @sort_direction == 'DESC') ? 'ASC' : 'DESC'
+                    ), class: "inline-flex items-center gap-1 text-[var(--text)] hover:text-[var(--accent)]" do %>
+                    <span><%= column %></span>
+                    <% if sort_arrow.present? %>
+                      <span class="text-[10px] text-faint"><%= sort_arrow %></span>
+                    <% end %>
+                  <% end %>
+                </div>
 
                 <div popover id="<%= popover_id %>" data-orbit-target="moon" class="surface-card max-w-lg p-4" style="position-anchor: <%= anchor_name %>;">
                   <table class="min-w-full text-xs">
@@ -112,16 +138,6 @@
                     </tbody>
                   </table>
                 </div>
-
-                <%= link_to column,
-                  database_table_rows_path(
-                    database_id: @database_id,
-                    table: @table_name,
-                    sort_column: column,
-                    sort_direction: (@sort_column == column && @sort_direction == 'DESC') ? 'ASC' : 'DESC'
-                  ), class: "text-[var(--text)] hover:text-[var(--accent)]" %>
-                <%= '▼' if @sort_column == column && @sort_direction == 'DESC' %>
-                <%= '▲' if @sort_column == column && @sort_direction == 'ASC' %>
               </th>
             <% end %>
           </tr>
