@@ -25,15 +25,10 @@
       type="text/css"
     >
 
-    <script src="https://cdn.jsdelivr.net/npm/@joint/core@4.0.1/dist/joint.js"></script>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"
-    ></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.7.2"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.2"></script>
+    <%= javascript_include_tag "solid_litequeen/vendor/joint", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "solid_litequeen/vendor/dagre.min", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "solid_litequeen/vendor/floating-ui-core", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "solid_litequeen/vendor/floating-ui-dom", "data-turbo-track": "reload" %>
 
     <%= javascript_importmap_tags "application", importmap: SolidLitequeen.importmap %>
 
