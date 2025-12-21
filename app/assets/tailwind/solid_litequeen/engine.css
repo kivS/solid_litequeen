@@ -1,0 +1,29 @@
+@source "../../../views";
+@source "../../../helpers";
+@source "../../../javascript";
+
+/* @plugin "@tailwindcss/forms"; */
+
+/* @utility text-muted {
+  @apply text-base-content/60;
+} */
+
+@utility filter-blue {
+  filter: invert(32%) sepia(65%) saturate(6380%) hue-rotate(219deg) brightness(98%) contrast(102%);
+}
+
+@utility filter-cyan {
+  filter: invert(67%) sepia(62%) saturate(4644%) hue-rotate(156deg) brightness(97%) contrast(101%);
+}
+
+@utility filter-white {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+@utility filter-lime {
+  filter: invert(50%) sepia(100%) saturate(3000%) hue-rotate(90deg) brightness(100%) contrast(100%);
+}
+
+@utility filter-orange {
+  filter: invert(53%) sepia(91%) saturate(7000%) hue-rotate(22deg) brightness(110%) contrast(110%);
+}
