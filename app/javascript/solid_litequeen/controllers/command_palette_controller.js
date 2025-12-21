@@ -143,24 +143,24 @@ export default class extends Controller {
                 : `<img src="${this.element.dataset.table_svg_img_path}" class="size-4 filter-lime opacity-80" />`;
 
             const badge = item.type === 'table'
-                ? `<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-neutral-content text-neutral">${item.rowCount?.toLocaleString()} rows</span>`
+                ? `<span class="slq-chip slq-chip--accent">${item.rowCount?.toLocaleString()} rows</span>`
                 : '';
 
             const database = item.database_file_name
-                ? `<div class="text-xs text-base-content/60 truncate">in ${item.database_file_name}</div>`
+                ? `<div class="text-xs text-faint truncate">in ${item.database_file_name}</div>`
                 : '';
 
             return `
-                <div ${isSelected ? 'data-selected': ''} data-index="${index}" class="data-selected:outline-2 outline-[var(--color-success)]/50 data-selected:bg-[var(--color-base-100)]  flex items-center gap-3 rounded-md px-3 py-2 text-sm cursor-pointer transition-colors">
+                <div ${isSelected ? 'data-selected': ''} data-index="${index}" class="slq-result cursor-pointer">
                     ${icon}
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2">
-                            <span class="font-medium truncate">${item.name}</span>
+                            <span class="font-medium text-[var(--text)] truncate">${item.name}</span>
                             ${badge}
                         </div>
                         ${database}
                     </div>
-                    <svg class="w-4 h-4 text-base-content/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-4 w-4 text-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </div>
@@ -224,4 +224,3 @@ export default class extends Controller {
 
   
 }
-

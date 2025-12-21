@@ -1,52 +1,52 @@
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold  mb-6 flex gap-1 items-center justify-center">
-        <%= image_tag "solid_litequeen/icons/database.svg", class: "opacity-60 size-6 dark:filter-white" %>
-        <span>
-            <%= @database_location %>
-        </span>
-    </h1>
-
-    <div class="mb-6">
-        <h2 class="text-xl font-semibold">
-            <span>
-                Tables
-            </span>
-            <% if @table_relations[:tables].any? %>
-
-                <%= render "table-relationships-dialog" %>
-
-                <button title="Relationships" onclick="table_relationships.showModal()" class="hover:cursor-pointer outline-none">
-                    <%= image_tag "solid_litequeen/icons/workflow.svg", class: "size-5 -mb-1 opacity-60 dark:filter-white" %>
-                </button>
-
-            <% end %>
-        </h2>
-        <p class="text-base-content/60"><%= pluralize(@tables.count, "table") %> found</p>
+<div class="space-y-6">
+  <div class="flex flex-wrap items-start justify-between gap-6">
+    <div class="min-w-0">
+      <p class="text-xs uppercase tracking-[0.35em] text-faint">Database</p>
+      <h1 class="mt-2 flex items-center gap-2 text-2xl font-display font-semibold text-[var(--text)] sm:text-3xl">
+        <%= image_tag "solid_litequeen/icons/database.svg", class: "size-5 icon-muted" %>
+        <span class="block truncate"><%= @database_location %></span>
+      </h1>
+      <p class="mt-2 text-sm text-muted"><%= pluralize(@tables.count, "table") %> found</p>
     </div>
 
-    <div class="bg-base-200 border border-base-content/20 rounded-lg shadow overflow-hidden">
-        <table class="w-full">
-            <thead>
-                <tr class="bg-base-300 border-b border-base-content/20">
-                    <th class="px-6 py-3 text-left text-sm font-medium ">Table Name</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium">Row Count</th>
-                </tr>
-            </thead>
-            <tbody class="">
-                <% @tables.each do |table| %>
-                    <tr class="hover:bg-base-100 border-b last:border-none border-base-content/10">
-                        <td class="px-6 py-4">
-                            <%= link_to database_table_rows_path(@database_id, table[:name]), class: " font-medium" do %>
-                                <%= table.dig(:name) %>
-                            <% end %>
-                        </td>
-                        <td class="px-6 py-4 text-base-content/60">
-                            <%= pluralize(table.dig(:row_count), "Row") %>
-                        </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
+    <div class="flex flex-wrap items-center gap-3">
+      <% if @table_relations[:tables].any? %>
+        <%= render "table-relationships-dialog" %>
+        <button
+          title="Relationships"
+          onclick="table_relationships.showModal()"
+          class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-medium text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <%= image_tag "solid_litequeen/icons/workflow.svg", class: "size-4 icon-muted" %>
+          Relationships
+        </button>
+      <% end %>
+      <%= link_to "Download", database_download_path(@database_id), class: "inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-medium text-[var(--accent)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md" %>
     </div>
-    <%= link_to "Download Database", database_download_path(@database_id), class: "link link-hover link-info text-xs mt-5" %>
+  </div>
+
+  <div class="surface-card overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-[var(--surface-strong)] text-xs uppercase tracking-[0.2em] text-faint">
+        <tr>
+          <th class="px-6 py-3 text-left">Table Name</th>
+          <th class="px-6 py-3 text-left">Row Count</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-[var(--border)]">
+        <% @tables.each do |table| %>
+          <tr class="transition hover:bg-[var(--surface-muted)]">
+            <td class="px-6 py-4">
+              <%= link_to database_table_rows_path(@database_id, table[:name]), class: "font-medium text-[var(--text)] hover:text-[var(--accent)]" do %>
+                <%= table.dig(:name) %>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 text-muted">
+              <%= pluralize(table.dig(:row_count), "row") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

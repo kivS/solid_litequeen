@@ -1,38 +1,33 @@
-<turbo-frame id="foreign-key-data-frame" >
-
-        
-    <h1 class="text-lg  text-center">
-        <span> <%= @table_name %></span>
-        <span> &gt;</span>
-        <span class="font-semibold"><%= @target_table %></span>
-      
-    </h1>
-    
-    <div class="mx-auto my-4 p-4 max-w-[90%]">
-        <table class="min-w-full border border-base-content/20">
-            <thead class="bg-base-300 border-b border-base-content/20">
-                <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium dark:font-bold  text-base-content/80 uppercase tracking-wider">
-                        Column Name
-                    </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium dark:font-bold  text-base-content/80  uppercase tracking-wider">
-                        Value
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="bg-base-200 ">
-                <% @result.rows.each do |row| %>
-                    <% @result.columns.zip(row).each do |column, value| %>
-                        <tr class="border-b border-base-content/10 last:border-none hover:bg-base-100">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content  font-semibold"><%= column %></td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-base-content/80 in-aria-busy:blur"><%= value&.truncate(80) %></td>
-                        </tr>
-                    <% end %>
-                <% end %>
-
-            </tbody>
-        </table>
+<turbo-frame id="foreign-key-data-frame">
+  <div class="space-y-4 px-6 pb-6">
+    <div class="text-center">
+      <p class="text-xs uppercase tracking-[0.35em] text-faint">Foreign key</p>
+      <h1 class="mt-2 text-lg font-display font-semibold text-[var(--text)]">
+        <span class="text-muted"><%= @table_name %></span>
+        <span class="text-faint">&gt;</span>
+        <span><%= @target_table %></span>
+      </h1>
     </div>
 
-
+    <div class="surface-card overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-[var(--surface-strong)] text-xs uppercase tracking-[0.2em] text-faint">
+          <tr>
+            <th class="px-6 py-3 text-left">Column Name</th>
+            <th class="px-6 py-3 text-left">Value</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--border)]">
+          <% @result.rows.each do |row| %>
+            <% @result.columns.zip(row).each do |column, value| %>
+              <tr class="transition hover:bg-[var(--surface-muted)]">
+                <td class="px-6 py-4 whitespace-nowrap font-medium text-[var(--text)]"><%= column %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-muted in-aria-busy:blur"><%= value&.truncate(80) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </turbo-frame>

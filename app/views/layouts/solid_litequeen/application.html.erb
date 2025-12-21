@@ -1,61 +1,119 @@
 <!DOCTYPE html>
-
-<html class="text-base-content bg-base-100">
+<html lang="en" class="h-full" data-theme="light">
   <head>
     <title>Solid litequeen</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-refresh-method" content="morph">
     <meta name="turbo-refresh-scroll" content="preserve">
     <meta name="view-transition" content="same-origin">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    >
+
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const storageKey = "slq-theme";
+        const stored = localStorage.getItem(storageKey);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored || (prefersDark ? "dark" : "light");
+        root.dataset.theme = theme;
+        root.classList.toggle("theme-dark", theme === "dark");
+      })();
+    </script>
+
     <%= stylesheet_link_tag "solid_litequeen/tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "solid_litequeen/application", media: "all", "data-turbo-track": "reload" %>
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    >
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
-      rel="stylesheet"
-      type="text/css"
-    >
-
     <%= javascript_include_tag "solid_litequeen/vendor/joint", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "solid_litequeen/vendor/dagre.min", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "solid_litequeen/vendor/floating-ui-core", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "solid_litequeen/vendor/floating-ui-dom", "data-turbo-track": "reload" %>
-
     <%= javascript_importmap_tags "application", importmap: SolidLitequeen.importmap %>
 
     <%= yield :head %>
   </head>
 
-  <script>
-  const setTheme = () => {
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', storedTheme || (prefersDark ? 'sunset' : 'light'));
-  };
-  setTheme();
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
-</script>
+  <body class="min-h-screen antialiased">
+    <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 pb-12">
+      <header class="mt-8 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--accent),var(--accent-warm))] shadow-[0_18px_30px_-22px_var(--shadow-strong)]">
+            <%= image_tag "solid_litequeen/icons/database.svg", class: "size-5 icon-on-accent" %>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.35em] text-faint">Solid Litequeen</p>
+            <p class="font-display text-lg font-semibold tracking-tight">SQLite Control Room</p>
+          </div>
+        </div>
 
-  <body class="">
-    <header class="container flex items-center justify-between mx-auto mt-4 mb-8">
-      <%= render "solid_litequeen/database-selector" %>
+        <div class="flex flex-wrap items-center gap-3">
+          <%= render "solid_litequeen/database-selector" %>
+          <%= render "solid_litequeen/command-palette" %>
+          <button
+            id="themeToggle"
+            type="button"
+            aria-pressed="false"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)]"
+          >
+            <span class="sr-only">Toggle theme</span>
+            <svg class="theme-icon-sun size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path stroke-linecap="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36-6.36-1.42 1.42M7.06 16.94l-1.42 1.42m12.72 0-1.42-1.42M7.06 7.06 5.64 5.64"></path>
+            </svg>
+            <svg class="theme-icon-moon size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
 
-      <%= render "solid_litequeen/command-palette" %>
-    </header>
+      <main class="mt-8 flex-1">
+        <%= yield %>
+      </main>
 
-    <%= yield %>
+      <footer class="mt-12 text-center text-xs text-faint">
+        <p>Solid litequeen v<%= SolidLitequeen::VERSION %></p>
+      </footer>
+    </div>
 
-    <footer class="container mx-auto mt-8 mb-4 text-center text-base-content/60 text-xs">
-      <p>Solid litequeen v<%= SolidLitequeen::VERSION %></p>
-    </footer>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const storageKey = "slq-theme";
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+        const toggle = document.getElementById("themeToggle");
+
+        const applyTheme = (theme) => {
+          root.dataset.theme = theme;
+          root.classList.toggle("theme-dark", theme === "dark");
+          if (toggle) {
+            toggle.setAttribute("aria-pressed", theme === "dark");
+          }
+        };
+
+        applyTheme(root.dataset.theme || "light");
+
+        prefersDark.addEventListener("change", (event) => {
+          if (!localStorage.getItem(storageKey)) {
+            applyTheme(event.matches ? "dark" : "light");
+          }
+        });
+
+        if (toggle) {
+          toggle.addEventListener("click", () => {
+            const next = root.dataset.theme === "dark" ? "light" : "dark";
+            localStorage.setItem(storageKey, next);
+            applyTheme(next);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

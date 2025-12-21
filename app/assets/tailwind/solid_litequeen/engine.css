@@ -1,8 +1,261 @@
-/* @plugin "@tailwindcss/forms"; */
+:root {
+  color-scheme: light;
+  --font-sans: "Space Grotesk", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
 
-/* @utility text-muted {
-  @apply text-base-content/60;
-} */
+  --bg: #f7f2ec;
+  --bg-soft: #efe7dd;
+  --surface: #ffffff;
+  --surface-muted: #f4efe8;
+  --surface-strong: #ece2d6;
+  --text: #1c211f;
+  --text-muted: #5d6761;
+  --text-faint: #8b948d;
+  --border: #ded3c7;
+  --accent: #2f7b6f;
+  --accent-strong: #1f5d54;
+  --accent-warm: #d4873a;
+  --ring: rgba(47, 123, 111, 0.35);
+  --shadow: rgba(22, 28, 25, 0.16);
+  --shadow-strong: rgba(22, 28, 25, 0.28);
+  --icon-muted: invert(27%) sepia(6%) saturate(700%) hue-rotate(110deg) brightness(92%) contrast(88%);
+  --drag-highlight: rgba(212, 135, 58, 0.2);
+  --swap-highlight: rgba(47, 123, 111, 0.2);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1312;
+  --bg-soft: #151b18;
+  --surface: #161d1a;
+  --surface-muted: #1b2320;
+  --surface-strong: #222b27;
+  --text: #e7ece9;
+  --text-muted: #a3ada7;
+  --text-faint: #7f8a84;
+  --border: #2a3430;
+  --accent: #5ad3ba;
+  --accent-strong: #42a992;
+  --accent-warm: #f1b26b;
+  --ring: rgba(90, 211, 186, 0.32);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --shadow-strong: rgba(0, 0, 0, 0.65);
+  --icon-muted: invert(92%) sepia(3%) saturate(400%) hue-rotate(85deg) brightness(96%) contrast(90%);
+  --drag-highlight: rgba(241, 178, 107, 0.2);
+  --swap-highlight: rgba(90, 211, 186, 0.2);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background-color: var(--bg);
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--text);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(60rem 60rem at -10% -20%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%),
+      radial-gradient(55rem 55rem at 110% -15%, color-mix(in oklab, var(--accent-warm) 22%, transparent), transparent 60%),
+      linear-gradient(180deg, var(--bg), var(--bg-soft));
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: var(--accent);
+  }
+
+  a:hover {
+    color: var(--accent-strong);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 30%, transparent);
+  }
+
+  dialog::backdrop {
+    background: color-mix(in oklab, var(--bg) 35%, transparent);
+    backdrop-filter: blur(6px);
+  }
+
+  dialog:not([open]) {
+    display: none;
+  }
+}
+
+@layer components {
+  .surface-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 50px -36px var(--shadow-strong);
+  }
+
+  .surface-soft {
+    background: var(--surface-muted);
+    border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+    border-radius: 1rem;
+  }
+
+  .surface-panel {
+    background: color-mix(in oklab, var(--surface) 75%, transparent);
+    border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+    border-radius: 999px;
+    box-shadow: 0 16px 40px -28px var(--shadow);
+    backdrop-filter: blur(12px);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .text-faint {
+    color: var(--text-faint);
+  }
+
+  .slq-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border: 1px solid var(--border);
+    background: var(--surface-muted);
+    color: var(--text-muted);
+  }
+
+  .slq-chip--accent {
+    background: color-mix(in oklab, var(--accent) 18%, var(--surface));
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+    color: color-mix(in oklab, var(--accent) 70%, var(--text));
+  }
+
+  .slq-chip--warm {
+    background: color-mix(in oklab, var(--accent-warm) 18%, var(--surface));
+    border-color: color-mix(in oklab, var(--accent-warm) 40%, var(--border));
+    color: color-mix(in oklab, var(--accent-warm) 70%, var(--text));
+  }
+
+  .slq-kbd {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface-muted);
+    padding: 0.1rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+  }
+
+  .slq-result {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.85rem;
+    padding: 0.6rem 0.75rem;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .slq-result:hover {
+    background: var(--surface-muted);
+  }
+
+  .slq-result[data-selected] {
+    background: var(--surface-muted);
+    box-shadow: 0 0 0 2px var(--ring);
+    transform: translateY(-1px);
+  }
+
+  .slq-backdrop {
+    background: color-mix(in oklab, var(--bg) 20%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .slq-dialog {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    box-shadow: 0 30px 70px -40px var(--shadow-strong);
+  }
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  transition: opacity 0.2s ease;
+}
+
+html[data-theme="dark"] .theme-icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-moon {
+  display: none;
+}
+
+@keyframes slq-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slq-dialog-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+.slq-dialog-enter {
+  animation: slq-dialog-in 0.18s ease-out;
+}
+
+.slq-dialog-exit {
+  animation: slq-dialog-out 0.16s ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slq-dialog-enter,
+  .slq-dialog-exit {
+    animation: none;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+@utility icon-muted {
+  filter: var(--icon-muted);
+}
+
+@utility icon-on-accent {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
 
 @utility filter-blue {
   filter: invert(32%) sepia(65%) saturate(6380%) hue-rotate(219deg) brightness(98%) contrast(102%);

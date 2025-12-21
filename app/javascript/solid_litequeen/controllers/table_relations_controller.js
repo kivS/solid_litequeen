@@ -21,7 +21,7 @@ export default class extends Controller {
 			gridSize: 10,
 			drawGrid: true,
 			background: {
-				// color: "var(--color-neutral)",
+				color: "var(--surface-muted)",
 			},
 			interactive: (cellView) => {
 				// If this cell is embedded (a field node),
@@ -70,14 +70,13 @@ export default class extends Controller {
 				target: { id: targetId },
 				attrs: {
 					line: {
-						stroke: "var(--color-info)",
-						opacity: 0.8,
+						stroke: "var(--accent)",
+						opacity: 0.85,
 						strokeWidth: 2,
 						targetMarker: {
 							type: "path",
 							d: "M 10 -5 0 0 10 5 z",
-							fill: "var(--color-info)",
-							fill: "var(--color-primary)",
+							fill: "var(--accent-strong)",
 							stroke: "none",
 				
 						},
@@ -107,21 +106,21 @@ export default class extends Controller {
 			size: { width: width, height: height },
 			attrs: {
 				body: {
-					fill: "var(--color-base-100)",
-					strokeWidth: 2,
-					stroke: "var(--color-base-100)",
+					fill: "var(--surface)",
+					strokeWidth: 1.5,
+					stroke: "var(--border)",
 				},
 				header: {
-					fill: "var(--color-base-100)",
+					fill: "var(--surface-strong)",
 					strokeWidth: 1,
-					stroke: "var(--color-base-content)",
+					stroke: "var(--border)",
 					height: headerHeight,
 				},
 				headerText: {
 					text: tableName,
-					fill: "var(--color-base-content)",
-					fontWeight: "bold",
-					fontSize: 16,
+					fill: "var(--text)",
+					fontWeight: "600",
+					fontSize: 15,
 				},
 			},
 		});
@@ -137,15 +136,15 @@ export default class extends Controller {
 				size: { width: width, height: fieldHeight },
 				attrs: {
 					body: {
-						fill: "var(--color-base-100)",
+						fill: "var(--surface)",
 						strokeWidth: 1,
-						stroke: "var(--color-base-content)",
+						stroke: "var(--border)",
 					},
 					label: {
 						text: field,
-						fill: "var(--color-base-content)",
-						opacity: 0.6,
-						fontSize: 14,
+						fill: "var(--text-muted)",
+						opacity: 0.85,
+						fontSize: 13,
 					},
 				},
 				ports: {

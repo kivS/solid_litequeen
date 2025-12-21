@@ -1,91 +1,54 @@
-<style>
-      
-        .dialog-enter {
-            animation: dialogEnter 0.2s ease-out;
-        }
-        .dialog-exit {
-            animation: dialogExit 0.2s ease-in;
-        }
-        @keyframes dialogEnter {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        @keyframes dialogExit {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-        }
+<section
+  data-controller="command-palette"
+  data-command_palette_data_path="<%= command_palette_data_path %>"
+  data-database_svg_img_path="<%= image_path("solid_litequeen/icons/database.svg") %>"
+  data-table_svg_img_path="<%= image_path("solid_litequeen/icons/table.svg") %>"
+>
+  <button
+    id="commandPaletteTrigger"
+    class="group inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-medium text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+  >
+    <svg class="h-4 w-4 text-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    </svg>
+    <span class="text-muted">Search databases and tables...</span>
+    <kbd class="slq-kbd ml-auto">
+      <span class="text-xs">⌘</span>K
+    </kbd>
+  </button>
 
-</style>
+  <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden">
+    <div class="fixed inset-0 slq-backdrop"></div>
 
-<section 
-    data-controller="command-palette" 
-    data-command_palette_data_path="<%= command_palette_data_path %>"
-    data-database_svg_img_path="<%= image_path("solid_litequeen/icons/database.svg") %>" 
-    data-table_svg_img_path="<%= image_path("solid_litequeen/icons/table.svg") %>" 
-
-    >
-    <!-- Command Palette Trigger -->
-    <button id="commandPaletteTrigger" class="flex items-center gap-2 px-3 py-2 text-sm bg-base-200  border border-base-content/20 hover:bg-base-100  rounded-md  transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="fixed inset-0 flex items-start justify-center pt-[12vh]">
+      <div id="commandPaletteDialog" class="slq-dialog slq-dialog-enter w-full max-w-2xl overflow-hidden mx-4">
+        <div class="flex items-center gap-3 border-b border-[var(--border)] px-4">
+          <svg class="h-4 w-4 text-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-        <span>Search databases and tables...</span>
-        <kbd class="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-base-300 px-1.5 font-mono text-[10px] font-medium  opacity-100">
-            <span class="text-xs">⌘</span>K
-        </kbd>
-    </button>
-
-    <!-- Command Palette Modal -->
-    <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden">
-        <!-- Backdrop -->
-        <div class="fixed inset-0  backdrop-blur "></div>
-        
-        <!-- Dialog -->
-        <div class="fixed inset-0 flex items-start justify-center pt-[10vh]">
-            <div id="commandPaletteDialog" class="bg-base-200 border border-base-content/20 rounded-lg shadow-xl w-full max-w-2xl mx-4 dialog-enter">
-                <!-- Search Input -->
-                <div class="flex items-center border-b border-base-content/30 px-3">
-                    <svg class="mr-2 h-4 w-4 shrink-0 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                    <input
-                        id="commandPaletteInput"
-                        type="text"
-                        placeholder="Search databases and tables..."
-                        class="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none border-0 focus:ring-0"
-                        autocomplete="off"
-                    />
-                </div>
-
-                <!-- Results -->
-                <div id="commandPaletteResults" class="max-h-[400px] overflow-y-auto">
-                    <div id="noResults" class="py-6 text-center text-sm text-base-content/60 hidden">
-                        No databases or tables found.
-                    </div>
-                    <div id="resultsList" class="p-2"></div>
-                </div>
-
-                <!-- Footer -->
-                <div class="border-t border-base-content/30 px-3 py-2 text-xs text-base-content/60">
-                    <div class="flex items-center justify-between">
-                        <span>Use ↑↓ to navigate, Enter to select, Esc to close</span>
-                        <span id="resultsCount">0 results</span>
-                    </div>
-                </div>
-            </div>
+          </svg>
+          <input
+            id="commandPaletteInput"
+            type="text"
+            placeholder="Search databases and tables..."
+            class="h-12 w-full bg-transparent text-sm text-[var(--text)] placeholder:text-faint focus:outline-none"
+            autocomplete="off"
+          />
         </div>
-    </div>
 
+        <div id="commandPaletteResults" class="max-h-[420px] overflow-y-auto">
+          <div id="noResults" class="py-8 text-center text-sm text-faint hidden">
+            No databases or tables found.
+          </div>
+          <div id="resultsList" class="p-2"></div>
+        </div>
+
+        <div class="border-t border-[var(--border)] px-4 py-3 text-xs text-faint">
+          <div class="flex items-center justify-between">
+            <span>Use ↑↓ to navigate, Enter to select, Esc to close</span>
+            <span id="resultsCount">0 results</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
