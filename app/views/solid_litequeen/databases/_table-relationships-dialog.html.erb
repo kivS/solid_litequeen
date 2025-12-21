@@ -1,23 +1,45 @@
-
 <dialog
   id="table_relationships"
   data-controller="dialog table-relations"
   data-relations="<%= @table_relations.to_json %>"
-  class="slq-dialog m-auto h-[80vh] w-[1000px] max-w-[96vw] overflow-hidden"
+  class="
+    slq-dialog m-auto h-[80vh] w-[1000px] overscroll-y-contain max-w-[96vw]
+    overflow-hidden
+  "
 >
   <div class="flex h-full flex-col">
-    <div class="flex items-center justify-between border-b border-[var(--border)] px-6 py-4">
+    <div
+      class="
+        flex items-center justify-between border-b border-[var(--border)]
+        px-6 py-4
+      "
+    >
       <div>
         <p class="text-xs uppercase tracking-[0.35em] text-faint">Diagram</p>
-        <h1 class="mt-1 font-display text-lg font-semibold text-[var(--text)]">Table Relationships</h1>
+
+        <h1 class="mt-1 font-display text-lg font-semibold text-[var(--text)]">
+          Table Relationships
+        </h1>
       </div>
-      <button data-action="click->dialog#close" class="cursor-pointer rounded-full p-2 outline-none transition hover:-translate-y-0.5 hover:shadow-md">
+
+      <button
+        data-action="click->dialog#close"
+        class="
+          cursor-pointer rounded-full p-2 outline-none transition
+          hover:-translate-y-0.5 hover:shadow-md
+        "
+      >
         <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 icon-muted" %>
       </button>
     </div>
 
     <div class="flex-1 min-h-0 p-6">
-      <div class="surface-soft h-full w-full min-h-0 min-w-0 overflow-auto overscroll-contain">
+      <div
+        class="
+          surface-soft h-full w-full min-h-0 min-w-0 overflow-auto
+          overscroll-contain
+        "
+      >
         <div id="paper" class="h-full w-full"></div>
       </div>
     </div>

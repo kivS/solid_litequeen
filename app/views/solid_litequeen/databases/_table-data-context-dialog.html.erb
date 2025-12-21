@@ -14,32 +14,80 @@
   end
 %>
 
-<dialog id="<%= dialog_id %>" data-controller="dialog" class="slq-dialog m-auto w-[800px] max-w-[94vw] overflow-hidden">
-  <div class="flex items-center justify-between border-b border-[var(--border)] px-6 py-4">
+<dialog
+  id="<%= dialog_id %>"
+  data-controller="dialog"
+  class="
+    slq-dialog m-auto w-[800px] max-w-[94vw] overscroll-y-contain
+    overflow-hidden
+  "
+>
+  <div
+    class="
+      flex items-center justify-between border-b border-[var(--border)] px-6
+      py-4
+    "
+  >
     <div>
       <p class="text-xs uppercase tracking-[0.35em] text-faint">Value</p>
-      <h1 class="mt-1 font-display text-lg font-semibold text-[var(--text)]"><%= column_name %></h1>
+
+      <h1 class="mt-1 font-display text-lg font-semibold text-[var(--text)]">
+        <%= column_name %>
+      </h1>
     </div>
-    <button data-action="click->dialog#close" class="cursor-pointer rounded-full p-2 outline-none transition hover:-translate-y-0.5 hover:shadow-md">
+
+    <button
+      data-action="click->dialog#close"
+      class="
+        cursor-pointer rounded-full p-2 outline-none transition
+        hover:-translate-y-0.5 hover:shadow-md
+      "
+    >
       <%= image_tag "solid_litequeen/icons/x.svg", class: "size-5 icon-muted" %>
     </button>
   </div>
 
-  <div data-controller="clipboard" class="relative m-6 h-80 max-h-80 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)]">
+  <div
+    data-controller="clipboard"
+    class="
+      relative m-6 h-80 max-h-80 overflow-hidden rounded-2xl border
+      border-[var(--border)] bg-[var(--surface-muted)]
+    "
+  >
     <button
       title="Copy"
       data-action="clipboard#copy"
-      class="absolute right-3 top-3 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-semibold text-[var(--text-muted)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      class="
+        absolute right-3 top-3 inline-flex items-center gap-2 rounded-full
+        border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs
+        font-semibold text-[var(--text-muted)] shadow-sm transition
+        hover:-translate-y-0.5 hover:shadow-md
+      "
     >
       <%= image_tag "solid_litequeen/icons/copy-clipboard.svg", class: "in-data-copied:hidden size-4 icon-muted" %>
       <span class="in-data-copied:hidden">Copy</span>
-      <span class="hidden in-data-copied:block text-[var(--accent)]">Copied</span>
+
+      <span class="hidden in-data-copied:block text-[var(--accent)]">
+        Copied
+      </span>
     </button>
 
     <% if is_json %>
-      <pre data-clipboard-target="source" class="h-full overflow-auto p-4 text-xs font-mono leading-relaxed text-[var(--text)]"><%= JSON.pretty_generate(parsed_json) %></pre>
+      <pre
+        data-clipboard-target="source"
+        class="
+          h-full overflow-auto p-4 text-xs font-mono leading-relaxed
+          text-[var(--text)]
+        "
+      ><%= JSON.pretty_generate(parsed_json) %></pre>
     <% else %>
-      <p data-clipboard-target="source" class="h-full overflow-auto p-4 text-sm leading-relaxed text-[var(--text)]">
+      <p
+        data-clipboard-target="source"
+        class="
+          h-full overflow-auto p-4 text-sm leading-relaxed
+          text-[var(--text)]
+        "
+      >
         <%= data %>
       </p>
     <% end %>
