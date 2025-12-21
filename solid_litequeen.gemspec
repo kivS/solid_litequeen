@@ -27,9 +27,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "turbo-rails"
   spec.add_dependency "stimulus-rails"
   spec.add_dependency "sqlite3"
+
+
   spec.add_development_dependency "tailwindcss-rails", "~> 4.0"
-
-
   spec.add_development_dependency "debug"
   spec.add_development_dependency "web-console"
   spec.add_development_dependency "propshaft"
