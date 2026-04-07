@@ -1,1 +1,17 @@
 @tailwind base;
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('/fonts/Mona-Sans.var.woff2') format('woff2');
+  font-display: swap;
+  font-style: normal;
+  font-weight: 200 900;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', 'Avenir Next', 'Segoe UI', ui-sans-serif, system-ui,
+      sans-serif;
+    --font-mona-sans: 'Mona Sans', var(--font-sans);
+  }
+}

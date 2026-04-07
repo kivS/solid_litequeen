@@ -1,15 +1,15 @@
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { cn } from '@/lib/utils'
 
 export function Logo({ className, ...props }) {
-	return (
-		<Image
-			alt="logo image"
-			width={35}
-			height={35}
-			src="/logo.webp"
-			className={cn("", className)}
-			{...props}
-		/>
-	);
+  return (
+    <img
+      alt="logo image"
+      width={35}
+      height={35}
+      src="/logo.webp"
+      loading="lazy"
+      className={cn('', className)}
+      {...props}
+    />
+  )
 }

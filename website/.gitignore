@@ -2,7 +2,8 @@
 .next/
 node_modules/
 out/
+dist/
 .env.*
 
 download/
-certificates
+certificates/
