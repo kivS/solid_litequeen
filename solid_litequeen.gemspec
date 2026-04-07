@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version     = SolidLitequeen::VERSION
   spec.authors     = [ "Vik Borges" ]
   spec.email       = [ "kiv.d.dev@gmail.com" ]
-  spec.homepage    = "https://solid.litequeen.com"
+  spec.homepage    = "https://litequeen.vikborges.com"
   spec.summary     = "Manage SQLite databases on your server with ease"
   spec.description = "Lite Queen is an open-source SQLite database management software for Ruby on Rails projects"
   spec.license     = "MIT"
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/kivS/solid_litequeen"
-  spec.metadata["changelog_uri"] = "https://solid.litequeen.com"
+  spec.metadata["changelog_uri"] = "https://litequeen.vikborges.com"
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
