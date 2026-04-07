@@ -20,12 +20,11 @@ servers:
 proxy:
   ssl: true
   host: litequeen.vikborges.com
-  # Proxy connects to your container on port 80 by default.
-  # app_port: 3000
+  app_port: 80
 
 # Credentials for your image host.
 registry:
-  server: "localhost:5555"
+  server: 'localhost:5555'
 
 # Configure builder setup.
 builder:
@@ -62,8 +61,7 @@ builder:
 # hitting 404 on in-flight requests. Combines all files from new and old
 # version inside the asset_path.
 #
-asset_path: /usr/share/nginx/html/_next
-
+asset_path: /usr/share/nginx/html/assets
 # Configure rolling deploys by setting a wait time between batches of restarts.
 #
 # boot:

@@ -4,17 +4,17 @@ module.exports = {
   darkMode: 'selector',
   theme: {
     extend: {
-      colors:{
+      colors: {
         starryBlue: {
           light: '#e1eaff',
-          dark: '#061332'
-        }
+          dark: '#061332',
+        },
       },
       fontSize: {
         '2xs': '.6875rem',
       },
       fontFamily: {
-        sans: 'var(--font-inter)',
+        sans: 'var(--font-sans)',
         display: 'var(--font-mona-sans)',
       },
       opacity: {
@@ -24,5 +24,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography'),],
+  plugins: [require('@tailwindcss/typography')],
 }

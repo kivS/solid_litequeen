@@ -1,0 +1,11 @@
+.git
+.next
+dist
+node_modules
+out
+download
+certificates
+.env*
+npm-debug.log*
+bun-debug.log*
+Dockerfile*
