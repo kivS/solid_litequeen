@@ -21,7 +21,7 @@ import guidePosts from '../src/app/guides/posts.json'
 
 const ROOT = path.resolve(import.meta.dir, '..')
 const DIST = path.join(ROOT, 'dist')
-const SITE_URL = 'https://solid.litequeen.com'
+const SITE_URL = 'https://litequeen.vikborges.com'
 const TITLE = 'Solid Lite Queen - Manage SQLite databases in your Rails app'
 const DESCRIPTION =
   'Solid Lite Queen is an open-source SQLite database management software for your Rails app.'

@@ -3,9 +3,9 @@ import * as cheerio from "cheerio";
 import { Feed } from "feed";
 
 export async function GET(req) {
-	let siteUrl = "https://solid.litequeen.com";
+	let siteUrl = "https://litequeen.vikborges.com";
 	// let rssSourceUrl = process.env.NEXT_PUBLIC_SITE_URL;
-	let rssSourceUrl = "https://solid.litequeen.com";
+	let rssSourceUrl = "https://litequeen.vikborges.com";
 
 	if (!siteUrl) {
 		throw Error("Missing NEXT_PUBLIC_SITE_URL environment variable");

@@ -16,27 +16,27 @@ export default async function sitemap() {
 
 	return [
 		{
-			url: "https://solid.litequeen.com/",
+			url: "https://litequeen.vikborges.com/",
 			lastModified: new Date(),
 			changeFrequency: "daily",
 			priority: 1,
 		},
 
 		{
-			url: "https://solid.litequeen.com/guides/",
+			url: "https://litequeen.vikborges.com/guides/",
 			lastModified: new Date(),
 			changeFrequency: "daily",
 			priority: 1,
 		},
 		// {
-		// 	url: "https://solid.litequeen.com/faq/",
+		// 	url: "https://litequeen.vikborges.com/faq/",
 		// 	lastModified: new Date(),
 		// 	changeFrequency: "daily",
 		// 	priority: 1,
 		// },
 
 		...posts.map((post) => ({
-			url: `https://solid.litequeen.com/guides/${post.slug}`,
+			url: `https://litequeen.vikborges.com/guides/${post.slug}`,
 			lastModified: new Date(),
 			changeFrequency: "daily",
 			priority: 1,

@@ -10,10 +10,10 @@ export const metadata = {
     'Solid Lite Queen is an open-source SQLite database management software for your Rails app.',
   alternates: {
     types: {
-      'application/rss+xml': 'https://solid.litequeen.com/feed.xml',
+      'application/rss+xml': 'https://litequeen.vikborges.com/feed.xml',
     },
   },
-  metadataBase: new URL('https://solid.litequeen.com'),
+  metadataBase: new URL('https://litequeen.vikborges.com'),
 }
 
 export default function RootLayout({ children }) {

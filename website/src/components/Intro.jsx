@@ -27,7 +27,7 @@ export function Intro() {
           </a>
 
           {/* <a
-						href="https://demo.solid.litequeen.com"
+						href="https://litequeen.vikborges.com"
 						target="_blank"
 						rel="noreferrer"
 						data-umami-event="Demo button"
